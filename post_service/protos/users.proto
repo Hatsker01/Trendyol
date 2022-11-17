@@ -1,0 +1,65 @@
+syntax = "proto3";
+
+package user;
+
+import "posts.proto";
+
+
+service UserService{
+    rpc CreateUser(CreateUserReq) returns (User);
+    rpc UpdateUser(User) returns (User);
+    rpc GetUserById(WithId) returns(User);
+    rpc GetAllUsers(Empty) returns(Users);
+    rpc DeleteUserById(WithId) returns(User);
+    rpc LoginUser(LoginUserReq) returns(User);
+}
+
+message LoginUserReq{
+    string email = 1;
+    string password=2;
+}
+
+
+message User{
+    string id =1;
+    string first_name=2;
+    string last_name=3;
+    string username = 4;
+    string phone =5;
+    string email=6;
+    string password=7;
+    string address=8;
+    string gender = 9;
+    string role = 10;
+    string postalcode=11;
+    repeated Post Posts=12;
+    string created_at=13;
+    string updated_at=14;
+    string deleted_at=15;
+}
+
+message CreateUserReq{
+    string id=1;
+    string first_name=2;
+    string last_name=3;
+    string username=4;
+    string phone =5;
+    string email =6;
+    string password=7;
+    string address=8;
+    string gender =9;
+    string role=10;
+    string postalcode=11;
+}
+
+
+message Users{
+    repeated User User=1;
+}
+
+
+
+
+
+
+
