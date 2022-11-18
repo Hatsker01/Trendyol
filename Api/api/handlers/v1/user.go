@@ -5,10 +5,9 @@ import (
 	"net/http"
 	"time"
 
+	pb "github.com/Trendyol/Api/genproto"
 	"github.com/Trendyol/Api/pkg/logger"
 	"github.com/gin-gonic/gin"
-	pb "github.com/Trendyol/Api/genproto"
-	
 )
 
 // CreateUser ...
@@ -19,8 +18,8 @@ import (
 // @Produce json
 // @Param user request body CreateUser true "UserCreate"
 // @Success 200 {object} CreateUser
-// @Success 400 {object} response
-// @Success 500 {object} response
+// @Success 400 {object} Success
+// @Success 500 {object} Success
 // @Router   /v1/users/ [POST]
 func (h *handlerV1) CreateUser(c *gin.Context) {
 	var body pb.CreateUserReq
@@ -28,9 +27,9 @@ func (h *handlerV1) CreateUser(c *gin.Context) {
 	err := c.ShouldBindJSON(&body)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{
-			"error":err.Error(),
+			"error": err.Error(),
 		})
-		h.log.Error("failed while to blind json",logger.Error(err))
+		h.log.Error("failed while to blind json", logger.Error(err))
 
 	}
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second*time.Duration(h.cfg.CtxTimeout))
@@ -39,12 +38,13 @@ func (h *handlerV1) CreateUser(c *gin.Context) {
 	user, err := h.serviceManager.UserService().CreateUser(ctx, &body)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{
-			"error":err.Error(),
+			"error": err.Error(),
 		})
-		h.log.Error("failed while creating user json",logger.Error(err))
+		h.log.Error("failed while creating user json", logger.Error(err))
 	}
 	c.JSON(http.StatusCreated, user)
 }
+
 type CreateUser struct {
 	id         string `json:"id"`
 	first_name string `json:"first_name" binding:"required"`
@@ -57,4 +57,8 @@ type CreateUser struct {
 	gender     string `json:"gender" binding:"required"`
 	role       string `json:"role" binding:"required"`
 	postalcode string `json:"postalcode" binding:"required"`
+}
+
+type Success struct {
+	Message string `json:"message"`
 }
