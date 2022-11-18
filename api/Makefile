@@ -1,4 +1,6 @@
 CURRENT_DIR=$(shell pwd)
+APP=template
+APP_CMD_DIR=./cmd
 
 build:
 	CGO_ENABLED=0 GOOS=linux go build -mod=vendor -a -installsuffix cgo -o ${CURRENT_DIR}/bin/${APP} ${APP_CMD_DIR}/trend/main.go
@@ -13,3 +15,9 @@ migrate-up:
 
 migrate-down:
 	migrate -source file:./migrations/ -database postgres://postgres:1@localhost:5432/postgres down
+swag:	
+	swag init -g internal/app/app.go
+
+gen:
+	mockgen -source=internal/service/service.go -destination=internal/service/mocks/mock.go
+	mockgen -source=internal/repository/repository.go -destination=internal/repository/mocks/mock.go
