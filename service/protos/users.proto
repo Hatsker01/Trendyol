@@ -12,13 +12,20 @@ service UserService{
     rpc GetAllUsers(Empty) returns(Users);
     rpc DeleteUserById(WithId) returns(User);
     rpc LoginUser(LoginUserReq) returns(User);
+    rpc CheckField(CheckFieldRequest) returns (CheckFieldReponse);
 }
 
 message LoginUserReq{
     string email = 1;
     string password=2;
 }
-
+message CheckFieldRequest{
+    string field =1;
+    string value =2;
+}
+message CheckFieldReponse{
+    bool Check=1;
+}
 
 message User{
     string id =1;
@@ -31,11 +38,12 @@ message User{
     string address=8;
     string gender = 9;
     string role = 10;
-    string postalcode=11;
-    repeated Post Posts=12;
-    string created_at=13;
-    string updated_at=14;
-    string deleted_at=15;
+    string code=11;
+    string postalcode=12;
+    repeated Post Posts=13;
+    string created_at=14;
+    string updated_at=15;
+    string deleted_at=16;
 }
 
 message CreateUserReq{
@@ -49,7 +57,9 @@ message CreateUserReq{
     string address=8;
     string gender =9;
     string role=10;
-    string postalcode=11;
+    string code=11;
+    string postalcode=12;
+
 }
 
 

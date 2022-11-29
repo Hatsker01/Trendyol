@@ -14,6 +14,7 @@ type Users interface {
 	DeleteUserById(id string) (*pb.User, error)
 	LoginUser(login *pb.LoginUserReq) (*pb.User, error)
 	EmailValid(email string) (bool, error)
+	CheckField(field, value string) (bool, error) 
 }
 
 type Repasitories struct {

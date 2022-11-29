@@ -31,6 +31,7 @@ func (r *PostsRepo) CreatePost(post *pb.Post) (*pb.Post, error) {
 		pq.Array(&newPost.Size_),
 		&newPost.CreatedAt,
 	)
+
 	if err != nil {
 		return &pb.Post{}, err
 	}
@@ -100,6 +101,7 @@ func (r *PostsRepo) UpdatePost(post *pb.Post) (*pb.Post, error) {
 func (r *PostsRepo) GetPostById(id string) (*pb.Post, error) {
 	query := `SELECT id,title,description,body,author_id,stars,rating,price,product_type,size,created_at,updated_at from posts where id=$1 and deleted_at is null`
 	post := pb.Post{}
+	var update_at sql.NullTime
 	err := r.db.QueryRow(query, id).Scan(
 		&post.Id,
 		&post.Title,
@@ -112,10 +114,13 @@ func (r *PostsRepo) GetPostById(id string) (*pb.Post, error) {
 		&post.ProductType,
 		pq.Array(&post.Size_),
 		&post.CreatedAt,
-		&post.UpdatedAt,
+		&update_at,
 	)
 	if err != nil {
 		return nil, err
+	}
+	if update_at.Valid{
+		post.UpdatedAt=update_at.Time.String()
 	}
 	return &post, nil
 }
@@ -182,6 +187,70 @@ func (r *PostsRepo) DeleteAllUserPosts(id string) ([]*pb.Post, error) {
 	}
 	return posts, nil
 }
+
+func (r *PostsRepo) StarPosts()([]*pb.Post,error){
+	query:=`SELECT id,title,description,body,author_id,stars,rating,price,product_type,size from posts where deleted_at in null order by stars desc`
+	rows,err:=r.db.Query(query)
+	if err!=nil{
+		return nil,err
+	}
+	var posts []*pb.Post
+	for rows.Next(){
+		var post pb.Post
+		err:=rows.Scan(
+			&post.Id,
+			&post.Title,
+			&post.Description,
+			&post.Body,
+			&post.AuthorId,
+			&post.Stars,
+			&post.Rating,
+			&post.ProductType,
+			pq.Array(&post.Size_),
+		)
+		if err!=nil{
+			return nil,err
+		}
+		posts = append(posts, &post)
+	}
+	return posts,nil
+}
+func (r *PostsRepo) SeperatePostByPrice(priceSep *pb.PriceSep)([]*pb.Post,error){
+	query:=`SELECT id,title,description,body,author_id,stars,rating,price,product_type,size from posts where deleted_at is null order by price `
+	if priceSep.High{
+		query+="desc"
+	}
+	rows,err:=r.db.Query(query)
+	if err!=nil{
+		return nil,err
+	}
+	var posts []*pb.Post
+	for rows.Next(){
+		var post pb.Post
+		err:=rows.Scan(
+			&post.Id,
+			&post.Title,
+			&post.Description,
+			&post.Body,
+			&post.AuthorId,
+			&post.Stars,
+			&post.Stars,
+			&post.Rating,
+			&post.Price,
+			&post.ProductType,
+			pq.Array(&post.Size_),
+		)
+		if err!=nil{
+			return nil,err
+		}
+		posts = append(posts, &post)
+	}
+	return posts,nil
+}
+
+//functions for categories
+
+
 
 func NewPostRepo(db *sqlx.DB) *PostsRepo {
 	return &PostsRepo{

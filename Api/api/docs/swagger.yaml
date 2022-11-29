@@ -1,0 +1,652 @@
+definitions:
+  model.CategiryReq:
+    properties:
+      name:
+        type: string
+      post_id:
+        type: string
+    type: object
+  model.Category:
+    properties:
+      created_at:
+        type: string
+      deleted_at:
+        type: string
+      id:
+        type: string
+      name:
+        type: string
+      post_id:
+        type: string
+      updated_at:
+        type: string
+    type: object
+  model.CreateUser:
+    properties:
+      address:
+        minLength: 7
+        type: string
+      code:
+        type: string
+      email:
+        type: string
+      first_name:
+        type: string
+      gender:
+        type: string
+      id:
+        type: string
+      last_name:
+        type: string
+      password:
+        minLength: 5
+        type: string
+      phone:
+        minLength: 5
+        type: string
+      postalcode:
+        type: string
+      role:
+        type: string
+      username:
+        minLength: 4
+        type: string
+    required:
+    - address
+    - email
+    - first_name
+    - gender
+    - last_name
+    - password
+    - phone
+    - postalcode
+    - role
+    - username
+    type: object
+  model.Post:
+    properties:
+      author_id:
+        type: string
+      body:
+        type: string
+      created_at:
+        type: string
+      description:
+        type: string
+      id:
+        type: string
+      price:
+        type: string
+      product_type:
+        type: string
+      rating:
+        type: string
+      size:
+        items:
+          type: string
+        type: array
+      stars:
+        maximum: 5
+        minimum: 0
+        type: integer
+      title:
+        type: string
+      updated_at:
+        type: string
+    required:
+    - stars
+    type: object
+  model.Posts:
+    properties:
+      Posts:
+        items:
+          $ref: '#/definitions/model.Post'
+        type: array
+    type: object
+  model.User:
+    properties:
+      Posts:
+        items:
+          $ref: '#/definitions/model.Post'
+        type: array
+      address:
+        type: string
+      code:
+        type: string
+      created_at:
+        type: string
+      email:
+        type: string
+      first_name:
+        type: string
+      gender:
+        type: string
+      id:
+        type: string
+      last_name:
+        type: string
+      password:
+        type: string
+      phone:
+        type: string
+      postalcode:
+        type: string
+      role:
+        type: string
+      updated_at:
+        type: string
+      username:
+        type: string
+    type: object
+  model.Users:
+    properties:
+      Users:
+        items:
+          $ref: '#/definitions/model.User'
+        type: array
+    type: object
+  v1.Success:
+    properties:
+      message:
+        type: string
+    type: object
+  v1.response:
+    properties:
+      message:
+        type: string
+    type: object
+info:
+  contact: {}
+paths:
+  /v1/category:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: CreateCategory
+        in: body
+        name: category
+        required: true
+        schema:
+          $ref: '#/definitions/model.CategiryReq'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.Category'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/v1.response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/v1.response'
+      security:
+      - BearerAuth: []
+      summary: CreateCategory
+      tags:
+      - category
+  /v1/category/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: This API for deleting category by ID
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.Category'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/v1.response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/v1.response'
+      security:
+      - BearerAuth: []
+      summary: Delete Category By ID
+      tags:
+      - category
+    get:
+      consumes:
+      - application/json
+      description: This API for getting posts by category ID
+      parameters:
+      - description: Category_id
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.Posts'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/v1.response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/v1.response'
+      security:
+      - BearerAuth: []
+      summary: Get All posts by Category
+      tags:
+      - category
+  /v1/category/getById/{id}:
+    get:
+      consumes:
+      - application/json
+      description: This API for getting Category by ID
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.Category'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/v1.response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/v1.response'
+      security:
+      - BearerAuth: []
+      summary: GetCategory
+      tags:
+      - category
+  /v1/post:
+    post:
+      consumes:
+      - application/json
+      description: This API for creating new post
+      parameters:
+      - description: CreatePost
+        in: body
+        name: post
+        required: true
+        schema:
+          $ref: '#/definitions/model.Post'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.Post'
+      summary: CreatePost
+      tags:
+      - post
+    put:
+      consumes:
+      - application/json
+      parameters:
+      - description: UpdatePost
+        in: body
+        name: post
+        required: true
+        schema:
+          $ref: '#/definitions/model.Post'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.Post'
+      security:
+      - BearerAuth: []
+      summary: UpdatePost
+      tags:
+      - post
+  /v1/post/{id}:
+    get:
+      consumes:
+      - application/json
+      description: This API for getting post by id
+      parameters:
+      - description: Post_id
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.Post'
+      security:
+      - BearerAuth: []
+      summary: GetPostById
+      tags:
+      - post
+  /v1/post/delete/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: This API for deleting post by ID
+      parameters:
+      - description: Post_id
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.Post'
+      security:
+      - BearerAuth: []
+      summary: Delete Post By ID
+      tags:
+      - post
+  /v1/post/getAllUserPosts/{id}:
+    get:
+      consumes:
+      - application/json
+      description: This API for getting user posts
+      parameters:
+      - description: User_id
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.Posts'
+      security:
+      - BearerAuth: []
+      summary: Get all user posts
+      tags:
+      - post
+  /v1/posts:
+    get:
+      consumes:
+      - application/json
+      description: This API for getting all posts
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.Posts'
+      security:
+      - BearerAuth: []
+      summary: GetAllPosts
+      tags:
+      - post
+  /v1/posts/stars:
+    get:
+      consumes:
+      - application/json
+      description: This API for getting post sorting by stars
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.Posts'
+      security:
+      - BearerAuth: []
+      summary: Sort posts by stars
+      tags:
+      - post
+  /v1/user/delete/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: This API for deleting user by ID
+      parameters:
+      - description: User_id
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.User'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/v1.Success'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/v1.Success'
+      security:
+      - BearerAuth: []
+      summary: Delete User By Id
+      tags:
+      - user
+  /v1/user/getUserbyId/{id}:
+    get:
+      consumes:
+      - application/json
+      description: This API for getting user by id
+      parameters:
+      - description: User_ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.User'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/v1.Success'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/v1.Success'
+      security:
+      - BearerAuth: []
+      summary: GetUserById
+      tags:
+      - user
+  /v1/users:
+    post:
+      consumes:
+      - application/json
+      description: This API for creating a new user
+      parameters:
+      - description: CreateUser
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/model.CreateUser'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.User'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/v1.Success'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/v1.Success'
+      summary: CreateUser
+      tags:
+      - user
+    put:
+      consumes:
+      - application/json
+      description: This API for updating a new user
+      parameters:
+      - description: UpdateUser
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/model.User'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.User'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/v1.Success'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/v1.Success'
+      security:
+      - BearerAuth: []
+      summary: UpdateUser
+      tags:
+      - user
+  /v1/users/RegisterUser:
+    post:
+      consumes:
+      - application/json
+      description: This API for registering user
+      parameters:
+      - description: user body
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/model.CreateUser'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model.User'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/model.User'
+      summary: Register user summary
+      tags:
+      - user
+  /v1/users/getAll:
+    get:
+      consumes:
+      - application/json
+      description: This API for getting all Users
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.Users'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/v1.Success'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/v1.Success'
+      security:
+      - BearerAuth: []
+      summary: GetAllUsers
+      tags:
+      - user
+  /v1/users/login/user:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: Email
+        in: query
+        name: email
+        required: true
+        type: string
+      - description: Password
+        in: query
+        name: password
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+      summary: Get user summary
+      tags:
+      - user
+  /v1/users/register/user/{email}/{coded}:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: Email
+        in: path
+        name: email
+        required: true
+        type: string
+      - description: Code
+        in: path
+        name: coded
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+      summary: Post user summary
+      tags:
+      - user
+securityDefinitions:
+  BearerAuth:
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"

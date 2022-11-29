@@ -97,3 +97,24 @@ func (s *PostsService) DeleteAllUserPosts(ctx context.Context, id *pb.WithId) (*
 		Posts: posts,
 	}, nil
 }
+func (s *PostsService) StarPosts(ctx context.Context,empty *pb.Empty)(*pb.Posts,error){
+	posts,err:=s.repo.StarPosts()
+	if err!=nil{
+		s.logger.Error("failed while getting posts seperating by stars",logger.Error(err))
+		return nil,status.Error(codes.Internal,"failed while getting post separating by stars")
+	}
+	return &pb.Posts{
+		Posts: posts,
+	},nil
+}
+
+func (s *PostsService) GetPostsByPrice(ctx context.Context,priceSep *pb.PriceSep)(*pb.Posts,error){
+	posts,err:=s.repo.SeperatePostByPrice(priceSep)
+	if err!=nil{
+		s.logger.Error("failed while getting posts seperate by Price",logger.Error(err))
+		return nil,status.Error(codes.Internal,"failed while getting posts seperating by price")
+	}
+	return &pb.Posts{
+		Posts: posts,
+	},nil
+}

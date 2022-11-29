@@ -1,0 +1,7 @@
+p, unauthorized, */v1/*, GET
+p, authorized, */v1/*, GET
+p, unauthorized, /v1/*, POST
+p, authorized, /v1/*, POST
+p, authorized, /users/delete/{id}, DELETE
+p, unauthorized, */v1/*, PUT
+p, authorized, */v1/*, PUT

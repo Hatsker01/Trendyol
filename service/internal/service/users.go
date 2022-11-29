@@ -27,6 +27,17 @@ func NewUsersService(repo postgres.Users, logger logger.Logger, client cl.GrpcCl
 		client: client,
 	}
 }
+func (s *UsersService) CheckField(ctx context.Context, req *pb.CheckFieldRequest) (*pb.CheckFieldReponse, error) {
+	check, err := s.repo.CheckField(req.Field, req.Value)
+	if err != nil {
+		s.logger.Error("failed while getting user", logger.Error(err))
+		return nil, status.Error(codes.Internal, "failed while getting user")
+
+	}
+	return &pb.CheckFieldReponse{
+		Check: check,
+	}, nil
+}
 
 func (s *UsersService) CreateUser(ctx context.Context, user *pb.CreateUserReq) (*pb.User, error) {
 	id, err := uuid.NewV4()

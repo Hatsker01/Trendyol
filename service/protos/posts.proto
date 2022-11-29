@@ -13,6 +13,7 @@ service PostService{
     rpc DeletePostById(WithId) returns (Post);
     rpc GetAllUserPosts(WithId) returns (Posts);
     rpc DeleteAllUserPosts(WithId) returns (Posts);
+    rpc StarPosts(Empty) returns (Posts);
 }
 
 

@@ -14,6 +14,15 @@ type Posts interface {
 	DeletePostById(id string) (*pb.Post, error)
 	GetAllUserPosts(id string) ([]*pb.Post, error)
 	DeleteAllUserPosts(id string) ([]*pb.Post, error)
+	StarPosts()([]*pb.Post,error)
+	SeperatePostByPrice(priceSep *pb.PriceSep)([]*pb.Post,error)
+
+	GetPostByCategory(id string)([]*pb.Post,error)
+	GetAllCategories()([]*pb.Category,error)
+	CreateCategory(category *pb.CategoryReq)(*pb.Category,error)
+	DeleteCategory(id string)(*pb.Category,error)
+	GetCategory(id string)(*pb.Category,error)
+
 }
 
 type Repasitories struct {

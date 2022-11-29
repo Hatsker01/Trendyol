@@ -31,6 +31,29 @@ func (r *UsersRepo) CreateUser(user *pb.CreateUserReq) (*pb.User, error) {
 	return newuser, nil
 }
 
+func (r *UsersRepo) CheckField(field, value string) (bool, error) {
+	var existClient int
+	if field == "username" {
+		row := r.db.QueryRow(`SELECT count(1) FROM users WHERE username = $1 AND deleted_at IS NULL`, field)
+		if err := row.Scan(&existClient); err != nil {
+			return false, err
+		}
+	} else if field == "email" {
+		row := r.db.QueryRow(`SELECT count(1) FROM users WHERE email = $1 and deleted_at IS NULL`, value)
+		if err := row.Scan(&existClient); err != nil {
+			return false, err
+		}
+
+	} else {
+		return false, nil
+	}
+	if existClient == 0 {
+		return false, nil
+	}
+	return true, nil
+
+}
+
 func (r *UsersRepo) UpdateUser(user *pb.User) (*pb.User, error) {
 	query := `UPDATE users SET first_name=$1,last_name=$2,username=$3,phone=$4,email=$5,password=$6,gender=$7,role=$8,postalcode=$9,updated_at=$10 where id=$11
 	RETURNING id,first_name,last_name,username,phone,email,password,gender,role,postalcode,created_at`
@@ -145,7 +168,7 @@ func (r *UsersRepo) LoginUser(login *pb.LoginUserReq) (*pb.User, error) {
 		updated_at sql.NullTime
 	)
 
-	query := `SELECT id,first_name,last_name,username,email,password,role,created_at,updated_at where email=$1 and deleted_at is null`
+	query := `SELECT id,first_name,last_name,username,email,password,role,created_at,updated_at from users where email=$1 and deleted_at is null`
 	err := r.db.QueryRow(query, login.Email).Scan(
 		&user.Id,
 		&user.FirstName,
