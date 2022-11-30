@@ -63,11 +63,33 @@ definitions:
     - role
     - username
     type: object
+  model.Like:
+    properties:
+      created_at:
+        type: string
+      deleted_at:
+        type: string
+      id:
+        type: string
+      post_id:
+        type: string
+      user_id:
+        type: string
+    type: object
+  model.Likes:
+    properties:
+      likes:
+        items:
+          $ref: '#/definitions/model.Like'
+        type: array
+    type: object
   model.Post:
     properties:
       author_id:
         type: string
       body:
+        type: string
+      color:
         type: string
       created_at:
         type: string
@@ -112,6 +134,8 @@ definitions:
       address:
         type: string
       code:
+        type: string
+      color:
         type: string
       created_at:
         type: string
@@ -269,6 +293,162 @@ paths:
       summary: GetCategory
       tags:
       - category
+  /v1/like:
+    post:
+      consumes:
+      - application/json
+      description: This API for putting like
+      parameters:
+      - description: PutLike
+        in: body
+        name: like
+        required: true
+        schema:
+          $ref: '#/definitions/model.Like'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.Like'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/v1.response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/v1.response'
+      security:
+      - BearerAuth: []
+      summary: Putting Like
+      tags:
+      - like
+  /v1/like/{id}:
+    get:
+      consumes:
+      - application/json
+      description: This API for getting like by id
+      parameters:
+      - description: Like_Id
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.Like'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/v1.response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/v1.response'
+      security:
+      - BearerAuth: []
+      summary: GetLikeInfo
+      tags:
+      - like
+  /v1/like/getAllLikeuser/{id}:
+    get:
+      consumes:
+      - application/json
+      description: This API for getting all likes user
+      parameters:
+      - description: User_id
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.Like'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/v1.response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/v1.response'
+      security:
+      - BearerAuth: []
+      summary: GetAllPostLikesUser
+      tags:
+      - like
+  /v1/like/getPostLike/{id}:
+    get:
+      consumes:
+      - application/json
+      description: This API for getting post's like
+      parameters:
+      - description: Post_id
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.Likes'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/v1.response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/v1.response'
+      security:
+      - BearerAuth: []
+      summary: GetPostLike
+      tags:
+      - like
+  /v1/like/takeLike/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: This API for taking like
+      parameters:
+      - description: Like_id
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.Like'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/v1.response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/v1.response'
+      security:
+      - BearerAuth: []
+      summary: TakeLike
+      tags:
+      - like
   /v1/post:
     post:
       consumes:

@@ -10,6 +10,7 @@ CREATE TABLE posts
     price INT,
     product_type VARCHAR,
     size INT[],
+    colour  VARCHAR,
     created_at TIMESTAMP,
     updated_at TIMESTAMP,
     deleted_at TIMESTAMP

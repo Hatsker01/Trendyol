@@ -23,7 +23,15 @@ type Posts interface {
 	DeleteCategory(id string)(*pb.Category,error)
 	GetCategory(id string)(*pb.Category,error)
 
+	PutLike(like *pb.Like)(*pb.Like,error)
+	TakeLike(id string)(*pb.Like,error)
+	GetAllLikesUser(id string)([]*pb.Like,error)
+	GetLikeInfo(id string)(*pb.Like,error)
+	GetPostLike(id string)([]*pb.Like,error)
+
 }
+
+
 
 type Repasitories struct {
 	Posts  Posts

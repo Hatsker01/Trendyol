@@ -16,9 +16,9 @@ type PostsRepo struct {
 func (r *PostsRepo) CreatePost(post *pb.Post) (*pb.Post, error) {
 
 	newPost := pb.Post{}
-	query := `INSERT INTO posts(id,title,description,body,author_id,stars,rating,price,product_type,size,created_at) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11) 
+	query := `INSERT INTO posts(id,title,description,body,author_id,stars,rating,price,product_type,size,color,created_at) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12) 
 	RETURNING id,title,description,body,author_id,stars,rating,price,product_type,size,created_at`
-	err := r.db.QueryRow(query, post.Id, post.Title, post.Description, post.Body, post.AuthorId, post.Stars, post.Rating, post.Price, post.ProductType, pq.Array(post.Size_), time.Now().UTC()).Scan(
+	err := r.db.QueryRow(query, post.Id, post.Title, post.Description, post.Body, post.AuthorId, post.Stars, post.Rating, post.Price, post.ProductType, pq.Array(post.Size_),post.Color, time.Now().UTC()).Scan(
 		&newPost.Id,
 		&newPost.Title,
 		&newPost.Description,
@@ -41,7 +41,7 @@ func (r *PostsRepo) CreatePost(post *pb.Post) (*pb.Post, error) {
 
 func (r *PostsRepo) GetAllUserPosts(id string) ([]*pb.Post, error) {
 	var posts []*pb.Post
-	query := `SELECT id,title,description,body,author_id,stars,rating,price,product_type,size,created_at,updated_at from posts where deleted_at is null and author_id =$1`
+	query := `SELECT id,title,description,body,author_id,stars,rating,price,product_type,size,color,created_at,updated_at from posts where deleted_at is null and author_id =$1`
 	rows, err := r.db.Query(query, id)
 	if err != nil {
 		return nil, err
@@ -60,6 +60,7 @@ func (r *PostsRepo) GetAllUserPosts(id string) ([]*pb.Post, error) {
 			&post.Price,
 			&post.ProductType,
 			pq.Array(&post.Size_),
+			&post.Color,
 			&post.CreatedAt,
 			&updated_at,
 		)
@@ -99,7 +100,7 @@ func (r *PostsRepo) UpdatePost(post *pb.Post) (*pb.Post, error) {
 }
 
 func (r *PostsRepo) GetPostById(id string) (*pb.Post, error) {
-	query := `SELECT id,title,description,body,author_id,stars,rating,price,product_type,size,created_at,updated_at from posts where id=$1 and deleted_at is null`
+	query := `SELECT id,title,description,body,author_id,stars,rating,price,product_type,size,color,created_at,updated_at from posts where id=$1 and deleted_at is null`
 	post := pb.Post{}
 	var update_at sql.NullTime
 	err := r.db.QueryRow(query, id).Scan(
@@ -113,6 +114,7 @@ func (r *PostsRepo) GetPostById(id string) (*pb.Post, error) {
 		&post.Price,
 		&post.ProductType,
 		pq.Array(&post.Size_),
+		&post.Color,
 		&post.CreatedAt,
 		&update_at,
 	)
@@ -126,7 +128,7 @@ func (r *PostsRepo) GetPostById(id string) (*pb.Post, error) {
 }
 
 func (r *PostsRepo) GetAllPosts() ([]*pb.Post, error) {
-	query := `SELECT id,title,description,body,author_id,stars,rating,price,product_type,size,created_at,updated_at from posts WHERE deleted_at is null`
+	query := `SELECT id,title,description,body,author_id,stars,rating,price,product_type,size,color,created_at,updated_at from posts WHERE deleted_at is null`
 	var posts []*pb.Post
 	var update_at sql.NullTime
 	rows, err := r.db.Query(query)
@@ -146,6 +148,7 @@ func (r *PostsRepo) GetAllPosts() ([]*pb.Post, error) {
 			&post.Price,
 			&post.ProductType,
 			pq.Array(&post.Size_),
+			&post.Color,
 			&post.CreatedAt,
 			&update_at,
 		)
@@ -189,7 +192,7 @@ func (r *PostsRepo) DeleteAllUserPosts(id string) ([]*pb.Post, error) {
 }
 
 func (r *PostsRepo) StarPosts()([]*pb.Post,error){
-	query:=`SELECT id,title,description,body,author_id,stars,rating,price,product_type,size from posts where deleted_at in null order by stars desc`
+	query:=`SELECT id,title,description,body,author_id,stars,rating,price,product_type,size,color from posts where deleted_at in null order by stars desc`
 	rows,err:=r.db.Query(query)
 	if err!=nil{
 		return nil,err
@@ -207,6 +210,7 @@ func (r *PostsRepo) StarPosts()([]*pb.Post,error){
 			&post.Rating,
 			&post.ProductType,
 			pq.Array(&post.Size_),
+			&post.Color,
 		)
 		if err!=nil{
 			return nil,err
@@ -216,7 +220,7 @@ func (r *PostsRepo) StarPosts()([]*pb.Post,error){
 	return posts,nil
 }
 func (r *PostsRepo) SeperatePostByPrice(priceSep *pb.PriceSep)([]*pb.Post,error){
-	query:=`SELECT id,title,description,body,author_id,stars,rating,price,product_type,size from posts where deleted_at is null order by price `
+	query:=`SELECT id,title,description,body,author_id,stars,rating,price,product_type,size,color from posts where deleted_at is null order by price `
 	if priceSep.High{
 		query+="desc"
 	}
@@ -239,6 +243,7 @@ func (r *PostsRepo) SeperatePostByPrice(priceSep *pb.PriceSep)([]*pb.Post,error)
 			&post.Price,
 			&post.ProductType,
 			pq.Array(&post.Size_),
+			&post.Color,
 		)
 		if err!=nil{
 			return nil,err

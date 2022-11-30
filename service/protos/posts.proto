@@ -14,8 +14,63 @@ service PostService{
     rpc GetAllUserPosts(WithId) returns (Posts);
     rpc DeleteAllUserPosts(WithId) returns (Posts);
     rpc StarPosts(Empty) returns (Posts);
+    rpc GetPostsByPrice(PriceSep) returns (Posts); 
+
+    rpc GetPostByCategory(CatID) returns (Posts);
+    rpc GetAllCategories(Empty) returns(Categories);
+    rpc CreateCategory(CategoryReq) returns (Category);
+    rpc DeleteCategory(CatID) returns (Category);
+    rpc GetCategory(CatID) returns (Category);
+
+    rpc PutLike(Like) returns(Like);
+    rpc TakeLike(WithId) returns (Like);
+    rpc GetAllPostLikesUser(WithId) returns (Likes);
+    rpc GetLikeInfo(LikeId) returns (Like);
+    rpc GetPostLike(WithId) returns(Likes);
 }
 
+message PutLikeReq{
+    string user_id=1;
+    string post_id=2;
+}
+
+message Like {
+    string id =1;
+    string user_id=2;
+    string post_id=3;
+    string created_at=4;
+}
+
+message LikeId{
+    string id = 1;
+}
+
+message Likes{
+    repeated Like Likes=1;
+}
+message CategoryReq{
+    string post_id=1;
+    string name=2;
+}
+message Category{
+    string id =1;
+    string post_id=2;
+    string name=3;
+    string created_at =4;
+    string updated_at =5;
+    string deleted_at=6;
+}
+message Categories{
+    repeated Category Categories=1;
+}
+message CatID{
+    string id=1;
+}
+
+
+message PriceSep{
+    bool high=1;
+}
 
 message WithId{
     string id =1;
@@ -36,9 +91,10 @@ message Post{
     string price = 8;
     string product_type=9;
     repeated string size =10;
-    string created_at=11;
-    string updated_at=12;
-    string deleted_at=13;
+    string color =11;
+    string created_at=12;
+    string updated_at=13;
+    string deleted_at=14;
 
 }
 

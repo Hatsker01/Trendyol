@@ -49,6 +49,7 @@ type User struct {
 	Code       string  `json:"code`
 	Postalcode string  `json:"postalcode"`
 	Posts      []*Post `json:"Posts"`
+	Color      string  `json:"color"`
 	CreatedAt  string  `json:"created_at"`
 	UpdatedAt  string  `json:"updated_at"`
 }
@@ -64,10 +65,10 @@ type Post struct {
 	Price       string   `json:"price"`
 	ProductType string   `json:"product_type"`
 	Size_       []string `json:"size"`
+	Color       string   `json:"color"`
 	CreatedAt   string   `json:"created_at"`
 	UpdatedAt   string   `json:"updated_at"`
 }
-
 
 type Category struct {
 	ID         string `json:"id"`
@@ -90,10 +91,25 @@ type Posts struct {
 	Posts []Post `json:"Posts"`
 }
 
+type Like struct{
+	Id string `json:"id"`
+	User_id string 	`json:"user_id"`
+	Post_id string `json:"post_id"`
+	Created_at string `json:"created_at"`
+	Deleted_at string `json:"deleted_at"`
+}
+
+type Likes struct {
+	Likes []Like `json:"likes"`
+}
+
+type LikeId struct{
+	Id string `json:"id"`
+}
+
 var (
 	ErrInputBody   = errors.New("error input body invalid")
 	ErrIdNotFound  = errors.New("error id not found")
 	ErrWhileCreate = errors.New("error while create")
 	ErrWhileUpdate = errors.New("error while update")
 )
-

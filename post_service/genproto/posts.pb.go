@@ -26,6 +26,226 @@ var _ = math.Inf
 // proto package needs to be updated.
 const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
 
+type PutLikeReq struct {
+	UserId               string   `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id"`
+	PostId               string   `protobuf:"bytes,2,opt,name=post_id,json=postId,proto3" json:"post_id"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *PutLikeReq) Reset()         { *m = PutLikeReq{} }
+func (m *PutLikeReq) String() string { return proto.CompactTextString(m) }
+func (*PutLikeReq) ProtoMessage()    {}
+func (*PutLikeReq) Descriptor() ([]byte, []int) {
+	return fileDescriptor_b14bd1586479c33d, []int{0}
+}
+func (m *PutLikeReq) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *PutLikeReq) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_PutLikeReq.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *PutLikeReq) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_PutLikeReq.Merge(m, src)
+}
+func (m *PutLikeReq) XXX_Size() int {
+	return m.Size()
+}
+func (m *PutLikeReq) XXX_DiscardUnknown() {
+	xxx_messageInfo_PutLikeReq.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_PutLikeReq proto.InternalMessageInfo
+
+func (m *PutLikeReq) GetUserId() string {
+	if m != nil {
+		return m.UserId
+	}
+	return ""
+}
+
+func (m *PutLikeReq) GetPostId() string {
+	if m != nil {
+		return m.PostId
+	}
+	return ""
+}
+
+type Like struct {
+	Id                   string   `protobuf:"bytes,1,opt,name=id,proto3" json:"id"`
+	UserId               string   `protobuf:"bytes,2,opt,name=user_id,json=userId,proto3" json:"user_id"`
+	PostId               string   `protobuf:"bytes,3,opt,name=post_id,json=postId,proto3" json:"post_id"`
+	CreatedAt            string   `protobuf:"bytes,4,opt,name=created_at,json=createdAt,proto3" json:"created_at"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *Like) Reset()         { *m = Like{} }
+func (m *Like) String() string { return proto.CompactTextString(m) }
+func (*Like) ProtoMessage()    {}
+func (*Like) Descriptor() ([]byte, []int) {
+	return fileDescriptor_b14bd1586479c33d, []int{1}
+}
+func (m *Like) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *Like) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_Like.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *Like) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_Like.Merge(m, src)
+}
+func (m *Like) XXX_Size() int {
+	return m.Size()
+}
+func (m *Like) XXX_DiscardUnknown() {
+	xxx_messageInfo_Like.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_Like proto.InternalMessageInfo
+
+func (m *Like) GetId() string {
+	if m != nil {
+		return m.Id
+	}
+	return ""
+}
+
+func (m *Like) GetUserId() string {
+	if m != nil {
+		return m.UserId
+	}
+	return ""
+}
+
+func (m *Like) GetPostId() string {
+	if m != nil {
+		return m.PostId
+	}
+	return ""
+}
+
+func (m *Like) GetCreatedAt() string {
+	if m != nil {
+		return m.CreatedAt
+	}
+	return ""
+}
+
+type LikeId struct {
+	Id                   string   `protobuf:"bytes,1,opt,name=id,proto3" json:"id"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *LikeId) Reset()         { *m = LikeId{} }
+func (m *LikeId) String() string { return proto.CompactTextString(m) }
+func (*LikeId) ProtoMessage()    {}
+func (*LikeId) Descriptor() ([]byte, []int) {
+	return fileDescriptor_b14bd1586479c33d, []int{2}
+}
+func (m *LikeId) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *LikeId) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_LikeId.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *LikeId) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_LikeId.Merge(m, src)
+}
+func (m *LikeId) XXX_Size() int {
+	return m.Size()
+}
+func (m *LikeId) XXX_DiscardUnknown() {
+	xxx_messageInfo_LikeId.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_LikeId proto.InternalMessageInfo
+
+func (m *LikeId) GetId() string {
+	if m != nil {
+		return m.Id
+	}
+	return ""
+}
+
+type Likes struct {
+	Likes                []*Like  `protobuf:"bytes,1,rep,name=Likes,proto3" json:"Likes"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *Likes) Reset()         { *m = Likes{} }
+func (m *Likes) String() string { return proto.CompactTextString(m) }
+func (*Likes) ProtoMessage()    {}
+func (*Likes) Descriptor() ([]byte, []int) {
+	return fileDescriptor_b14bd1586479c33d, []int{3}
+}
+func (m *Likes) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *Likes) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_Likes.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *Likes) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_Likes.Merge(m, src)
+}
+func (m *Likes) XXX_Size() int {
+	return m.Size()
+}
+func (m *Likes) XXX_DiscardUnknown() {
+	xxx_messageInfo_Likes.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_Likes proto.InternalMessageInfo
+
+func (m *Likes) GetLikes() []*Like {
+	if m != nil {
+		return m.Likes
+	}
+	return nil
+}
+
 type CategoryReq struct {
 	PostId               string   `protobuf:"bytes,1,opt,name=post_id,json=postId,proto3" json:"post_id"`
 	Name                 string   `protobuf:"bytes,2,opt,name=name,proto3" json:"name"`
@@ -38,7 +258,7 @@ func (m *CategoryReq) Reset()         { *m = CategoryReq{} }
 func (m *CategoryReq) String() string { return proto.CompactTextString(m) }
 func (*CategoryReq) ProtoMessage()    {}
 func (*CategoryReq) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b14bd1586479c33d, []int{0}
+	return fileDescriptor_b14bd1586479c33d, []int{4}
 }
 func (m *CategoryReq) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -97,7 +317,7 @@ func (m *Category) Reset()         { *m = Category{} }
 func (m *Category) String() string { return proto.CompactTextString(m) }
 func (*Category) ProtoMessage()    {}
 func (*Category) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b14bd1586479c33d, []int{1}
+	return fileDescriptor_b14bd1586479c33d, []int{5}
 }
 func (m *Category) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -179,7 +399,7 @@ func (m *Categories) Reset()         { *m = Categories{} }
 func (m *Categories) String() string { return proto.CompactTextString(m) }
 func (*Categories) ProtoMessage()    {}
 func (*Categories) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b14bd1586479c33d, []int{2}
+	return fileDescriptor_b14bd1586479c33d, []int{6}
 }
 func (m *Categories) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -226,7 +446,7 @@ func (m *CatID) Reset()         { *m = CatID{} }
 func (m *CatID) String() string { return proto.CompactTextString(m) }
 func (*CatID) ProtoMessage()    {}
 func (*CatID) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b14bd1586479c33d, []int{3}
+	return fileDescriptor_b14bd1586479c33d, []int{7}
 }
 func (m *CatID) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -273,7 +493,7 @@ func (m *PriceSep) Reset()         { *m = PriceSep{} }
 func (m *PriceSep) String() string { return proto.CompactTextString(m) }
 func (*PriceSep) ProtoMessage()    {}
 func (*PriceSep) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b14bd1586479c33d, []int{4}
+	return fileDescriptor_b14bd1586479c33d, []int{8}
 }
 func (m *PriceSep) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -320,7 +540,7 @@ func (m *WithId) Reset()         { *m = WithId{} }
 func (m *WithId) String() string { return proto.CompactTextString(m) }
 func (*WithId) ProtoMessage()    {}
 func (*WithId) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b14bd1586479c33d, []int{5}
+	return fileDescriptor_b14bd1586479c33d, []int{9}
 }
 func (m *WithId) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -366,7 +586,7 @@ func (m *Empty) Reset()         { *m = Empty{} }
 func (m *Empty) String() string { return proto.CompactTextString(m) }
 func (*Empty) ProtoMessage()    {}
 func (*Empty) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b14bd1586479c33d, []int{6}
+	return fileDescriptor_b14bd1586479c33d, []int{10}
 }
 func (m *Empty) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -406,9 +626,10 @@ type Post struct {
 	Price                string   `protobuf:"bytes,8,opt,name=price,proto3" json:"price"`
 	ProductType          string   `protobuf:"bytes,9,opt,name=product_type,json=productType,proto3" json:"product_type"`
 	Size_                []string `protobuf:"bytes,10,rep,name=size,proto3" json:"size"`
-	CreatedAt            string   `protobuf:"bytes,11,opt,name=created_at,json=createdAt,proto3" json:"created_at"`
-	UpdatedAt            string   `protobuf:"bytes,12,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at"`
-	DeletedAt            string   `protobuf:"bytes,13,opt,name=deleted_at,json=deletedAt,proto3" json:"deleted_at"`
+	Color                string   `protobuf:"bytes,11,opt,name=color,proto3" json:"color"`
+	CreatedAt            string   `protobuf:"bytes,12,opt,name=created_at,json=createdAt,proto3" json:"created_at"`
+	UpdatedAt            string   `protobuf:"bytes,13,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at"`
+	DeletedAt            string   `protobuf:"bytes,14,opt,name=deleted_at,json=deletedAt,proto3" json:"deleted_at"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
@@ -418,7 +639,7 @@ func (m *Post) Reset()         { *m = Post{} }
 func (m *Post) String() string { return proto.CompactTextString(m) }
 func (*Post) ProtoMessage()    {}
 func (*Post) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b14bd1586479c33d, []int{7}
+	return fileDescriptor_b14bd1586479c33d, []int{11}
 }
 func (m *Post) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -517,6 +738,13 @@ func (m *Post) GetSize_() []string {
 	return nil
 }
 
+func (m *Post) GetColor() string {
+	if m != nil {
+		return m.Color
+	}
+	return ""
+}
+
 func (m *Post) GetCreatedAt() string {
 	if m != nil {
 		return m.CreatedAt
@@ -549,7 +777,7 @@ func (m *Posts) Reset()         { *m = Posts{} }
 func (m *Posts) String() string { return proto.CompactTextString(m) }
 func (*Posts) ProtoMessage()    {}
 func (*Posts) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b14bd1586479c33d, []int{8}
+	return fileDescriptor_b14bd1586479c33d, []int{12}
 }
 func (m *Posts) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -586,6 +814,10 @@ func (m *Posts) GetPosts() []*Post {
 }
 
 func init() {
+	proto.RegisterType((*PutLikeReq)(nil), "user.PutLikeReq")
+	proto.RegisterType((*Like)(nil), "user.Like")
+	proto.RegisterType((*LikeId)(nil), "user.LikeId")
+	proto.RegisterType((*Likes)(nil), "user.Likes")
 	proto.RegisterType((*CategoryReq)(nil), "user.CategoryReq")
 	proto.RegisterType((*Category)(nil), "user.Category")
 	proto.RegisterType((*Categories)(nil), "user.Categories")
@@ -600,45 +832,53 @@ func init() {
 func init() { proto.RegisterFile("posts.proto", fileDescriptor_b14bd1586479c33d) }
 
 var fileDescriptor_b14bd1586479c33d = []byte{
-	// 602 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x8c, 0x54, 0xcf, 0x6e, 0xd3, 0x4e,
-	0x10, 0xfe, 0x39, 0xff, 0x33, 0xce, 0x2f, 0xa4, 0x2b, 0x44, 0xad, 0x20, 0xa2, 0x60, 0x81, 0x28,
-	0x15, 0x0d, 0xa2, 0xbd, 0x21, 0x2e, 0xf9, 0x83, 0x90, 0x6f, 0x55, 0x42, 0xc5, 0x31, 0x72, 0xe3,
-	0x55, 0xb2, 0x52, 0x1a, 0xbb, 0xbb, 0x1b, 0x24, 0xf3, 0x24, 0x3c, 0x00, 0x0f, 0xc3, 0x91, 0x1b,
-	0x57, 0x14, 0x1e, 0x04, 0xb4, 0x3b, 0x1b, 0xd7, 0x76, 0xa3, 0x90, 0xdb, 0xcc, 0x7c, 0xdf, 0x8c,
-	0xbf, 0x99, 0xf1, 0x2c, 0xd8, 0x51, 0x28, 0xa4, 0xe8, 0x45, 0x3c, 0x94, 0x21, 0x29, 0xad, 0x05,
-	0xe5, 0xee, 0x5b, 0xb0, 0x87, 0xbe, 0xa4, 0xf3, 0x90, 0xc7, 0x63, 0x7a, 0x4b, 0x8e, 0xa1, 0xaa,
-	0x38, 0x53, 0x16, 0x38, 0x56, 0xd7, 0x3a, 0xa9, 0x8f, 0x2b, 0xca, 0xf5, 0x02, 0x42, 0xa0, 0xb4,
-	0xf2, 0x6f, 0xa8, 0x53, 0xd0, 0x51, 0x6d, 0xbb, 0xdf, 0x2c, 0xa8, 0x6d, 0x93, 0x49, 0x13, 0x0a,
-	0x49, 0x52, 0x81, 0x05, 0xe9, 0x4a, 0x85, 0x9d, 0x95, 0x8a, 0x77, 0x95, 0xc8, 0x13, 0x80, 0x19,
-	0xa7, 0xbe, 0xa4, 0xc1, 0xd4, 0x97, 0x4e, 0x49, 0x23, 0x75, 0x13, 0xe9, 0x4b, 0x05, 0xaf, 0xa3,
-	0x60, 0x0b, 0x97, 0x11, 0x36, 0x11, 0x84, 0x03, 0xba, 0xa4, 0x06, 0xae, 0x20, 0x6c, 0x22, 0x7d,
-	0xe9, 0xbe, 0x03, 0x30, 0x2a, 0x19, 0x15, 0xa4, 0x97, 0xf6, 0x1c, 0xab, 0x5b, 0x3c, 0xb1, 0xcf,
-	0x9b, 0x3d, 0x35, 0x8b, 0x5e, 0x32, 0x88, 0x14, 0xc3, 0x3d, 0x86, 0xf2, 0xd0, 0x97, 0xde, 0x28,
-	0xdf, 0xa0, 0xdb, 0x81, 0xda, 0x25, 0x67, 0x33, 0x3a, 0xa1, 0x91, 0xea, 0x69, 0xc1, 0xe6, 0x0b,
-	0x8d, 0xd6, 0xc6, 0xda, 0x76, 0x1d, 0xa8, 0x7c, 0x62, 0x72, 0xe1, 0x05, 0xf7, 0x32, 0xab, 0x50,
-	0x7e, 0x7f, 0x13, 0xc9, 0xd8, 0xfd, 0x59, 0x80, 0xd2, 0x65, 0x28, 0xe4, 0xbd, 0xe1, 0x3d, 0x84,
-	0xb2, 0x64, 0x72, 0xb9, 0x1d, 0x37, 0x3a, 0xa4, 0x0b, 0x76, 0x40, 0xc5, 0x8c, 0xb3, 0x48, 0xb2,
-	0x70, 0x65, 0x06, 0x98, 0x0e, 0x29, 0x1d, 0xd7, 0x61, 0x10, 0x9b, 0x09, 0x6a, 0x9b, 0x3c, 0x86,
-	0xba, 0xbf, 0x96, 0x8b, 0x90, 0xab, 0x55, 0xe0, 0xec, 0x6a, 0x18, 0xf0, 0xf4, 0x87, 0x84, 0xf4,
-	0xb9, 0x30, 0x53, 0x43, 0x87, 0x3c, 0x82, 0x0a, 0xf7, 0x25, 0x5b, 0xcd, 0x9d, 0x2a, 0xae, 0x0e,
-	0x3d, 0xc5, 0x8e, 0x54, 0xcb, 0x4e, 0x0d, 0xd9, 0xda, 0x21, 0x4f, 0xa1, 0x11, 0xf1, 0x30, 0x58,
-	0xcf, 0xe4, 0x54, 0xc6, 0x11, 0x75, 0xea, 0xa8, 0xcb, 0xc4, 0x3e, 0xc6, 0x11, 0x55, 0xba, 0x04,
-	0xfb, 0x42, 0x1d, 0xe8, 0x16, 0x95, 0x2e, 0x65, 0xe7, 0x76, 0x6e, 0xef, 0xdf, 0x79, 0x63, 0xff,
-	0xce, 0xff, 0xcf, 0xef, 0xfc, 0x25, 0x94, 0xd5, 0x60, 0x05, 0xe9, 0x1a, 0xc3, 0x6c, 0x1a, 0x70,
-	0xd3, 0x2a, 0x34, 0x46, 0xe0, 0xfc, 0x4f, 0x09, 0x6c, 0x65, 0x4d, 0x28, 0xff, 0xac, 0xda, 0x79,
-	0x06, 0x30, 0xd4, 0x2a, 0xf4, 0x66, 0x52, 0x09, 0xed, 0x94, 0xad, 0x58, 0x57, 0x5a, 0xcc, 0x5e,
-	0xd6, 0x0b, 0xb0, 0x3f, 0x50, 0xa9, 0xcc, 0x41, 0xec, 0x05, 0xa4, 0x81, 0x10, 0xfe, 0x16, 0x3b,
-	0x88, 0xfd, 0xe5, 0x12, 0x55, 0xdb, 0x08, 0xe9, 0xbf, 0xa4, 0x6d, 0xdf, 0xf1, 0x04, 0x39, 0x85,
-	0xe6, 0x48, 0x77, 0x79, 0x40, 0xd1, 0x57, 0xf0, 0x00, 0x8b, 0x5e, 0x09, 0xca, 0x31, 0x3d, 0x4b,
-	0xce, 0x54, 0x7e, 0x0d, 0x04, 0x2b, 0x1f, 0x9a, 0xf0, 0x1c, 0xea, 0x13, 0xe9, 0xf3, 0x7f, 0x29,
-	0xee, 0x69, 0x15, 0xda, 0x1e, 0xc4, 0xfa, 0x62, 0x88, 0xb9, 0xb7, 0xed, 0xf9, 0x64, 0xf9, 0x67,
-	0x70, 0x94, 0xcc, 0x2c, 0x79, 0x5d, 0xec, 0xe4, 0x42, 0xbd, 0x51, 0x96, 0xfe, 0x06, 0x5a, 0xd8,
-	0x64, 0xea, 0xc6, 0x33, 0x62, 0x5a, 0x99, 0xe3, 0x56, 0xf0, 0x05, 0x34, 0x71, 0xc3, 0x49, 0xf9,
-	0xa3, 0xdc, 0x03, 0x40, 0x6f, 0xdb, 0xb9, 0x37, 0x81, 0x9c, 0x6d, 0x07, 0xbf, 0x5b, 0x53, 0x9e,
-	0x7e, 0xaa, 0x17, 0x7a, 0x10, 0x77, 0xd0, 0xfa, 0xbe, 0xe9, 0x58, 0x3f, 0x36, 0x1d, 0xeb, 0xd7,
-	0xa6, 0x63, 0x7d, 0xfd, 0xdd, 0xf9, 0xef, 0xba, 0xa2, 0x9f, 0xe8, 0x8b, 0xbf, 0x01, 0x00, 0x00,
-	0xff, 0xff, 0x55, 0xca, 0xd0, 0xb2, 0xb1, 0x05, 0x00, 0x00,
+	// 732 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x8c, 0x55, 0xcd, 0x6e, 0xd3, 0x40,
+	0x10, 0xc6, 0xf9, 0xcf, 0xb8, 0x84, 0x76, 0x41, 0xd4, 0x0a, 0x22, 0x4a, 0xad, 0x22, 0xda, 0x8a,
+	0x06, 0x68, 0x6f, 0x08, 0x21, 0xf5, 0x07, 0xa1, 0x48, 0x1c, 0xaa, 0xb4, 0x15, 0xc7, 0xca, 0x8d,
+	0x97, 0xc4, 0x6a, 0x1a, 0xbb, 0xf6, 0x06, 0xc9, 0x3c, 0x09, 0x0f, 0xc0, 0xc3, 0x70, 0x41, 0xe2,
+	0x11, 0x50, 0x39, 0xf3, 0x0e, 0x68, 0x66, 0xd6, 0xae, 0x9d, 0x9a, 0xb6, 0xb7, 0x99, 0xf9, 0x66,
+	0x67, 0xbf, 0xf9, 0xdb, 0x05, 0x33, 0xf0, 0x23, 0x15, 0xf5, 0x82, 0xd0, 0x57, 0xbe, 0xa8, 0xcc,
+	0x22, 0x19, 0xda, 0xef, 0x00, 0x0e, 0x66, 0xea, 0xa3, 0x77, 0x26, 0x07, 0xf2, 0x42, 0x2c, 0x43,
+	0x1d, 0xad, 0x27, 0x9e, 0x6b, 0x19, 0x5d, 0x63, 0xad, 0x39, 0xa8, 0xa1, 0xda, 0x77, 0x11, 0xc0,
+	0xb3, 0x08, 0x94, 0x18, 0x40, 0xb5, 0xef, 0xda, 0x23, 0xa8, 0xe0, 0x61, 0xd1, 0x82, 0x52, 0x7a,
+	0xa8, 0xe4, 0xb9, 0xd9, 0x48, 0xa5, 0xff, 0x45, 0x2a, 0x67, 0x23, 0x89, 0xa7, 0x00, 0xc3, 0x50,
+	0x3a, 0x4a, 0xba, 0x27, 0x8e, 0xb2, 0x2a, 0x84, 0x35, 0xb5, 0x65, 0x47, 0xd9, 0x16, 0xd4, 0xf0,
+	0xa2, 0xbe, 0x3b, 0x7f, 0x95, 0xbd, 0x0e, 0x55, 0x44, 0x22, 0xd1, 0xd5, 0x82, 0x65, 0x74, 0xcb,
+	0x6b, 0xe6, 0x16, 0xf4, 0xf0, 0xca, 0x1e, 0xe5, 0xc6, 0x80, 0xfd, 0x06, 0xcc, 0x3d, 0x47, 0xc9,
+	0x91, 0x1f, 0xc6, 0x3a, 0xdd, 0x84, 0x8b, 0x91, 0xe3, 0x22, 0xa0, 0x32, 0x75, 0xce, 0xa5, 0xa6,
+	0x4e, 0xb2, 0xfd, 0xdd, 0x80, 0x46, 0x72, 0xb8, 0x28, 0xdd, 0xc2, 0xfa, 0xa4, 0x91, 0xca, 0x57,
+	0x91, 0x6e, 0xc9, 0x14, 0xe1, 0x59, 0xe0, 0x26, 0x70, 0x95, 0x61, 0x6d, 0x61, 0xd8, 0x95, 0x13,
+	0xa9, 0xe1, 0x1a, 0xc3, 0xda, 0xb2, 0xa3, 0xec, 0xb7, 0x00, 0x9a, 0xa5, 0x27, 0x23, 0xd1, 0xcb,
+	0x6a, 0xba, 0x2e, 0x2d, 0xae, 0x4b, 0x5a, 0x88, 0x8c, 0x87, 0xbd, 0x0c, 0xd5, 0x3d, 0x47, 0xf5,
+	0xf7, 0xaf, 0x15, 0xb9, 0x03, 0x8d, 0x83, 0xd0, 0x1b, 0xca, 0x43, 0x19, 0x60, 0x4e, 0x63, 0x6f,
+	0x34, 0x26, 0xb4, 0x31, 0x20, 0x19, 0xdb, 0xf3, 0xc9, 0x53, 0xe3, 0x82, 0xf6, 0xd4, 0xa1, 0xfa,
+	0xfe, 0x3c, 0x50, 0xb1, 0xfd, 0xb7, 0x04, 0x95, 0x03, 0x3f, 0x52, 0xd7, 0x8a, 0xf7, 0x08, 0xaa,
+	0xca, 0x53, 0x93, 0xa4, 0xdc, 0xac, 0x88, 0x2e, 0x98, 0xae, 0x8c, 0x86, 0xa1, 0x17, 0x28, 0xcf,
+	0x9f, 0xea, 0x02, 0x66, 0x4d, 0xc8, 0xe3, 0xd4, 0x77, 0x63, 0x5d, 0x41, 0x92, 0xc5, 0x13, 0x68,
+	0x3a, 0x33, 0x35, 0xf6, 0x69, 0xf2, 0xb8, 0x76, 0x0d, 0x36, 0xf4, 0xe9, 0xa2, 0x48, 0x39, 0x61,
+	0xa4, 0xab, 0xc6, 0x8a, 0x78, 0x0c, 0xb5, 0xd0, 0x51, 0xde, 0x74, 0x64, 0xd5, 0xb9, 0x75, 0xac,
+	0xa1, 0x77, 0x80, 0x29, 0x5b, 0x0d, 0xf6, 0x26, 0x45, 0xac, 0xc0, 0x42, 0x10, 0xfa, 0xee, 0x6c,
+	0xa8, 0x4e, 0x54, 0x1c, 0x48, 0xab, 0xc9, 0xbc, 0xb4, 0xed, 0x28, 0x0e, 0x24, 0xf2, 0x8a, 0xbc,
+	0xaf, 0xd2, 0x82, 0x6e, 0x19, 0x79, 0xa1, 0x8c, 0xc1, 0x86, 0xfe, 0xc4, 0x0f, 0x2d, 0x93, 0x83,
+	0x91, 0x32, 0x37, 0x09, 0x0b, 0x37, 0x4f, 0xc2, 0xfd, 0x9b, 0x27, 0xa1, 0x35, 0x3f, 0x09, 0xeb,
+	0x50, 0xc5, 0x72, 0xd3, 0x5e, 0x90, 0x90, 0xdf, 0x0b, 0x34, 0x0d, 0x18, 0xd8, 0xfa, 0x59, 0x03,
+	0x13, 0xa5, 0x43, 0x19, 0x7e, 0xc1, 0x24, 0x57, 0x01, 0xf6, 0x88, 0x05, 0xf5, 0x2b, 0x73, 0xa0,
+	0x9d, 0x91, 0xd1, 0xeb, 0x98, 0xc8, 0xdc, 0xe8, 0xf5, 0x1c, 0xcc, 0x0f, 0x52, 0xa1, 0xb8, 0x1b,
+	0xf7, 0x5d, 0xb1, 0xc0, 0x10, 0x0f, 0x4b, 0x81, 0xe3, 0xce, 0x64, 0xc2, 0xac, 0x4d, 0x86, 0x68,
+	0x76, 0xda, 0xe6, 0x95, 0x5f, 0x24, 0x36, 0xa0, 0xb5, 0x4f, 0x59, 0xde, 0x21, 0xe8, 0x0b, 0x78,
+	0xc0, 0x41, 0x8f, 0x23, 0x19, 0xf2, 0xf1, 0xbc, 0x73, 0x2e, 0xf2, 0x4b, 0x10, 0x1c, 0xf9, 0xae,
+	0x07, 0x9e, 0x41, 0xf3, 0x50, 0x39, 0xe1, 0x6d, 0x8c, 0x7b, 0xc4, 0x82, 0xe4, 0xdd, 0x98, 0xf6,
+	0x48, 0xe8, 0x2d, 0x4c, 0x96, 0x2a, 0xef, 0xbf, 0x09, 0x4b, 0x69, 0xcd, 0xd2, 0x37, 0xc7, 0x4c,
+	0xf7, 0xb6, 0xbf, 0x9f, 0x77, 0x7f, 0x0d, 0x8b, 0x9c, 0x64, 0x66, 0xf3, 0x73, 0x64, 0x16, 0x73,
+	0x2b, 0x8f, 0xf0, 0x36, 0xb4, 0xb8, 0xc3, 0x69, 0xf8, 0xa5, 0xb9, 0x67, 0x41, 0x5e, 0xb4, 0xe7,
+	0x5e, 0x0a, 0xb1, 0x99, 0x14, 0xbe, 0x98, 0xd3, 0xbc, 0xfb, 0x06, 0x35, 0xf4, 0x6e, 0xbe, 0x2b,
+	0x50, 0xd7, 0xff, 0x90, 0xc8, 0xbc, 0xdb, 0xed, 0x8c, 0x2c, 0x56, 0xa1, 0x71, 0xe4, 0x9c, 0x49,
+	0x92, 0x0b, 0x1b, 0x4e, 0xc8, 0x2b, 0x78, 0x78, 0x35, 0x45, 0xf4, 0xea, 0x63, 0x23, 0x8b, 0x7b,
+	0xc8, 0xdf, 0x06, 0xcf, 0x1d, 0x7d, 0x2e, 0xd3, 0xcf, 0x7e, 0xe2, 0xc9, 0x9f, 0x4d, 0x2e, 0xf4,
+	0x5a, 0x3a, 0xc9, 0x05, 0x1c, 0xb2, 0x21, 0x77, 0x17, 0x7f, 0x5c, 0x76, 0x8c, 0x5f, 0x97, 0x1d,
+	0xe3, 0xf7, 0x65, 0xc7, 0xf8, 0xf6, 0xa7, 0x73, 0xef, 0xb4, 0x46, 0x9f, 0xee, 0xf6, 0xbf, 0x00,
+	0x00, 0x00, 0xff, 0xff, 0x08, 0x27, 0xd8, 0x3f, 0x83, 0x07, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -667,6 +907,11 @@ type PostServiceClient interface {
 	CreateCategory(ctx context.Context, in *CategoryReq, opts ...grpc.CallOption) (*Category, error)
 	DeleteCategory(ctx context.Context, in *CatID, opts ...grpc.CallOption) (*Category, error)
 	GetCategory(ctx context.Context, in *CatID, opts ...grpc.CallOption) (*Category, error)
+	PutLike(ctx context.Context, in *Like, opts ...grpc.CallOption) (*Like, error)
+	TakeLike(ctx context.Context, in *WithId, opts ...grpc.CallOption) (*Like, error)
+	GetAllPostLikesUser(ctx context.Context, in *WithId, opts ...grpc.CallOption) (*Likes, error)
+	GetLikeInfo(ctx context.Context, in *LikeId, opts ...grpc.CallOption) (*Like, error)
+	GetPostLike(ctx context.Context, in *WithId, opts ...grpc.CallOption) (*Likes, error)
 }
 
 type postServiceClient struct {
@@ -803,6 +1048,51 @@ func (c *postServiceClient) GetCategory(ctx context.Context, in *CatID, opts ...
 	return out, nil
 }
 
+func (c *postServiceClient) PutLike(ctx context.Context, in *Like, opts ...grpc.CallOption) (*Like, error) {
+	out := new(Like)
+	err := c.cc.Invoke(ctx, "/user.PostService/PutLike", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *postServiceClient) TakeLike(ctx context.Context, in *WithId, opts ...grpc.CallOption) (*Like, error) {
+	out := new(Like)
+	err := c.cc.Invoke(ctx, "/user.PostService/TakeLike", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *postServiceClient) GetAllPostLikesUser(ctx context.Context, in *WithId, opts ...grpc.CallOption) (*Likes, error) {
+	out := new(Likes)
+	err := c.cc.Invoke(ctx, "/user.PostService/GetAllPostLikesUser", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *postServiceClient) GetLikeInfo(ctx context.Context, in *LikeId, opts ...grpc.CallOption) (*Like, error) {
+	out := new(Like)
+	err := c.cc.Invoke(ctx, "/user.PostService/GetLikeInfo", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *postServiceClient) GetPostLike(ctx context.Context, in *WithId, opts ...grpc.CallOption) (*Likes, error) {
+	out := new(Likes)
+	err := c.cc.Invoke(ctx, "/user.PostService/GetPostLike", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // PostServiceServer is the server API for PostService service.
 type PostServiceServer interface {
 	CreatePost(context.Context, *Post) (*Post, error)
@@ -819,6 +1109,11 @@ type PostServiceServer interface {
 	CreateCategory(context.Context, *CategoryReq) (*Category, error)
 	DeleteCategory(context.Context, *CatID) (*Category, error)
 	GetCategory(context.Context, *CatID) (*Category, error)
+	PutLike(context.Context, *Like) (*Like, error)
+	TakeLike(context.Context, *WithId) (*Like, error)
+	GetAllPostLikesUser(context.Context, *WithId) (*Likes, error)
+	GetLikeInfo(context.Context, *LikeId) (*Like, error)
+	GetPostLike(context.Context, *WithId) (*Likes, error)
 }
 
 // UnimplementedPostServiceServer can be embedded to have forward compatible implementations.
@@ -866,6 +1161,21 @@ func (*UnimplementedPostServiceServer) DeleteCategory(ctx context.Context, req *
 }
 func (*UnimplementedPostServiceServer) GetCategory(ctx context.Context, req *CatID) (*Category, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetCategory not implemented")
+}
+func (*UnimplementedPostServiceServer) PutLike(ctx context.Context, req *Like) (*Like, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PutLike not implemented")
+}
+func (*UnimplementedPostServiceServer) TakeLike(ctx context.Context, req *WithId) (*Like, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method TakeLike not implemented")
+}
+func (*UnimplementedPostServiceServer) GetAllPostLikesUser(ctx context.Context, req *WithId) (*Likes, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetAllPostLikesUser not implemented")
+}
+func (*UnimplementedPostServiceServer) GetLikeInfo(ctx context.Context, req *LikeId) (*Like, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetLikeInfo not implemented")
+}
+func (*UnimplementedPostServiceServer) GetPostLike(ctx context.Context, req *WithId) (*Likes, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetPostLike not implemented")
 }
 
 func RegisterPostServiceServer(s *grpc.Server, srv PostServiceServer) {
@@ -1124,6 +1434,96 @@ func _PostService_GetCategory_Handler(srv interface{}, ctx context.Context, dec 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _PostService_PutLike_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Like)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PostServiceServer).PutLike(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/user.PostService/PutLike",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PostServiceServer).PutLike(ctx, req.(*Like))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PostService_TakeLike_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(WithId)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PostServiceServer).TakeLike(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/user.PostService/TakeLike",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PostServiceServer).TakeLike(ctx, req.(*WithId))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PostService_GetAllPostLikesUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(WithId)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PostServiceServer).GetAllPostLikesUser(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/user.PostService/GetAllPostLikesUser",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PostServiceServer).GetAllPostLikesUser(ctx, req.(*WithId))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PostService_GetLikeInfo_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(LikeId)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PostServiceServer).GetLikeInfo(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/user.PostService/GetLikeInfo",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PostServiceServer).GetLikeInfo(ctx, req.(*LikeId))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PostService_GetPostLike_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(WithId)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PostServiceServer).GetPostLike(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/user.PostService/GetPostLike",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PostServiceServer).GetPostLike(ctx, req.(*WithId))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var _PostService_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "user.PostService",
 	HandlerType: (*PostServiceServer)(nil),
@@ -1184,9 +1584,200 @@ var _PostService_serviceDesc = grpc.ServiceDesc{
 			MethodName: "GetCategory",
 			Handler:    _PostService_GetCategory_Handler,
 		},
+		{
+			MethodName: "PutLike",
+			Handler:    _PostService_PutLike_Handler,
+		},
+		{
+			MethodName: "TakeLike",
+			Handler:    _PostService_TakeLike_Handler,
+		},
+		{
+			MethodName: "GetAllPostLikesUser",
+			Handler:    _PostService_GetAllPostLikesUser_Handler,
+		},
+		{
+			MethodName: "GetLikeInfo",
+			Handler:    _PostService_GetLikeInfo_Handler,
+		},
+		{
+			MethodName: "GetPostLike",
+			Handler:    _PostService_GetPostLike_Handler,
+		},
 	},
 	Streams:  []grpc.StreamDesc{},
 	Metadata: "posts.proto",
+}
+
+func (m *PutLikeReq) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *PutLikeReq) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *PutLikeReq) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.XXX_unrecognized != nil {
+		i -= len(m.XXX_unrecognized)
+		copy(dAtA[i:], m.XXX_unrecognized)
+	}
+	if len(m.PostId) > 0 {
+		i -= len(m.PostId)
+		copy(dAtA[i:], m.PostId)
+		i = encodeVarintPosts(dAtA, i, uint64(len(m.PostId)))
+		i--
+		dAtA[i] = 0x12
+	}
+	if len(m.UserId) > 0 {
+		i -= len(m.UserId)
+		copy(dAtA[i:], m.UserId)
+		i = encodeVarintPosts(dAtA, i, uint64(len(m.UserId)))
+		i--
+		dAtA[i] = 0xa
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *Like) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *Like) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *Like) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.XXX_unrecognized != nil {
+		i -= len(m.XXX_unrecognized)
+		copy(dAtA[i:], m.XXX_unrecognized)
+	}
+	if len(m.CreatedAt) > 0 {
+		i -= len(m.CreatedAt)
+		copy(dAtA[i:], m.CreatedAt)
+		i = encodeVarintPosts(dAtA, i, uint64(len(m.CreatedAt)))
+		i--
+		dAtA[i] = 0x22
+	}
+	if len(m.PostId) > 0 {
+		i -= len(m.PostId)
+		copy(dAtA[i:], m.PostId)
+		i = encodeVarintPosts(dAtA, i, uint64(len(m.PostId)))
+		i--
+		dAtA[i] = 0x1a
+	}
+	if len(m.UserId) > 0 {
+		i -= len(m.UserId)
+		copy(dAtA[i:], m.UserId)
+		i = encodeVarintPosts(dAtA, i, uint64(len(m.UserId)))
+		i--
+		dAtA[i] = 0x12
+	}
+	if len(m.Id) > 0 {
+		i -= len(m.Id)
+		copy(dAtA[i:], m.Id)
+		i = encodeVarintPosts(dAtA, i, uint64(len(m.Id)))
+		i--
+		dAtA[i] = 0xa
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *LikeId) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *LikeId) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *LikeId) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.XXX_unrecognized != nil {
+		i -= len(m.XXX_unrecognized)
+		copy(dAtA[i:], m.XXX_unrecognized)
+	}
+	if len(m.Id) > 0 {
+		i -= len(m.Id)
+		copy(dAtA[i:], m.Id)
+		i = encodeVarintPosts(dAtA, i, uint64(len(m.Id)))
+		i--
+		dAtA[i] = 0xa
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *Likes) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *Likes) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *Likes) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.XXX_unrecognized != nil {
+		i -= len(m.XXX_unrecognized)
+		copy(dAtA[i:], m.XXX_unrecognized)
+	}
+	if len(m.Likes) > 0 {
+		for iNdEx := len(m.Likes) - 1; iNdEx >= 0; iNdEx-- {
+			{
+				size, err := m.Likes[iNdEx].MarshalToSizedBuffer(dAtA[:i])
+				if err != nil {
+					return 0, err
+				}
+				i -= size
+				i = encodeVarintPosts(dAtA, i, uint64(size))
+			}
+			i--
+			dAtA[i] = 0xa
+		}
+	}
+	return len(dAtA) - i, nil
 }
 
 func (m *CategoryReq) Marshal() (dAtA []byte, err error) {
@@ -1501,19 +2092,26 @@ func (m *Post) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 		copy(dAtA[i:], m.DeletedAt)
 		i = encodeVarintPosts(dAtA, i, uint64(len(m.DeletedAt)))
 		i--
-		dAtA[i] = 0x6a
+		dAtA[i] = 0x72
 	}
 	if len(m.UpdatedAt) > 0 {
 		i -= len(m.UpdatedAt)
 		copy(dAtA[i:], m.UpdatedAt)
 		i = encodeVarintPosts(dAtA, i, uint64(len(m.UpdatedAt)))
 		i--
-		dAtA[i] = 0x62
+		dAtA[i] = 0x6a
 	}
 	if len(m.CreatedAt) > 0 {
 		i -= len(m.CreatedAt)
 		copy(dAtA[i:], m.CreatedAt)
 		i = encodeVarintPosts(dAtA, i, uint64(len(m.CreatedAt)))
+		i--
+		dAtA[i] = 0x62
+	}
+	if len(m.Color) > 0 {
+		i -= len(m.Color)
+		copy(dAtA[i:], m.Color)
+		i = encodeVarintPosts(dAtA, i, uint64(len(m.Color)))
 		i--
 		dAtA[i] = 0x5a
 	}
@@ -1644,6 +2242,88 @@ func encodeVarintPosts(dAtA []byte, offset int, v uint64) int {
 	dAtA[offset] = uint8(v)
 	return base
 }
+func (m *PutLikeReq) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	l = len(m.UserId)
+	if l > 0 {
+		n += 1 + l + sovPosts(uint64(l))
+	}
+	l = len(m.PostId)
+	if l > 0 {
+		n += 1 + l + sovPosts(uint64(l))
+	}
+	if m.XXX_unrecognized != nil {
+		n += len(m.XXX_unrecognized)
+	}
+	return n
+}
+
+func (m *Like) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	l = len(m.Id)
+	if l > 0 {
+		n += 1 + l + sovPosts(uint64(l))
+	}
+	l = len(m.UserId)
+	if l > 0 {
+		n += 1 + l + sovPosts(uint64(l))
+	}
+	l = len(m.PostId)
+	if l > 0 {
+		n += 1 + l + sovPosts(uint64(l))
+	}
+	l = len(m.CreatedAt)
+	if l > 0 {
+		n += 1 + l + sovPosts(uint64(l))
+	}
+	if m.XXX_unrecognized != nil {
+		n += len(m.XXX_unrecognized)
+	}
+	return n
+}
+
+func (m *LikeId) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	l = len(m.Id)
+	if l > 0 {
+		n += 1 + l + sovPosts(uint64(l))
+	}
+	if m.XXX_unrecognized != nil {
+		n += len(m.XXX_unrecognized)
+	}
+	return n
+}
+
+func (m *Likes) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if len(m.Likes) > 0 {
+		for _, e := range m.Likes {
+			l = e.Size()
+			n += 1 + l + sovPosts(uint64(l))
+		}
+	}
+	if m.XXX_unrecognized != nil {
+		n += len(m.XXX_unrecognized)
+	}
+	return n
+}
+
 func (m *CategoryReq) Size() (n int) {
 	if m == nil {
 		return 0
@@ -1825,6 +2505,10 @@ func (m *Post) Size() (n int) {
 			n += 1 + l + sovPosts(uint64(l))
 		}
 	}
+	l = len(m.Color)
+	if l > 0 {
+		n += 1 + l + sovPosts(uint64(l))
+	}
 	l = len(m.CreatedAt)
 	if l > 0 {
 		n += 1 + l + sovPosts(uint64(l))
@@ -1866,6 +2550,468 @@ func sovPosts(x uint64) (n int) {
 }
 func sozPosts(x uint64) (n int) {
 	return sovPosts(uint64((x << 1) ^ uint64((int64(x) >> 63))))
+}
+func (m *PutLikeReq) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowPosts
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: PutLikeReq: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: PutLikeReq: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field UserId", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowPosts
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthPosts
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthPosts
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.UserId = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field PostId", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowPosts
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthPosts
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthPosts
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.PostId = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipPosts(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthPosts
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.XXX_unrecognized = append(m.XXX_unrecognized, dAtA[iNdEx:iNdEx+skippy]...)
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *Like) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowPosts
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: Like: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: Like: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Id", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowPosts
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthPosts
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthPosts
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Id = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field UserId", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowPosts
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthPosts
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthPosts
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.UserId = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 3:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field PostId", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowPosts
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthPosts
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthPosts
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.PostId = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 4:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field CreatedAt", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowPosts
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthPosts
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthPosts
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.CreatedAt = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipPosts(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthPosts
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.XXX_unrecognized = append(m.XXX_unrecognized, dAtA[iNdEx:iNdEx+skippy]...)
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *LikeId) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowPosts
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: LikeId: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: LikeId: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Id", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowPosts
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthPosts
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthPosts
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Id = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipPosts(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthPosts
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.XXX_unrecognized = append(m.XXX_unrecognized, dAtA[iNdEx:iNdEx+skippy]...)
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *Likes) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowPosts
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: Likes: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: Likes: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Likes", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowPosts
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthPosts
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthPosts
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Likes = append(m.Likes, &Like{})
+			if err := m.Likes[len(m.Likes)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipPosts(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthPosts
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.XXX_unrecognized = append(m.XXX_unrecognized, dAtA[iNdEx:iNdEx+skippy]...)
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
 }
 func (m *CategoryReq) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
@@ -2949,6 +4095,38 @@ func (m *Post) Unmarshal(dAtA []byte) error {
 			iNdEx = postIndex
 		case 11:
 			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Color", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowPosts
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthPosts
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthPosts
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Color = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 12:
+			if wireType != 2 {
 				return fmt.Errorf("proto: wrong wireType = %d for field CreatedAt", wireType)
 			}
 			var stringLen uint64
@@ -2979,7 +4157,7 @@ func (m *Post) Unmarshal(dAtA []byte) error {
 			}
 			m.CreatedAt = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
-		case 12:
+		case 13:
 			if wireType != 2 {
 				return fmt.Errorf("proto: wrong wireType = %d for field UpdatedAt", wireType)
 			}
@@ -3011,7 +4189,7 @@ func (m *Post) Unmarshal(dAtA []byte) error {
 			}
 			m.UpdatedAt = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
-		case 13:
+		case 14:
 			if wireType != 2 {
 				return fmt.Errorf("proto: wrong wireType = %d for field DeletedAt", wireType)
 			}
