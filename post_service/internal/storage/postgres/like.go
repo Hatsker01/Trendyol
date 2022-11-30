@@ -1,38 +1,43 @@
 package postgres
 
 import (
+	"fmt"
 	"time"
 
 	pb "github.com/Trendyol/post_service/genproto"
 )
 
-func (r *PostsRepo)PutLike(like *pb.Like)(*pb.Like,error){
-	var newlike *pb.Like
+func (r *PostsRepo) PutLike(like *pb.Like)(*pb.Like,error){
+	
 	query:=`INSERT INTO likes(id,user_id,post_id,created_at) VALUES($1,$2,$3,$4) RETURNING id`
 	err:=r.db.QueryRow(query,like.Id,like.UserId,like.PostId,time.Now().UTC()).Scan(
-		&newlike.Id,
+		&like.Id,
 	)
 	if err!=nil{
 		return nil,err
 	}
-	newlike,err=r.GetLikeInfo(newlike.Id)
+	fmt.Println("a;sfjasldhfjl;")
+	newlike,err:=r.GetLikeInfo(like.Id)
 	if err!=nil{
 		return nil,err
 	}
+	fmt.Println("llllllllllllllllllll")
 	return newlike,nil
 
 }
 
 func (r *PostsRepo)TakeLike(id string)(*pb.Like,error){
-	query:=`UPDATE TABLE likes SET deleted_at = $1 WHERE id = $2`
-	_,err:=r.db.Exec(query,time.Now().UTC(),id)
-	if err!=nil{
-		return nil,err
-	}
 	like,err:=r.GetLikeInfo(id)
 	if err!=nil{
 		return nil,err
 	}
+	query:=`UPDATE likes SET deleted_at = $1 WHERE id = $2`
+	_,err=r.db.Exec(query,time.Now().UTC(),id)
+	if err!=nil{
+		return nil,err
+	}
+	
+	
 	return like,nil
 }
 
@@ -85,7 +90,8 @@ func (r *PostsRepo)GetPostLike(id string)([]*pb.Like,error){
 
 
 func (r *PostsRepo)GetLikeInfo(id string)(*pb.Like,error){
-	var like *pb.Like
+	like:=pb.Like{}
+	fmt.Println(id)
 	query:=`SELECT id,user_id,post_id,created_at from likes where deleted_at is null and id =$1`
 	err:=r.db.QueryRow(query,id).Scan(
 		&like.Id,
@@ -93,9 +99,10 @@ func (r *PostsRepo)GetLikeInfo(id string)(*pb.Like,error){
 		&like.PostId,
 		&like.CreatedAt,
 	)
+	fmt.Println(like)
 	if err!=nil{
 		return nil,err
 	}
-	return like,nil
+	return &like,nil
 
 }

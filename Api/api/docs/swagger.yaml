@@ -6,6 +6,13 @@ definitions:
       post_id:
         type: string
     type: object
+  model.Categories:
+    properties:
+      categories:
+        items:
+          $ref: '#/definitions/model.Category'
+        type: array
+    type: object
   model.Category:
     properties:
       created_at:
@@ -108,9 +115,9 @@ definitions:
           type: string
         type: array
       stars:
-        maximum: 5
-        minimum: 0
-        type: integer
+        maxLength: 5
+        minLength: 0
+        type: string
       title:
         type: string
       updated_at:
@@ -218,6 +225,12 @@ paths:
       consumes:
       - application/json
       description: This API for deleting category by ID
+      parameters:
+      - description: Category_ID
+        in: path
+        name: id
+        required: true
+        type: string
       produces:
       - application/json
       responses:
@@ -268,11 +281,42 @@ paths:
       summary: Get All posts by Category
       tags:
       - category
+  /v1/category/getAll:
+    get:
+      consumes:
+      - application/json
+      description: This API for getting all categories
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.Categories'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/v1.response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/v1.response'
+      security:
+      - BearerAuth: []
+      summary: GetAllCategories
+      tags:
+      - category
   /v1/category/getById/{id}:
     get:
       consumes:
       - application/json
       description: This API for getting Category by ID
+      parameters:
+      - description: Category_ID
+        in: path
+        name: id
+        required: true
+        type: string
       produces:
       - application/json
       responses:

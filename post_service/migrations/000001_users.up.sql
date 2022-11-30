@@ -6,7 +6,7 @@ CREATE TABLE users
     username VARCHAR(70),
     phone VARCHAR(20),
     email VARCHAR(100),
-    password VARCHAR(15),
+    password VARCHAR,
     address VARCHAR(150),
     gender VARCHAR(6),
     role VARCHAR(50),

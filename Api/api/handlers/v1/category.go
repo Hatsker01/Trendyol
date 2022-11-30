@@ -97,10 +97,10 @@ func (h *handlerV1) CreateCategory(c *gin.Context) {
 // @Tags category
 // @Accept json
 // @Produce json
-// Success 200 {object} model.Categories!
-// Success 400 {object} response
-// Success 500 {object} response
-// Router /v1/category/getAll [get]
+// @Success 200 {object} model.Categories!
+// @Success 400 {object} response
+// @Success 500 {object} response
+// @Router /v1/category/getAll [get]
 func (h *handlerV1) GetAllCategories(c *gin.Context) {
 	er := CheckClaims(h, c)
 	if er == nil {
@@ -126,7 +126,7 @@ func (h *handlerV1) GetAllCategories(c *gin.Context) {
 // @Tags category
 // @Accept json
 // @Produce json
-// Param id path string true "Category_ID"
+// @Param id path string true "Category_ID"
 // @Success 200 {object} model.Category!
 // @Success 400 {object} response
 // @Success 500 {object} response
@@ -161,7 +161,7 @@ func (h *handlerV1) DeleteCategory(c *gin.Context) {
 // @Tags category
 // @Accept json
 // @Produce json
-// Param id path string true "Category_ID"
+// @Param id path string true "Category_ID"
 // @Success 200 {object} model.Category!
 // @Success 400 {object} response
 // @Success 500 {object} response

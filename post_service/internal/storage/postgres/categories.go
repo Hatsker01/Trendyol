@@ -10,7 +10,7 @@ import (
 
 func (r *PostsRepo)CreateCategory(category *pb.CategoryReq)(*pb.Category,error){
 	var id string
-	query:=`INSERT INTO category(post_id,name,created_at) VALUES ($1,$2,$3) RETURNING id`
+	query:=`INSERT INTO category(post_id,name,created_at) VALUES ($1,$2,$3) RETURNING category_id`
 	err:=r.db.QueryRow(query,category.PostId,category.Name,time.Now().UTC()).Scan(&id)
 	if err!=nil{
 		return nil,err
@@ -53,9 +53,9 @@ func (r *PostsRepo) GetPostByCategory(id string)([]*pb.Post,error){
 }
 
 func (r *PostsRepo) GetCategory(id string)(*pb.Category,error){
-	var category *pb.Category
+	category:= pb.Category{}
 	var update_at sql.NullTime
-	query:=`SELECT categoryid,post_id,name,created_at,update_at	where deleted_at is null and id = $1`
+	query:=`SELECT category_id,post_id,name,created_at,updated_at from category where deleted_at is null and category_id = $1`
 	err:=r.db.QueryRow(query,id).Scan(
 		&category.Id,
 		&category.PostId,
@@ -69,7 +69,7 @@ func (r *PostsRepo) GetCategory(id string)(*pb.Category,error){
 	if update_at.Valid{
 		category.UpdatedAt=update_at.Time.String()
 	}
-	return category,nil
+	return &category,nil
 }
 
 func (r *PostsRepo) GetAllCategories()([]*pb.Category,error){
@@ -105,8 +105,8 @@ func (r *PostsRepo) DeleteCategory(id string)(*pb.Category,error){
 	if err!=nil{
 		return nil,err
 	}
-	query :=`UPDATE category set deleted_at = $1`
-	_,err=r.db.Exec(query,time.Now().UTC())
+	query :=`UPDATE category set deleted_at = $1 where category_id=$2`
+	_,err=r.db.Exec(query,time.Now().UTC(),id)
 	if err!=nil{
 		return nil,err
 	}

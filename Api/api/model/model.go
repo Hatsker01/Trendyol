@@ -60,7 +60,7 @@ type Post struct {
 	Description string   `json:"description"`
 	Body        string   `json:"body"`
 	AuthorId    string   `json:"author_id"`
-	Stars       int      `json:"stars" binding:"required,min=0,max=5"`
+	Stars       string      `json:"stars" binding:"required,min=0,max=5"`
 	Rating      string   `json:"rating"`
 	Price       string   `json:"price"`
 	ProductType string   `json:"product_type"`

@@ -66,6 +66,46 @@ const docTemplate = `{
                 }
             }
         },
+        "/v1/category/getAll": {
+            "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "This API for getting all categories",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "category"
+                ],
+                "summary": "GetAllCategories",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/model.Categories"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/v1.response"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/v1.response"
+                        }
+                    }
+                }
+            }
+        },
         "/v1/category/getById/{id}": {
             "get": {
                 "security": [
@@ -84,6 +124,15 @@ const docTemplate = `{
                     "category"
                 ],
                 "summary": "GetCategory",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Category_ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "OK",
@@ -171,6 +220,15 @@ const docTemplate = `{
                     "category"
                 ],
                 "summary": "Delete Category By ID",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Category_ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "OK",
@@ -1045,6 +1103,17 @@ const docTemplate = `{
                 }
             }
         },
+        "model.Categories": {
+            "type": "object",
+            "properties": {
+                "categories": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/model.Category"
+                    }
+                }
+            }
+        },
         "model.Category": {
             "type": "object",
             "properties": {
@@ -1196,9 +1265,9 @@ const docTemplate = `{
                     }
                 },
                 "stars": {
-                    "type": "integer",
-                    "maximum": 5,
-                    "minimum": 0
+                    "type": "string",
+                    "maxLength": 5,
+                    "minLength": 0
                 },
                 "title": {
                     "type": "string"
