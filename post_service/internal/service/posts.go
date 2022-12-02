@@ -108,11 +108,33 @@ func (s *PostsService) StarPosts(ctx context.Context,empty *pb.Empty)(*pb.Posts,
 	},nil
 }
 
-func (s *PostsService) GetPostsByPrice(ctx context.Context,priceSep *pb.PriceSep)(*pb.Posts,error){
+func (s *PostsService) GetPostsSortPrice(ctx context.Context,priceSep *pb.PriceSep)(*pb.Posts,error){
 	posts,err:=s.repo.SeperatePostByPrice(priceSep)
 	if err!=nil{
 		s.logger.Error("failed while getting posts seperate by Price",logger.Error(err))
 		return nil,status.Error(codes.Internal,"failed while getting posts seperating by price")
+	}
+	return &pb.Posts{
+		Posts: posts,
+	},nil
+}
+
+func (s *PostsService) GetPostByPrice(ctx context.Context,price *pb.GetPostPriceReq)(*pb.Posts,error){
+	posts,err:=s.repo.GetPostByPrice(price)
+	if err!=nil{
+		s.logger.Error("Failed while getting posts by seperating price",logger.Error(err))
+		return nil, status.Error(codes.Internal,"failed while getting post seperating by price")
+	}
+	return &pb.Posts{
+		Posts: posts,
+	},nil
+}
+
+func (s *PostsService) GetingPostsByColor(ctx context.Context,color *pb.ColorReq)(*pb.Posts,error){
+	posts,err:=s.repo.GetingPostsByColor(color)
+	if err!=nil{
+		s.logger.Error("Failed while getting post by color",logger.Error(err))
+		return nil,status.Error(codes.Internal,"failed while getting psot by sorting color")
 	}
 	return &pb.Posts{
 		Posts: posts,

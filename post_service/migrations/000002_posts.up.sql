@@ -11,6 +11,7 @@ CREATE TABLE posts
     product_type VARCHAR(50),
     size VARCHAR(50)[],
     color  VARCHAR,
+    gen VARCHAR,
     created_at TIMESTAMP,
     updated_at TIMESTAMP,
     deleted_at TIMESTAMP

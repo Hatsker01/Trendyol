@@ -16,6 +16,9 @@ type Posts interface {
 	DeleteAllUserPosts(id string) ([]*pb.Post, error)
 	StarPosts()([]*pb.Post,error)
 	SeperatePostByPrice(priceSep *pb.PriceSep)([]*pb.Post,error)
+	GetingPostsByColor(color *pb.ColorReq)([]*pb.Post,error)
+
+	GetPostByPrice(price *pb.GetPostPriceReq)([]*pb.Post,error)
 
 	GetPostByCategory(id string)([]*pb.Post,error)
 	GetAllCategories()([]*pb.Category,error)

@@ -70,6 +70,13 @@ type Post struct {
 	UpdatedAt   string   `json:"updated_at"`
 }
 
+
+
+type GetPostByPrice struct{
+	High string `json:"high"`
+	Low string `json:"low"`
+}
+
 type Category struct {
 	ID         string `json:"id"`
 	Post_ID    string `json:"post_id"`

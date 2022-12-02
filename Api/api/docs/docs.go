@@ -642,6 +642,106 @@ const docTemplate = `{
                 }
             }
         },
+        "/v1/post/getByPrice": {
+            "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "This API for getting post by price with max and min price",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "post"
+                ],
+                "summary": "Sort Post By price",
+                "parameters": [
+                    {
+                        "description": "GettingPost",
+                        "name": "post",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/model.GetPostByPrice"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/model.Posts"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/v1.response"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/v1.response"
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/post/getSortPrice/{high}": {
+            "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "This API for getting posts sorting post by price",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "post"
+                ],
+                "summary": "Get posts by seperating by price",
+                "parameters": [
+                    {
+                        "type": "boolean",
+                        "description": "High",
+                        "name": "high",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/model.Posts"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/v1.response"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/v1.response"
+                        }
+                    }
+                }
+            }
+        },
         "/v1/post/{id}": {
             "get": {
                 "security": [
@@ -1270,6 +1370,17 @@ const docTemplate = `{
                 "username": {
                     "type": "string",
                     "minLength": 4
+                }
+            }
+        },
+        "model.GetPostByPrice": {
+            "type": "object",
+            "properties": {
+                "high": {
+                    "type": "string"
+                },
+                "low": {
+                    "type": "string"
                 }
             }
         },

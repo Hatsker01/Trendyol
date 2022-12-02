@@ -14,7 +14,10 @@ service PostService{
     rpc GetAllUserPosts(WithId) returns (Posts);
     rpc DeleteAllUserPosts(WithId) returns (Posts);
     rpc StarPosts(Empty) returns (Posts);
-    rpc GetPostsByPrice(PriceSep) returns (Posts); 
+    rpc GetPostsSortPrice(PriceSep) returns (Posts); 
+    rpc GetingPostsByColor(ColorReq) returns (Posts);
+    
+    rpc GetPostByPrice(GetPostPriceReq) returns (Posts);
 
     rpc GetPostByCategory(CatID) returns (Posts);
     rpc GetAllCategories(Empty) returns(Categories);
@@ -27,6 +30,15 @@ service PostService{
     rpc GetAllPostLikesUser(WithId) returns (Likes);
     rpc GetLikeInfo(LikeId) returns (Like);
     rpc GetPostLike(WithId) returns(Likes);
+}
+
+message ColorReq {
+    string color =1;
+}
+
+message GetPostPriceReq{
+    string low=1;
+    string high=2;
 }
 
 message PutLikeReq{
@@ -92,9 +104,10 @@ message Post{
     string product_type=9;
     repeated string size =10;
     string color =11;
-    string created_at=12;
-    string updated_at=13;
-    string deleted_at=14;
+    string gen=12;
+    string created_at=13;
+    string updated_at=14;
+    string deleted_at=15;
 
 }
 
