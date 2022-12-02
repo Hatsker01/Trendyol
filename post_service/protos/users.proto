@@ -13,6 +13,17 @@ service UserService{
     rpc DeleteUserById(WithId) returns(User);
     rpc LoginUser(LoginUserReq) returns(User);
     rpc CheckField(CheckFieldRequest) returns (CheckFieldReponse);
+    rpc ChangePassword(ChangePassReq) returns (ChangePassRes);
+}
+
+message ChangePassReq{
+    string id =1;
+    string newPassword=2;
+}
+
+message ChangePassRes{
+    string id=1;
+    string newPassword=2;
 }
 
 message LoginUserReq{
