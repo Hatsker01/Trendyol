@@ -15,6 +15,7 @@ type Users interface {
 	LoginUser(login *pb.LoginUserReq) (*pb.User, error)
 	EmailValid(email string) (bool, error)
 	CheckField(field, value string) (bool, error) 
+	ChangePassword(newPass *pb.ChangePassReq)(*pb.ChangePassRes,error)
 }
 
 type Repasitories struct {

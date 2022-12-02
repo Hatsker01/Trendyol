@@ -28,6 +28,24 @@ definitions:
       updated_at:
         type: string
     type: object
+  model.ChangePassRes:
+    properties:
+      id:
+        type: string
+      new_pass:
+        type: string
+    type: object
+  model.ChengePass:
+    properties:
+      id:
+        type: string
+      new_pass:
+        type: string
+      old_pass:
+        type: string
+      very_new:
+        type: string
+    type: object
   model.CreateUser:
     properties:
       address:
@@ -640,6 +658,38 @@ paths:
       summary: Sort posts by stars
       tags:
       - post
+  /v1/user/changePass:
+    put:
+      consumes:
+      - application/json
+      description: This API for changing user password
+      parameters:
+      - description: ChangePassword
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/model.ChengePass'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.ChangePassRes'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/v1.response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/v1.response'
+      security:
+      - BearerAuth: []
+      summary: Change User Password
+      tags:
+      - user
   /v1/user/delete/{id}:
     delete:
       consumes:

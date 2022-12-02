@@ -107,6 +107,18 @@ type LikeId struct{
 	Id string `json:"id"`
 }
 
+type ChengePass struct{
+	Id string `json:"id"`
+	OldPass string `json:"old_pass"`
+	NewPass string `json:"new_pass"`
+	VerifyNew string `json:"very_new"`
+}
+
+type ChangePassRes struct{
+	Id string `json:"id"`
+	NewPass string `json:"new_pass"`
+}
+
 var (
 	ErrInputBody   = errors.New("error input body invalid")
 	ErrIdNotFound  = errors.New("error id not found")

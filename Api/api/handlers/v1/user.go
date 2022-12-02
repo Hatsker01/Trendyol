@@ -6,9 +6,11 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/Trendyol/Api/api/model"
 	pb "github.com/Trendyol/Api/genproto"
 	"github.com/Trendyol/Api/pkg/logger"
 	"github.com/gin-gonic/gin"
+	"golang.org/x/crypto/bcrypt"
 	"google.golang.org/protobuf/encoding/protojson"
 )
 
@@ -113,7 +115,6 @@ func (h *handlerV1) GetUserById(c *gin.Context) {
 	jspbMarshal.UseProtoNames = true
 
 	guid := c.Param("id")
-	
 
 	er := CheckClaims(h, c)
 	if er == nil {
@@ -229,6 +230,81 @@ func (h *handlerV1) DeleteUserById(c *gin.Context) {
 		return
 	}
 	c.JSON(http.StatusAccepted, user)
+}
+
+// ChangePassword ...
+// @Summary Change User Password
+// @Description This API for changing user password
+// @Security BearerAuth
+// @Tags user
+// @Accept json
+// @Produce json
+// @Param user body model.ChengePass true "ChangePassword"
+// @Success 200 {object} model.ChangePassRes
+// @Success 400 {object} response
+// @Success 500 {object} response
+// @Router /v1/user/changePass [put]
+func (h *handlerV1) ChengePass(c *gin.Context) {
+	er := CheckClaims(h, c)
+	if er == nil {
+		newResponse(c, http.StatusUnauthorized, "failed while checking token")
+		h.log.Error("failed while checking token")
+		return
+	}
+	var body model.ChengePass
+	err := c.ShouldBindJSON(&body)
+	if err != nil {
+		newResponse(c, http.StatusInternalServerError, "failed while blinding JSON")
+		h.log.Error("failed while blindig json", logger.Error(err))
+		return
+	}
+
+	ctx, cancel := context.WithTimeout(context.Background(), time.Second*time.Duration(h.cfg.CtxTimeout))
+	defer cancel()
+	user, err := h.serviceManager.UserService().GetUserById(ctx, &pb.WithId{Id: body.Id})
+	if err != nil {
+		newResponse(c, http.StatusInternalServerError, model.ErrIdNotFound.Error())
+		h.log.Error("error while getting user by id", logger.Error(err))
+		return
+	}
+	password, err := bcrypt.GenerateFromPassword([]byte(body.NewPass), len(body.NewPass))
+	if err != nil {
+		newResponse(c, http.StatusInternalServerError, "failed while changing pass")
+		h.log.Error("error while changing pass and comparing")
+		return
+	}
+	err=bcrypt.CompareHashAndPassword([]byte(user.Password),[]byte(body.OldPass))
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{
+			"error": "password is invalide",
+		})
+		h.log.Error("password in invalide", logger.Error(err))
+		return
+	}
+	if body.NewPass == body.VerifyNew {
+		ctx, cancel := context.WithTimeout(context.Background(), time.Second*time.Duration(h.cfg.CtxTimeout))
+		defer cancel()
+		
+		pass, err := h.serviceManager.UserService().ChangePassword(ctx, &pb.ChangePassReq{
+			Id:          user.Id,
+			NewPassword: string(password),
+		})
+		if err != nil {
+			newResponse(c, http.StatusInternalServerError, "failed while changing password")
+			h.log.Error("failed while changing password", logger.Error(err))
+			return
+		}
+		c.JSON(http.StatusAccepted, pass)
+	} else if body.NewPass != body.VerifyNew {
+		newResponse(c, http.StatusInternalServerError, "new password are not the same")
+		h.log.Error("new password are not th same", logger.Error(err))
+		return
+	} else {
+		newResponse(c, http.StatusInternalServerError, "password is wrong")
+		h.log.Error("password is wrong", logger.Error(err))
+		return
+	}
+
 }
 
 type Success struct {

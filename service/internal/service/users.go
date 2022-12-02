@@ -137,3 +137,12 @@ func (s *UsersService) LoginUser(ctx context.Context, login *pb.LoginUserReq) (*
 	}
 	return user, nil
 }
+
+func (s *UsersService) ChangePassword(ctx context.Context, newPass *pb.ChangePassReq)(*pb.ChangePassRes,error){
+	pass,err:=s.repo.ChangePassword(newPass)
+	if err!=nil{
+		s.logger.Error("failed while changing password",logger.Error(err))
+		return nil,status.Error(codes.Internal,"failed while changing password")
+	}
+	return pass,err
+}

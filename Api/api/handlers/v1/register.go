@@ -136,6 +136,7 @@ func (h *handlerV1) RegisterUser(c *gin.Context) {
 		fmt.Print(err)
 		return
 	}
+	
 
 	body.Password = string(password)
 	//body.Password=
@@ -318,16 +319,24 @@ func (h *handlerV1) Login(c *gin.Context) {
 			SigninKey: h.cfg.SigninKey,
 		}
 	} else {
+		
 		usersss, err := h.serviceManager.UserService().LoginUser(ctxr, &pb.LoginUserReq{
 			Email:    params.Email,
 			Password: params.Password,
 		})
-
 		if err != nil {
 			c.JSON(http.StatusInternalServerError, gin.H{
 				"error": "Email or password is invalide",
 			})
 			h.log.Error("Email or password in invalide", logger.Error(err))
+			return
+		}
+		err=bcrypt.CompareHashAndPassword([]byte(usersss.Password),[]byte(params.Password))
+		if err != nil {
+			c.JSON(http.StatusInternalServerError, gin.H{
+				"error": "password is invalide",
+			})
+			h.log.Error("password in invalide", logger.Error(err))
 			return
 		}
 

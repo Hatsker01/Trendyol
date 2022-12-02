@@ -55,18 +55,17 @@ func (r *UsersRepo) CheckField(field, value string) (bool, error) {
 }
 
 func (r *UsersRepo) UpdateUser(user *pb.User) (*pb.User, error) {
-	query := `UPDATE users SET first_name=$1,last_name=$2,username=$3,phone=$4,email=$5,password=$6,gender=$7,role=$8,postalcode=$9,updated_at=$10 where id=$11
+	query := `UPDATE users SET first_name=$1,last_name=$2,username=$3,phone=$4,email=$5,gender=$6,role=$7,postalcode=$8,updated_at=$9 where id=$10
 	RETURNING id,first_name,last_name,username,phone,email,password,gender,role,postalcode,created_at`
 	var updUser pb.User
 	fmt.Println(user)
-	err := r.db.QueryRow(query, user.FirstName, user.LastName, user.Username, user.Phone, user.Email, user.Password, user.Gender, user.Role, user.Postalcode, time.Now().UTC(), user.Id).Scan(
+	err := r.db.QueryRow(query, user.FirstName, user.LastName, user.Username, user.Phone, user.Email, user.Gender, user.Role, user.Postalcode, time.Now().UTC(), user.Id).Scan(
 		&updUser.Id,
 		&updUser.FirstName,
 		&updUser.LastName,
 		&updUser.Username,
 		&updUser.Phone,
 		&updUser.Email,
-		&updUser.Password,
 		&updUser.Gender,
 		&updUser.Role,
 		&updUser.Postalcode,
@@ -201,6 +200,19 @@ func (r *UsersRepo) EmailValid(email string) (bool, error) {
 	}
 	return true, nil
 
+}
+
+func (r *UsersRepo) ChangePassword(newPass *pb.ChangePassReq)(*pb.ChangePassRes,error){
+	query:=`UPDATE users SET password=$1 where deleted_at is null and id =$2 returning id,password`
+	var pass pb.ChangePassRes
+	err:=r.db.QueryRow(query,newPass.NewPassword,newPass.Id).Scan(
+		&pass.Id,
+		&pass.NewPassword,
+	)
+	if err!=nil{
+		return nil,err
+	}
+	return &pass,nil
 }
 
 func NewUserRepo(db *sqlx.DB) *UsersRepo {
