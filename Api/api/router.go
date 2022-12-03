@@ -76,6 +76,10 @@ func New(option Option) *gin.Engine {
 	api.GET("/like/:id",handlerV1.GetLikeInfo)
 	api.GET("/like/getPostLike/:id",handlerV1.GetPostLike)
 
+	api.POST("/post/star",handlerV1.StarReq)
+	api.DELETE("/post/star/:id",handlerV1.TakeStar)
+	api.GET("/post/stars/:id",handlerV1.GetStar)
+
 	url := ginSwagger.URL("swagger/doc.json")
 	router.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler, url))
 

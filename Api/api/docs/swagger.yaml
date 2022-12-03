@@ -157,6 +157,24 @@ definitions:
           $ref: '#/definitions/model.Post'
         type: array
     type: object
+  model.StarReq:
+    properties:
+      id:
+        type: string
+      post_Id:
+        type: string
+      star:
+        type: string
+      user_id:
+        type: string
+    type: object
+  model.Stars:
+    properties:
+      avarage_star:
+        type: string
+      post_id:
+        type: string
+    type: object
   model.User:
     properties:
       Posts:
@@ -631,6 +649,37 @@ paths:
       summary: Get all user posts
       tags:
       - post
+  /v1/post/getByColor/{color}:
+    get:
+      consumes:
+      - application/json
+      description: This API for getting post sorting pb color
+      parameters:
+      - description: Color
+        in: path
+        name: color
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.Posts'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/v1.response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/v1.response'
+      security:
+      - BearerAuth: []
+      summary: Getting Post By Sorting Color
+      tags:
+      - post
   /v1/post/getByPrice:
     get:
       consumes:
@@ -694,6 +743,100 @@ paths:
       summary: Get posts by seperating by price
       tags:
       - post
+  /v1/post/star:
+    post:
+      consumes:
+      - application/json
+      description: This API for putting star to post'
+      parameters:
+      - description: StarReq
+        in: body
+        name: star
+        required: true
+        schema:
+          $ref: '#/definitions/model.StarReq'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.Stars'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/v1.response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/v1.response'
+      security:
+      - BearerAuth: []
+      summary: Putting Star for post
+      tags:
+      - star
+  /v1/post/star/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: This API for Taking star from post
+      parameters:
+      - description: Post_id
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.Stars'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/v1.response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/v1.response'
+      security:
+      - BearerAuth: []
+      summary: Taking Star from post
+      tags:
+      - star
+  /v1/post/stars/{id}:
+    get:
+      consumes:
+      - application/json
+      description: This API for getting avarage star from post
+      parameters:
+      - description: Post_Id
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.Stars'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/v1.response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/v1.response'
+      security:
+      - BearerAuth: []
+      summary: Getting Avarage Star of Post
+      tags:
+      - star
   /v1/posts:
     get:
       consumes:

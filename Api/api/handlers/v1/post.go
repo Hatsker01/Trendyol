@@ -353,7 +353,7 @@ func (h *handlerV1) GetPostByPrice(c *gin.Context){
 // @Tags post
 // @Accept json
 // @Produce json
-// @Param color string true "Color"
+// @Param color path string true "Color"
 // @Success 200 {object} model.Posts
 // @Success 400 {object} response
 // @Success 500 {object} response
@@ -382,3 +382,112 @@ func (h *handlerV1) GetingPostsByColor(c *gin.Context){
 }
 
 
+// PutStar ...
+// @Summary Putting Star for post
+// @Description This API for putting star to post'
+// @Security BearerAuth
+// @Tags star
+// @Accept json
+// @Produce json
+// @Param star body model.StarReq true "StarReq"
+// @Success 200 {object} model.Stars
+// @Success 400 {object} response
+// @Success 500 {object} response
+// @Router /v1/post/star [post]
+func (h *handlerV1) StarReq(c *gin.Context){
+	er:=CheckClaims(h,c)
+	if er==nil{
+		newResponse(c,http.StatusUnauthorized,"failed while checking token")
+		h.log.Error("failed while checking token")
+		return
+	}
+	var body pb.StarReq
+	err:=c.ShouldBindJSON(&body)
+	if err!=nil{
+		newResponse(c,http.StatusInternalServerError,"failed while blinding json")
+		h.log.Error("failed while blinding json",logger.Error(err))
+		return
+	}
+	ctx,cancel:=context.WithTimeout(context.Background(),time.Second*time.Duration(h.cfg.CtxTimeout))
+	defer cancel()
+
+	star,err:=h.serviceManager.PostService().PutStar(ctx,&body)
+	if err!=nil{
+		newResponse(c,http.StatusInternalServerError,"failed while putting star to post")
+		h.log.Error("failed while putting star to post",logger.Error(err))
+		return
+	}
+	c.JSON(http.StatusAccepted,star)
+}
+
+// TakeStar ...
+// @Summary Taking Star from post
+// @Description This API for Taking star from post
+// @Security BearerAuth
+// @Tags star
+// @Accept json
+// @Produce json
+// @Param id path string true "Post_id"
+// @Success 200 {object} model.Stars
+// @Success 400 {object} response
+// @Success 500 {object} response
+// @Router /v1/post/star/{id} [delete]
+func (h *handlerV1) TakeStar(c *gin.Context){
+	var jspbMarshal protojson.MarshalOptions
+	jspbMarshal.UseProtoNames = true
+
+	er:=CheckClaims(h,c)
+	if er==nil{
+		newResponse(c,http.StatusUnauthorized,"failed while checking token")
+		h.log.Error("failed while checking token")
+		return
+	}
+	
+	id:=c.Param("id")
+	ctx,cancel:=context.WithTimeout(context.Background(),time.Second*time.Duration(h.cfg.CtxTimeout))
+	defer cancel()
+
+	star,err:=h.serviceManager.PostService().TakeStar(ctx,&pb.WithId{Id: id})
+	if err!=nil{
+		newResponse(c,http.StatusInternalServerError,"failed while taking star from post")
+		h.log.Error("failed while taking star from post",logger.Error(err))
+		return
+	}
+	c.JSON(http.StatusAccepted,star)
+}
+
+// GetStar ...
+// @Summary Getting Avarage Star of Post
+// @Description This API for getting avarage star from post
+// @Security BearerAuth
+// @Tags star
+// @Accept json
+// @Produce json
+// @Param id path string true "Post_Id"
+// @Success 200 {object} model.Stars
+// @Success 400 {object} response
+// @Success 500 {object} response
+// @Router /v1/post/stars/{id} [get]
+func (h *handlerV1) GetStar(c *gin.Context){
+	var jspbMarshal protojson.MarshalOptions
+	jspbMarshal.UseProtoNames = true
+
+	er:=CheckClaims(h,c)
+	if er==nil{
+		newResponse(c,http.StatusUnauthorized,"failed while checking token")
+		h.log.Error("failed while checking token")
+		return
+	}
+	id := c.Param("id")
+
+	ctx,cancel:=context.WithTimeout(context.Background(),time.Second*time.Duration(h.cfg.CtxTimeout))
+	defer cancel()
+
+	star,err:=h.serviceManager.PostService().GetStar(ctx,&pb.WithId{Id: id})
+	if err!=nil{
+		newResponse(c,http.StatusInternalServerError,"failed while getting avarrage star of post")
+		h.log.Error("failed while getting avarage star of post",logger.Error(err))
+		return
+	}
+	c.JSON(http.StatusAccepted,star)
+}

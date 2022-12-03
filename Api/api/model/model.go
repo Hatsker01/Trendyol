@@ -18,6 +18,18 @@ type Tokens struct {
 	RefreshToken string `json:"refreshtoken"`
 }
 
+type StarReq struct{
+	ID string `json:"id"`
+	Post_Id string `json"post_id"`
+	User_Id string `json:"user_id"`
+	Star string `json:"star"`
+}
+
+type Stars struct{
+	Post_Id string `json:"post_id"`
+	Avarege_Star string `json:"avarage_star"`
+}
+
 type CreateUser struct {
 	Id         string `json:"id"`
 	First_name string `json:"first_name" binding:"required"`

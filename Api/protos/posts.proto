@@ -30,7 +30,25 @@ service PostService{
     rpc GetAllPostLikesUser(WithId) returns (Likes);
     rpc GetLikeInfo(LikeId) returns (Like);
     rpc GetPostLike(WithId) returns(Likes);
+
+    rpc PutStar(StarReq) returns(Stars);
+    rpc GetStar(WithId) returns (Stars);
+    rpc TakeStar(WithId) returns (Empty);
 }
+
+message StarReq{
+    string id =1;
+    string post_id=2;
+    string user_id=3;
+    string stars=4;
+}
+
+message Stars{
+    string post_id=1;
+    string avaregeStar=2;
+}
+
+
 
 message ColorReq {
     string color =1;
