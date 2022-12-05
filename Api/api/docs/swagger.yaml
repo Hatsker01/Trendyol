@@ -1,9 +1,25 @@
 definitions:
+  model.Brand:
+    properties:
+      created_at:
+        type: string
+      id:
+        type: string
+      name:
+        type: string
+      updated_at:
+        type: string
+    type: object
+  model.Brands:
+    properties:
+      brands:
+        items:
+          $ref: '#/definitions/model.Brand'
+        type: array
+    type: object
   model.CategiryReq:
     properties:
       name:
-        type: string
-      post_id:
         type: string
     type: object
   model.Categories:
@@ -22,8 +38,6 @@ definitions:
       id:
         type: string
       name:
-        type: string
-      post_id:
         type: string
       updated_at:
         type: string
@@ -44,6 +58,13 @@ definitions:
       old_pass:
         type: string
       very_new:
+        type: string
+    type: object
+  model.CreateBrandReq:
+    properties:
+      id:
+        type: string
+      name:
         type: string
     type: object
   model.CreateUser:
@@ -121,11 +142,17 @@ definitions:
         type: string
       body:
         type: string
+      brand_id:
+        type: string
+      category_id:
+        type: string
       color:
         type: string
       created_at:
         type: string
       description:
+        type: string
+      gen:
         type: string
       id:
         type: string
@@ -148,6 +175,9 @@ definitions:
       updated_at:
         type: string
     required:
+    - brand_id
+    - category_id
+    - gen
     - stars
     type: object
   model.Posts:
@@ -603,6 +633,155 @@ paths:
       summary: GetPostById
       tags:
       - post
+  /v1/post/brand:
+    post:
+      consumes:
+      - application/json
+      description: This API for creating new brand
+      parameters:
+      - description: CreateBrand
+        in: body
+        name: brand
+        required: true
+        schema:
+          $ref: '#/definitions/model.CreateBrandReq'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.Brand'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/v1.response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/v1.response'
+      security:
+      - BearerAuth: []
+      tags:
+      - brand
+  /v1/post/brand/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: This API for deleting brand
+      parameters:
+      - description: Brand_id
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.Brand'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/v1.response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/v1.response'
+      security:
+      - BearerAuth: []
+      summary: DeleteBrand
+      tags:
+      - brand
+  /v1/post/brand/getAll:
+    get:
+      consumes:
+      - application/json
+      description: This API for getting all brands
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.Brands'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/v1.response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/v1.response'
+      security:
+      - BearerAuth: []
+      summary: Get All Brands
+      tags:
+      - brand
+  /v1/post/brand/getByid/{id}:
+    get:
+      consumes:
+      - application/json
+      description: This API for getting brand by id
+      parameters:
+      - description: Brand_id
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.Brand'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/v1.response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/v1.response'
+      security:
+      - BearerAuth: []
+      summary: GetBrandById
+      tags:
+      - brand
+  /v1/post/brand/getPost/{id}:
+    get:
+      consumes:
+      - application/json
+      description: This API for getting post bu brand
+      parameters:
+      - description: Brand_id
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.Posts'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/v1.response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/v1.response'
+      security:
+      - BearerAuth: []
+      summary: GetPostByBrand
+      tags:
+      - brand
   /v1/post/delete/{id}:
     delete:
       consumes:

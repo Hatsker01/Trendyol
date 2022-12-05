@@ -10,8 +10,8 @@ import (
 
 func (r *PostsRepo)CreateCategory(category *pb.CategoryReq)(*pb.Category,error){
 	var id string
-	query:=`INSERT INTO category(post_id,name,created_at) VALUES ($1,$2,$3) RETURNING category_id`
-	err:=r.db.QueryRow(query,category.PostId,category.Name,time.Now().UTC()).Scan(&id)
+	query:=`INSERT INTO category(name,created_at) VALUES ($1,$2) RETURNING category_id`
+	err:=r.db.QueryRow(query,category.Name,time.Now().UTC()).Scan(&id)
 	if err!=nil{
 		return nil,err
 	}
@@ -25,7 +25,7 @@ func (r *PostsRepo)CreateCategory(category *pb.CategoryReq)(*pb.Category,error){
 
 func (r *PostsRepo) GetPostByCategory(id string)([]*pb.Post,error){
 	var posts []*pb.Post
-	query :=`select id,title,description,body,author_id,stars,rating,price,product_type,size from posts join category on posts.id=category.post_id where category.category_id=$1 and posts.deleted_at is null and category.deleted_at is null`
+	query :=`select id,title,description,body,author_id,stars,rating,price,product_type,size,color,gen,brand_id,category_id from posts join category on posts.category_id=category.id where posts.deleted_at is null and category.deleted_at is null`
 	rows,err:=r.db.Query(query,id)
 	if err!=nil{
 		return nil,err
@@ -43,6 +43,10 @@ func (r *PostsRepo) GetPostByCategory(id string)([]*pb.Post,error){
 			&post.Price,
 			&post.ProductType,
 			pq.Array(&post.Size_),
+			&post.Color,
+			&post.Gen,
+			&post.BrandId,
+			&post.CategoryId,
 		)
 		if err!=nil{
 			return nil,err
@@ -55,10 +59,9 @@ func (r *PostsRepo) GetPostByCategory(id string)([]*pb.Post,error){
 func (r *PostsRepo) GetCategory(id string)(*pb.Category,error){
 	category:= pb.Category{}
 	var update_at sql.NullTime
-	query:=`SELECT category_id,post_id,name,created_at,updated_at from category where deleted_at is null and category_id = $1`
+	query:=`SELECT category_id,name,created_at,updated_at from category where deleted_at is null and category_id = $1`
 	err:=r.db.QueryRow(query,id).Scan(
 		&category.Id,
-		&category.PostId,
 		&category.Name,
 		&category.CreatedAt,
 		&update_at,
@@ -74,7 +77,7 @@ func (r *PostsRepo) GetCategory(id string)(*pb.Category,error){
 
 func (r *PostsRepo) GetAllCategories()([]*pb.Category,error){
 	var categories []*pb.Category
-	query :=`SELECT category_id,post_id,name,created_at,updated_at from category where deleted_at is null`
+	query :=`SELECT category_id,name,created_at,updated_at from category where deleted_at is null`
 	rows,err:=r.db.Query(query)
 	if err!=nil{
 		return nil,err
@@ -84,7 +87,6 @@ func (r *PostsRepo) GetAllCategories()([]*pb.Category,error){
 		var category pb.Category
 		err:=rows.Scan(
 			&category.Id,
-			&category.PostId,
 			&category.Name,
 			&category.CreatedAt,
 			&update_at,

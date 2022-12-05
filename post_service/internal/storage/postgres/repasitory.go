@@ -32,6 +32,17 @@ type Posts interface {
 	GetLikeInfo(id string)(*pb.Like,error)
 	GetPostLike(id string)([]*pb.Like,error)
 
+	PutStar(star *pb.StarReq) (*pb.Stars, error)
+	GetStar(id string) (*pb.Stars, error)
+	TakeStar(id string)(*pb.Empty,error)
+
+	CreateBrand(brand *pb.CreateBrandReq)(*pb.Brand,error)
+	GetAllBrands() ([]*pb.Brand, error)
+	DeleteBrand(id string) (*pb.Brand, error)
+	GetPostByBrand(id string) ([]*pb.Post, error)
+	GetBrandById(id string) (*pb.Brand, error)
+	
+
 }
 
 

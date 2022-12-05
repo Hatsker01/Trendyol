@@ -18,15 +18,15 @@ type Tokens struct {
 	RefreshToken string `json:"refreshtoken"`
 }
 
-type StarReq struct{
-	ID string `json:"id"`
+type StarReq struct {
+	ID      string `json:"id"`
 	Post_Id string `json"post_id"`
 	User_Id string `json:"user_id"`
-	Star string `json:"star"`
+	Star    string `json:"star"`
 }
 
-type Stars struct{
-	Post_Id string `json:"post_id"`
+type Stars struct {
+	Post_Id      string `json:"post_id"`
 	Avarege_Star string `json:"avarage_star"`
 }
 
@@ -72,26 +72,26 @@ type Post struct {
 	Description string   `json:"description"`
 	Body        string   `json:"body"`
 	AuthorId    string   `json:"author_id"`
-	Stars       string      `json:"stars" binding:"required,min=0,max=5"`
+	Stars       string   `json:"stars" binding:"required,min=0,max=5"`
 	Rating      string   `json:"rating"`
 	Price       string   `json:"price"`
 	ProductType string   `json:"product_type"`
 	Size_       []string `json:"size"`
 	Color       string   `json:"color"`
+	Gen         string   `json:"gen" binding:"required"`
+	Brand_id    string   `json:"brand_id" binding:"required"`
+	Category_id string   `json:"category_id" binding:"required"`
 	CreatedAt   string   `json:"created_at"`
 	UpdatedAt   string   `json:"updated_at"`
 }
 
-
-
-type GetPostByPrice struct{
+type GetPostByPrice struct {
 	High string `json:"high"`
-	Low string `json:"low"`
+	Low  string `json:"low"`
 }
 
 type Category struct {
 	ID         string `json:"id"`
-	Post_ID    string `json:"post_id"`
 	Name       string `json:"name"`
 	Created_at string `json:"created_at"`
 	Updated_at string `json:"updated_at"`
@@ -99,8 +99,7 @@ type Category struct {
 }
 
 type CategiryReq struct {
-	Post_id string `json:"post_id"`
-	Name    string `json:"name"`
+	Name string `json:"name"`
 }
 type Categories struct {
 	Categories []Category `json:"categories"`
@@ -110,10 +109,10 @@ type Posts struct {
 	Posts []Post `json:"Posts"`
 }
 
-type Like struct{
-	Id string `json:"id"`
-	User_id string 	`json:"user_id"`
-	Post_id string `json:"post_id"`
+type Like struct {
+	Id         string `json:"id"`
+	User_id    string `json:"user_id"`
+	Post_id    string `json:"post_id"`
 	Created_at string `json:"created_at"`
 	Deleted_at string `json:"deleted_at"`
 }
@@ -122,20 +121,35 @@ type Likes struct {
 	Likes []Like `json:"likes"`
 }
 
-type LikeId struct{
+type LikeId struct {
 	Id string `json:"id"`
 }
 
-type ChengePass struct{
-	Id string `json:"id"`
-	OldPass string `json:"old_pass"`
-	NewPass string `json:"new_pass"`
+type ChengePass struct {
+	Id        string `json:"id"`
+	OldPass   string `json:"old_pass"`
+	NewPass   string `json:"new_pass"`
 	VerifyNew string `json:"very_new"`
 }
 
-type ChangePassRes struct{
-	Id string `json:"id"`
+type ChangePassRes struct {
+	Id      string `json:"id"`
 	NewPass string `json:"new_pass"`
+}
+
+type CreateBrandReq struct {
+	Id   string `json:"id"`
+	Name string `json:"name"`
+}
+type Brand struct {
+	Id         string `json:"id"`
+	Name       string `json:"name"`
+	Created_at string `json:"created_at"`
+	Updated_at string `json:"updated_at"`
+}
+
+type Brands struct{
+	Brands []*Brand `json:"brands"`
 }
 
 var (

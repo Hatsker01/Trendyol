@@ -140,3 +140,30 @@ func (s *PostsService) GetingPostsByColor(ctx context.Context,color *pb.ColorReq
 		Posts: posts,
 	},nil
 }
+
+func (s *PostsService) PutStar(ctx context.Context,star *pb.StarReq)(*pb.Stars,error){
+	stars,err:=s.repo.PutStar(star)
+	if err!=nil{
+		s.logger.Error("failed while putting star",logger.Error(err))
+		return nil,status.Error(codes.Internal,"failed while putting star")
+	}
+	return stars,nil
+}
+
+func (s *PostsService) GetStar(ctx context.Context,id *pb.WithId)(*pb.Stars,error){
+	stars,err:=s.repo.GetStar(id.Id)
+	if err!=nil{
+		s.logger.Error("failed while getting star",logger.Error(err))
+		return nil,status.Error(codes.Internal,"failed while getting star")
+	}
+	return stars,nil
+}
+
+func (s *PostsService) TakeStar(ctx context.Context,id *pb.WithId)(*pb.Empty,error){
+	empty,err:=s.repo.TakeStar(id.Id)
+	if err!=nil{
+		s.logger.Error("failed while taking star from post",logger.Error(err))
+		return nil,status.Error(codes.Internal,"failed while taking star from post")
+	}
+	return empty,nil
+}

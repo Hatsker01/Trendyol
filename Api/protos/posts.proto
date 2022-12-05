@@ -34,7 +34,32 @@ service PostService{
     rpc PutStar(StarReq) returns(Stars);
     rpc GetStar(WithId) returns (Stars);
     rpc TakeStar(WithId) returns (Empty);
+
+    rpc CreateBrand(CreateBrandReq) returns (Brand);
+    rpc GetAllBrands(Empty) returns (Brands);
+    rpc DeleteBrand(WithId) returns (Brand);
+    rpc GetPostByBrand(WithId) returns(Posts);
+    rpc GetBrandById(WithId) returns(Brand);
+    
 }
+
+message Brands{
+    repeated Brand Brands=1;
+}
+
+message CreateBrandReq{
+    string id =1;
+    string name=2;
+}
+
+message Brand{
+    string id =1;
+    string name =2;
+    string created_at=3;
+    string updated_at=4;
+}
+
+
 
 message StarReq{
     string id =1;
@@ -79,16 +104,14 @@ message Likes{
     repeated Like Likes=1;
 }
 message CategoryReq{
-    string post_id=1;
-    string name=2;
+    string name=1;
 }
 message Category{
     string id =1;
-    string post_id=2;
-    string name=3;
-    string created_at =4;
-    string updated_at =5;
-    string deleted_at=6;
+    string name=2;
+    string created_at =3;
+    string updated_at =4;
+    string deleted_at=5;
 }
 message Categories{
     repeated Category Categories=1;
@@ -123,9 +146,11 @@ message Post{
     repeated string size =10;
     string color =11;
     string gen=12;
-    string created_at=13;
-    string updated_at=14;
-    string deleted_at=15;
+    string brand_id =13;
+    string category_id=14;
+    string created_at=15;
+    string updated_at=16;
+    string deleted_at=17;
 
 }
 

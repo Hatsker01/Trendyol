@@ -26,6 +26,179 @@ var _ = math.Inf
 // proto package needs to be updated.
 const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
 
+type Brands struct {
+	Brands               []*Brand `protobuf:"bytes,1,rep,name=Brands,proto3" json:"Brands"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *Brands) Reset()         { *m = Brands{} }
+func (m *Brands) String() string { return proto.CompactTextString(m) }
+func (*Brands) ProtoMessage()    {}
+func (*Brands) Descriptor() ([]byte, []int) {
+	return fileDescriptor_b14bd1586479c33d, []int{0}
+}
+func (m *Brands) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *Brands) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_Brands.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *Brands) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_Brands.Merge(m, src)
+}
+func (m *Brands) XXX_Size() int {
+	return m.Size()
+}
+func (m *Brands) XXX_DiscardUnknown() {
+	xxx_messageInfo_Brands.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_Brands proto.InternalMessageInfo
+
+func (m *Brands) GetBrands() []*Brand {
+	if m != nil {
+		return m.Brands
+	}
+	return nil
+}
+
+type CreateBrandReq struct {
+	Id                   string   `protobuf:"bytes,1,opt,name=id,proto3" json:"id"`
+	Name                 string   `protobuf:"bytes,2,opt,name=name,proto3" json:"name"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *CreateBrandReq) Reset()         { *m = CreateBrandReq{} }
+func (m *CreateBrandReq) String() string { return proto.CompactTextString(m) }
+func (*CreateBrandReq) ProtoMessage()    {}
+func (*CreateBrandReq) Descriptor() ([]byte, []int) {
+	return fileDescriptor_b14bd1586479c33d, []int{1}
+}
+func (m *CreateBrandReq) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *CreateBrandReq) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_CreateBrandReq.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *CreateBrandReq) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_CreateBrandReq.Merge(m, src)
+}
+func (m *CreateBrandReq) XXX_Size() int {
+	return m.Size()
+}
+func (m *CreateBrandReq) XXX_DiscardUnknown() {
+	xxx_messageInfo_CreateBrandReq.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_CreateBrandReq proto.InternalMessageInfo
+
+func (m *CreateBrandReq) GetId() string {
+	if m != nil {
+		return m.Id
+	}
+	return ""
+}
+
+func (m *CreateBrandReq) GetName() string {
+	if m != nil {
+		return m.Name
+	}
+	return ""
+}
+
+type Brand struct {
+	Id                   string   `protobuf:"bytes,1,opt,name=id,proto3" json:"id"`
+	Name                 string   `protobuf:"bytes,2,opt,name=name,proto3" json:"name"`
+	CreatedAt            string   `protobuf:"bytes,3,opt,name=created_at,json=createdAt,proto3" json:"created_at"`
+	UpdatedAt            string   `protobuf:"bytes,4,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *Brand) Reset()         { *m = Brand{} }
+func (m *Brand) String() string { return proto.CompactTextString(m) }
+func (*Brand) ProtoMessage()    {}
+func (*Brand) Descriptor() ([]byte, []int) {
+	return fileDescriptor_b14bd1586479c33d, []int{2}
+}
+func (m *Brand) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *Brand) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_Brand.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *Brand) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_Brand.Merge(m, src)
+}
+func (m *Brand) XXX_Size() int {
+	return m.Size()
+}
+func (m *Brand) XXX_DiscardUnknown() {
+	xxx_messageInfo_Brand.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_Brand proto.InternalMessageInfo
+
+func (m *Brand) GetId() string {
+	if m != nil {
+		return m.Id
+	}
+	return ""
+}
+
+func (m *Brand) GetName() string {
+	if m != nil {
+		return m.Name
+	}
+	return ""
+}
+
+func (m *Brand) GetCreatedAt() string {
+	if m != nil {
+		return m.CreatedAt
+	}
+	return ""
+}
+
+func (m *Brand) GetUpdatedAt() string {
+	if m != nil {
+		return m.UpdatedAt
+	}
+	return ""
+}
+
 type StarReq struct {
 	Id                   string   `protobuf:"bytes,1,opt,name=id,proto3" json:"id"`
 	PostId               string   `protobuf:"bytes,2,opt,name=post_id,json=postId,proto3" json:"post_id"`
@@ -40,7 +213,7 @@ func (m *StarReq) Reset()         { *m = StarReq{} }
 func (m *StarReq) String() string { return proto.CompactTextString(m) }
 func (*StarReq) ProtoMessage()    {}
 func (*StarReq) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b14bd1586479c33d, []int{0}
+	return fileDescriptor_b14bd1586479c33d, []int{3}
 }
 func (m *StarReq) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -109,7 +282,7 @@ func (m *Stars) Reset()         { *m = Stars{} }
 func (m *Stars) String() string { return proto.CompactTextString(m) }
 func (*Stars) ProtoMessage()    {}
 func (*Stars) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b14bd1586479c33d, []int{1}
+	return fileDescriptor_b14bd1586479c33d, []int{4}
 }
 func (m *Stars) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -163,7 +336,7 @@ func (m *ColorReq) Reset()         { *m = ColorReq{} }
 func (m *ColorReq) String() string { return proto.CompactTextString(m) }
 func (*ColorReq) ProtoMessage()    {}
 func (*ColorReq) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b14bd1586479c33d, []int{2}
+	return fileDescriptor_b14bd1586479c33d, []int{5}
 }
 func (m *ColorReq) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -211,7 +384,7 @@ func (m *GetPostPriceReq) Reset()         { *m = GetPostPriceReq{} }
 func (m *GetPostPriceReq) String() string { return proto.CompactTextString(m) }
 func (*GetPostPriceReq) ProtoMessage()    {}
 func (*GetPostPriceReq) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b14bd1586479c33d, []int{3}
+	return fileDescriptor_b14bd1586479c33d, []int{6}
 }
 func (m *GetPostPriceReq) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -266,7 +439,7 @@ func (m *PutLikeReq) Reset()         { *m = PutLikeReq{} }
 func (m *PutLikeReq) String() string { return proto.CompactTextString(m) }
 func (*PutLikeReq) ProtoMessage()    {}
 func (*PutLikeReq) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b14bd1586479c33d, []int{4}
+	return fileDescriptor_b14bd1586479c33d, []int{7}
 }
 func (m *PutLikeReq) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -323,7 +496,7 @@ func (m *Like) Reset()         { *m = Like{} }
 func (m *Like) String() string { return proto.CompactTextString(m) }
 func (*Like) ProtoMessage()    {}
 func (*Like) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b14bd1586479c33d, []int{5}
+	return fileDescriptor_b14bd1586479c33d, []int{8}
 }
 func (m *Like) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -391,7 +564,7 @@ func (m *LikeId) Reset()         { *m = LikeId{} }
 func (m *LikeId) String() string { return proto.CompactTextString(m) }
 func (*LikeId) ProtoMessage()    {}
 func (*LikeId) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b14bd1586479c33d, []int{6}
+	return fileDescriptor_b14bd1586479c33d, []int{9}
 }
 func (m *LikeId) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -438,7 +611,7 @@ func (m *Likes) Reset()         { *m = Likes{} }
 func (m *Likes) String() string { return proto.CompactTextString(m) }
 func (*Likes) ProtoMessage()    {}
 func (*Likes) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b14bd1586479c33d, []int{7}
+	return fileDescriptor_b14bd1586479c33d, []int{10}
 }
 func (m *Likes) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -475,8 +648,7 @@ func (m *Likes) GetLikes() []*Like {
 }
 
 type CategoryReq struct {
-	PostId               string   `protobuf:"bytes,1,opt,name=post_id,json=postId,proto3" json:"post_id"`
-	Name                 string   `protobuf:"bytes,2,opt,name=name,proto3" json:"name"`
+	Name                 string   `protobuf:"bytes,1,opt,name=name,proto3" json:"name"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
@@ -486,7 +658,7 @@ func (m *CategoryReq) Reset()         { *m = CategoryReq{} }
 func (m *CategoryReq) String() string { return proto.CompactTextString(m) }
 func (*CategoryReq) ProtoMessage()    {}
 func (*CategoryReq) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b14bd1586479c33d, []int{8}
+	return fileDescriptor_b14bd1586479c33d, []int{11}
 }
 func (m *CategoryReq) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -515,13 +687,6 @@ func (m *CategoryReq) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_CategoryReq proto.InternalMessageInfo
 
-func (m *CategoryReq) GetPostId() string {
-	if m != nil {
-		return m.PostId
-	}
-	return ""
-}
-
 func (m *CategoryReq) GetName() string {
 	if m != nil {
 		return m.Name
@@ -531,11 +696,10 @@ func (m *CategoryReq) GetName() string {
 
 type Category struct {
 	Id                   string   `protobuf:"bytes,1,opt,name=id,proto3" json:"id"`
-	PostId               string   `protobuf:"bytes,2,opt,name=post_id,json=postId,proto3" json:"post_id"`
-	Name                 string   `protobuf:"bytes,3,opt,name=name,proto3" json:"name"`
-	CreatedAt            string   `protobuf:"bytes,4,opt,name=created_at,json=createdAt,proto3" json:"created_at"`
-	UpdatedAt            string   `protobuf:"bytes,5,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at"`
-	DeletedAt            string   `protobuf:"bytes,6,opt,name=deleted_at,json=deletedAt,proto3" json:"deleted_at"`
+	Name                 string   `protobuf:"bytes,2,opt,name=name,proto3" json:"name"`
+	CreatedAt            string   `protobuf:"bytes,3,opt,name=created_at,json=createdAt,proto3" json:"created_at"`
+	UpdatedAt            string   `protobuf:"bytes,4,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at"`
+	DeletedAt            string   `protobuf:"bytes,5,opt,name=deleted_at,json=deletedAt,proto3" json:"deleted_at"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
@@ -545,7 +709,7 @@ func (m *Category) Reset()         { *m = Category{} }
 func (m *Category) String() string { return proto.CompactTextString(m) }
 func (*Category) ProtoMessage()    {}
 func (*Category) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b14bd1586479c33d, []int{9}
+	return fileDescriptor_b14bd1586479c33d, []int{12}
 }
 func (m *Category) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -577,13 +741,6 @@ var xxx_messageInfo_Category proto.InternalMessageInfo
 func (m *Category) GetId() string {
 	if m != nil {
 		return m.Id
-	}
-	return ""
-}
-
-func (m *Category) GetPostId() string {
-	if m != nil {
-		return m.PostId
 	}
 	return ""
 }
@@ -627,7 +784,7 @@ func (m *Categories) Reset()         { *m = Categories{} }
 func (m *Categories) String() string { return proto.CompactTextString(m) }
 func (*Categories) ProtoMessage()    {}
 func (*Categories) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b14bd1586479c33d, []int{10}
+	return fileDescriptor_b14bd1586479c33d, []int{13}
 }
 func (m *Categories) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -674,7 +831,7 @@ func (m *CatID) Reset()         { *m = CatID{} }
 func (m *CatID) String() string { return proto.CompactTextString(m) }
 func (*CatID) ProtoMessage()    {}
 func (*CatID) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b14bd1586479c33d, []int{11}
+	return fileDescriptor_b14bd1586479c33d, []int{14}
 }
 func (m *CatID) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -721,7 +878,7 @@ func (m *PriceSep) Reset()         { *m = PriceSep{} }
 func (m *PriceSep) String() string { return proto.CompactTextString(m) }
 func (*PriceSep) ProtoMessage()    {}
 func (*PriceSep) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b14bd1586479c33d, []int{12}
+	return fileDescriptor_b14bd1586479c33d, []int{15}
 }
 func (m *PriceSep) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -768,7 +925,7 @@ func (m *WithId) Reset()         { *m = WithId{} }
 func (m *WithId) String() string { return proto.CompactTextString(m) }
 func (*WithId) ProtoMessage()    {}
 func (*WithId) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b14bd1586479c33d, []int{13}
+	return fileDescriptor_b14bd1586479c33d, []int{16}
 }
 func (m *WithId) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -814,7 +971,7 @@ func (m *Empty) Reset()         { *m = Empty{} }
 func (m *Empty) String() string { return proto.CompactTextString(m) }
 func (*Empty) ProtoMessage()    {}
 func (*Empty) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b14bd1586479c33d, []int{14}
+	return fileDescriptor_b14bd1586479c33d, []int{17}
 }
 func (m *Empty) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -856,9 +1013,11 @@ type Post struct {
 	Size_                []string `protobuf:"bytes,10,rep,name=size,proto3" json:"size"`
 	Color                string   `protobuf:"bytes,11,opt,name=color,proto3" json:"color"`
 	Gen                  string   `protobuf:"bytes,12,opt,name=gen,proto3" json:"gen"`
-	CreatedAt            string   `protobuf:"bytes,13,opt,name=created_at,json=createdAt,proto3" json:"created_at"`
-	UpdatedAt            string   `protobuf:"bytes,14,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at"`
-	DeletedAt            string   `protobuf:"bytes,15,opt,name=deleted_at,json=deletedAt,proto3" json:"deleted_at"`
+	BrandId              string   `protobuf:"bytes,13,opt,name=brand_id,json=brandId,proto3" json:"brand_id"`
+	CategoryId           string   `protobuf:"bytes,14,opt,name=category_id,json=categoryId,proto3" json:"category_id"`
+	CreatedAt            string   `protobuf:"bytes,15,opt,name=created_at,json=createdAt,proto3" json:"created_at"`
+	UpdatedAt            string   `protobuf:"bytes,16,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at"`
+	DeletedAt            string   `protobuf:"bytes,17,opt,name=deleted_at,json=deletedAt,proto3" json:"deleted_at"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
@@ -868,7 +1027,7 @@ func (m *Post) Reset()         { *m = Post{} }
 func (m *Post) String() string { return proto.CompactTextString(m) }
 func (*Post) ProtoMessage()    {}
 func (*Post) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b14bd1586479c33d, []int{15}
+	return fileDescriptor_b14bd1586479c33d, []int{18}
 }
 func (m *Post) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -981,6 +1140,20 @@ func (m *Post) GetGen() string {
 	return ""
 }
 
+func (m *Post) GetBrandId() string {
+	if m != nil {
+		return m.BrandId
+	}
+	return ""
+}
+
+func (m *Post) GetCategoryId() string {
+	if m != nil {
+		return m.CategoryId
+	}
+	return ""
+}
+
 func (m *Post) GetCreatedAt() string {
 	if m != nil {
 		return m.CreatedAt
@@ -1013,7 +1186,7 @@ func (m *Posts) Reset()         { *m = Posts{} }
 func (m *Posts) String() string { return proto.CompactTextString(m) }
 func (*Posts) ProtoMessage()    {}
 func (*Posts) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b14bd1586479c33d, []int{16}
+	return fileDescriptor_b14bd1586479c33d, []int{19}
 }
 func (m *Posts) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -1050,6 +1223,9 @@ func (m *Posts) GetPosts() []*Post {
 }
 
 func init() {
+	proto.RegisterType((*Brands)(nil), "user.Brands")
+	proto.RegisterType((*CreateBrandReq)(nil), "user.CreateBrandReq")
+	proto.RegisterType((*Brand)(nil), "user.Brand")
 	proto.RegisterType((*StarReq)(nil), "user.StarReq")
 	proto.RegisterType((*Stars)(nil), "user.Stars")
 	proto.RegisterType((*ColorReq)(nil), "user.ColorReq")
@@ -1072,63 +1248,70 @@ func init() {
 func init() { proto.RegisterFile("posts.proto", fileDescriptor_b14bd1586479c33d) }
 
 var fileDescriptor_b14bd1586479c33d = []byte{
-	// 893 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x8c, 0x56, 0xe1, 0x6e, 0xe3, 0x44,
-	0x10, 0xc6, 0x49, 0x9c, 0x38, 0xe3, 0x5e, 0x2e, 0xb7, 0x14, 0xce, 0x0a, 0x22, 0xca, 0x59, 0xad,
-	0xe8, 0x9d, 0xb8, 0x70, 0xb4, 0x48, 0x48, 0x08, 0x21, 0x25, 0x29, 0xaa, 0x22, 0xf1, 0xa3, 0x6a,
-	0x5a, 0xf1, 0xb3, 0x72, 0xe3, 0x25, 0xb1, 0xea, 0xc6, 0xae, 0xbd, 0x29, 0x32, 0x4f, 0xc2, 0x03,
-	0xf0, 0x93, 0x07, 0xe1, 0x27, 0x8f, 0x80, 0xca, 0x83, 0x80, 0x66, 0x67, 0xed, 0xd8, 0xae, 0xdb,
-	0xe6, 0xdf, 0xec, 0xcc, 0x37, 0xe3, 0x99, 0xd9, 0x6f, 0x66, 0x0d, 0x66, 0x18, 0xc4, 0x22, 0x1e,
-	0x86, 0x51, 0x20, 0x02, 0xd6, 0x58, 0xc7, 0x3c, 0xb2, 0x1d, 0x68, 0xcd, 0x84, 0x13, 0x9d, 0xf1,
-	0x5b, 0xd6, 0x81, 0x9a, 0xe7, 0x5a, 0xda, 0x40, 0x3b, 0x68, 0x9f, 0xd5, 0x3c, 0x97, 0xbd, 0x86,
-	0x16, 0xe2, 0x2f, 0x3d, 0xd7, 0xaa, 0x49, 0x65, 0x13, 0x8f, 0x53, 0x69, 0x40, 0x5f, 0x34, 0xd4,
-	0xc9, 0x80, 0xc7, 0xa9, 0xcb, 0x76, 0x41, 0x8f, 0x85, 0x13, 0xc5, 0x56, 0x43, 0xaa, 0xe9, 0x60,
-	0x8f, 0x41, 0xc7, 0x4f, 0xc4, 0xf9, 0x80, 0x5a, 0x21, 0xe0, 0x00, 0x4c, 0xe7, 0xce, 0x89, 0xf8,
-	0x82, 0x23, 0x50, 0x7d, 0x2d, 0xaf, 0xb2, 0x07, 0x60, 0x4c, 0x02, 0x3f, 0x90, 0x79, 0xee, 0x82,
-	0x3e, 0x47, 0x59, 0x05, 0xa1, 0x83, 0xfd, 0x2d, 0xbc, 0x3c, 0xe1, 0xe2, 0x34, 0x88, 0xc5, 0x69,
-	0xe4, 0xcd, 0x39, 0x02, 0xbb, 0x50, 0xf7, 0x83, 0x5f, 0x15, 0x0c, 0x45, 0xc6, 0xa0, 0xb1, 0xf4,
-	0x16, 0x4b, 0xf5, 0x05, 0x29, 0xdb, 0x3f, 0x00, 0x9c, 0xae, 0xc5, 0x4f, 0xde, 0xb5, 0xf4, 0xc9,
-	0xd5, 0xa6, 0x15, 0x6a, 0x7b, 0xac, 0x1b, 0xf6, 0x02, 0x1a, 0xe8, 0x5c, 0xd5, 0xbe, 0x34, 0x52,
-	0xed, 0xb1, 0x48, 0xf5, 0x42, 0x1b, 0x3e, 0x07, 0x98, 0x47, 0xdc, 0x11, 0xdc, 0xbd, 0x74, 0x84,
-	0xea, 0x61, 0x5b, 0x69, 0x46, 0xc2, 0xb6, 0xa0, 0x89, 0x1f, 0x9a, 0xba, 0xe5, 0x4f, 0xd9, 0x6f,
-	0x41, 0x47, 0x4b, 0xcc, 0x06, 0x4a, 0xb0, 0xb4, 0x41, 0xfd, 0xc0, 0x3c, 0x84, 0x21, 0x7e, 0x72,
-	0x28, 0x6b, 0x23, 0x83, 0xfd, 0x1d, 0x98, 0x13, 0x47, 0xf0, 0x45, 0x10, 0x25, 0xaa, 0xdc, 0xea,
-	0x2b, 0x61, 0xd0, 0x58, 0x39, 0x37, 0x3c, 0xed, 0x14, 0xca, 0xf6, 0x1f, 0x1a, 0x18, 0xa9, 0xf3,
-	0xf6, 0x6c, 0x49, 0x23, 0xd5, 0x37, 0x91, 0x9e, 0xa9, 0x14, 0xcd, 0xeb, 0xd0, 0x4d, 0xcd, 0x3a,
-	0x99, 0x95, 0x86, 0xcc, 0x2e, 0xf7, 0xb9, 0x32, 0x37, 0xc9, 0xac, 0x34, 0x23, 0x61, 0x7f, 0x0f,
-	0xa0, 0xb2, 0xf4, 0x78, 0xcc, 0x86, 0xf9, 0x93, 0xea, 0x4b, 0x87, 0xfa, 0x92, 0x35, 0x22, 0x87,
-	0xb0, 0x5f, 0x83, 0x3e, 0x71, 0xc4, 0xf4, 0xf8, 0x41, 0x93, 0xfb, 0x60, 0x48, 0x66, 0xcd, 0x78,
-	0x98, 0xf1, 0x08, 0xad, 0x86, 0xe2, 0x91, 0x05, 0xcd, 0x9f, 0x3d, 0xb1, 0xac, 0xb8, 0x9e, 0x16,
-	0xe8, 0x3f, 0xde, 0x84, 0x22, 0xb1, 0xff, 0xab, 0x41, 0x03, 0x19, 0xfa, 0xa0, 0x79, 0xbb, 0xa0,
-	0x0b, 0x4f, 0xf8, 0x69, 0xbb, 0xe9, 0x80, 0x63, 0xe1, 0xf2, 0x78, 0x1e, 0x79, 0xa1, 0xf0, 0x82,
-	0x95, 0x6a, 0x60, 0x5e, 0x85, 0x79, 0x5c, 0x05, 0x6e, 0xa2, 0x3a, 0x28, 0x65, 0xf6, 0x19, 0xb4,
-	0x9d, 0xb5, 0x58, 0x06, 0x92, 0x79, 0xd4, 0x3b, 0x83, 0x14, 0xf9, 0x09, 0x6d, 0xe6, 0x26, 0x94,
-	0x7d, 0x0a, 0xcd, 0xc8, 0x11, 0xde, 0x6a, 0x61, 0xb5, 0xe8, 0xea, 0xe8, 0x84, 0xe8, 0x10, 0x4b,
-	0xb6, 0x0c, 0x42, 0xcb, 0x03, 0x7b, 0x03, 0x3b, 0x61, 0x14, 0xb8, 0xeb, 0xb9, 0xb8, 0x14, 0x49,
-	0xc8, 0xad, 0x36, 0xe5, 0xa5, 0x74, 0xe7, 0x49, 0xc8, 0x31, 0xaf, 0xd8, 0xfb, 0x8d, 0x5b, 0x30,
-	0xa8, 0x63, 0x5e, 0x28, 0x6f, 0xc6, 0xd6, 0xcc, 0x8d, 0x2d, 0xce, 0xe8, 0x82, 0xaf, 0xac, 0x1d,
-	0x9a, 0xd1, 0x05, 0x5f, 0x95, 0xb8, 0xf1, 0xe2, 0x69, 0x6e, 0x74, 0x9e, 0xe6, 0xc6, 0xcb, 0x32,
-	0x37, 0xde, 0x82, 0x8e, 0x17, 0x20, 0x27, 0x45, 0x0a, 0xc5, 0x49, 0x41, 0xd5, 0x19, 0x19, 0x0e,
-	0xff, 0x34, 0xc0, 0x44, 0x69, 0xc6, 0xa3, 0x3b, 0x2c, 0x7b, 0x0f, 0x60, 0x22, 0xb3, 0x90, 0x37,
-	0x98, 0x73, 0xe8, 0xe5, 0x64, 0x44, 0x5d, 0xc8, 0x64, 0x9e, 0x44, 0x7d, 0x01, 0xa6, 0x5a, 0x56,
-	0xe3, 0x64, 0xea, 0xb2, 0x1d, 0x32, 0x11, 0x7d, 0x2a, 0x80, 0x23, 0xdf, 0xa7, 0xac, 0x4d, 0x32,
-	0x49, 0x36, 0xf5, 0xcc, 0x0d, 0x2e, 0x66, 0xef, 0xa0, 0x73, 0x2c, 0xab, 0xdc, 0x22, 0xe8, 0x97,
-	0x72, 0x55, 0x8e, 0x7c, 0xff, 0x22, 0xe6, 0x11, 0xb9, 0x17, 0xc1, 0x85, 0xc8, 0x5f, 0x01, 0xa3,
-	0xc8, 0xdb, 0x3a, 0xec, 0x43, 0x1b, 0x77, 0xf6, 0x73, 0x19, 0x7f, 0x80, 0x57, 0xaa, 0x07, 0xf1,
-	0x2c, 0x88, 0x68, 0x6b, 0x33, 0x35, 0x99, 0xe9, 0xa0, 0x15, 0x3d, 0xbe, 0x06, 0x76, 0xc2, 0x91,
-	0x98, 0xf2, 0x38, 0x4e, 0xe4, 0x8b, 0x90, 0xba, 0xa4, 0xcf, 0x43, 0xd1, 0xe5, 0x1b, 0xe8, 0x64,
-	0x8d, 0xa6, 0x2f, 0x7c, 0x42, 0xe6, 0xd2, 0x5b, 0x51, 0xf4, 0x7a, 0x9f, 0xa5, 0x36, 0x4e, 0xb2,
-	0x85, 0x67, 0x66, 0x4b, 0x63, 0x7a, 0x5c, 0xce, 0xab, 0x4b, 0xfd, 0xcc, 0xad, 0x9d, 0x42, 0xdd,
-	0xdd, 0xc2, 0xbe, 0x41, 0xf3, 0x11, 0x74, 0x88, 0x4c, 0x59, 0xf8, 0x57, 0xa5, 0x9d, 0xc4, 0x6f,
-	0x7b, 0xa5, 0x35, 0xc5, 0xde, 0xa7, 0x77, 0x5c, 0x9d, 0x53, 0x19, 0xfe, 0x4e, 0x72, 0x67, 0x3b,
-	0xec, 0x1b, 0x68, 0xa9, 0x47, 0x90, 0xe5, 0x1e, 0x8d, 0x5e, 0x4e, 0x66, 0x7b, 0x60, 0x9c, 0x3b,
-	0xd7, 0x5c, 0xca, 0x95, 0xdc, 0x92, 0x96, 0x0f, 0xf0, 0xf1, 0x86, 0xb0, 0xf2, 0xc9, 0x41, 0xce,
-	0x54, 0xd3, 0x85, 0xde, 0x2c, 0xa2, 0xb8, 0x7c, 0xd9, 0x56, 0xbf, 0x04, 0x29, 0x92, 0x5e, 0xba,
-	0x42, 0xe8, 0x83, 0x6c, 0x68, 0x2a, 0x72, 0x28, 0x84, 0xdc, 0x97, 0xd5, 0x20, 0x09, 0xd9, 0x0b,
-	0xd2, 0xab, 0x7f, 0x9c, 0x14, 0x46, 0xff, 0x23, 0x7b, 0xd0, 0x3a, 0xe1, 0x04, 0xab, 0x0c, 0x46,
-	0xa8, 0x7d, 0xaa, 0xfb, 0x71, 0x98, 0xbc, 0xe3, 0x71, 0xf7, 0xaf, 0xfb, 0xbe, 0xf6, 0xf7, 0x7d,
-	0x5f, 0xfb, 0xe7, 0xbe, 0xaf, 0xfd, 0xfe, 0x6f, 0xff, 0xa3, 0xab, 0xa6, 0xfc, 0xcf, 0x3a, 0xfa,
-	0x3f, 0x00, 0x00, 0xff, 0xff, 0x4b, 0x73, 0xb3, 0x3d, 0x76, 0x09, 0x00, 0x00,
+	// 1008 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xb4, 0x56, 0x5d, 0x6e, 0x23, 0x45,
+	0x10, 0x66, 0x62, 0x8f, 0x7f, 0x6a, 0xbc, 0x5e, 0xa7, 0x09, 0xec, 0x60, 0x84, 0x71, 0x86, 0x44,
+	0x24, 0x0b, 0x09, 0x61, 0x77, 0x25, 0x5e, 0x10, 0x92, 0x9d, 0xa0, 0xc8, 0x12, 0x0f, 0x51, 0xb2,
+	0x2b, 0x1e, 0xa3, 0x89, 0xa7, 0x71, 0x46, 0xeb, 0xf5, 0xcc, 0xce, 0xb4, 0x17, 0x99, 0x2b, 0xec,
+	0x05, 0xb8, 0x0b, 0x17, 0xe0, 0x91, 0x23, 0xa0, 0x70, 0x11, 0x54, 0x55, 0x3d, 0x4e, 0xb7, 0x33,
+	0x09, 0x7e, 0xe1, 0xad, 0xba, 0xea, 0xeb, 0xea, 0xaa, 0xea, 0xaf, 0xaa, 0x1b, 0xbc, 0x34, 0xc9,
+	0x55, 0x7e, 0x98, 0x66, 0x89, 0x4a, 0x44, 0x75, 0x9e, 0xcb, 0x2c, 0x38, 0x80, 0xda, 0x30, 0x0b,
+	0x67, 0x51, 0x2e, 0xbe, 0x28, 0x24, 0xdf, 0xe9, 0x57, 0xf6, 0xbc, 0x67, 0xde, 0x21, 0x02, 0x0e,
+	0x49, 0x77, 0xae, 0x4d, 0xc1, 0x0b, 0x68, 0x1f, 0x67, 0x32, 0x54, 0x92, 0xd5, 0xf2, 0xad, 0x68,
+	0xc3, 0x46, 0x1c, 0xf9, 0x4e, 0xdf, 0xd9, 0x6b, 0x9e, 0x6f, 0xc4, 0x91, 0x10, 0x50, 0x9d, 0x85,
+	0x6f, 0xa4, 0xbf, 0x41, 0x1a, 0x92, 0x83, 0x18, 0x5c, 0xc2, 0xaf, 0x03, 0x16, 0x9f, 0x01, 0x8c,
+	0xe9, 0x88, 0xe8, 0x32, 0x54, 0x7e, 0x85, 0x2c, 0x4d, 0xad, 0x19, 0x28, 0x34, 0xcf, 0xd3, 0xa8,
+	0x30, 0x57, 0xd9, 0xac, 0x35, 0x03, 0x15, 0x84, 0x50, 0xbf, 0x50, 0x61, 0x56, 0x16, 0xd9, 0x13,
+	0xa8, 0x63, 0xfe, 0x97, 0x71, 0xa4, 0xcf, 0xab, 0xe1, 0x72, 0x44, 0x06, 0x4c, 0x15, 0x0d, 0x7c,
+	0x5c, 0x0d, 0x97, 0xa3, 0x48, 0x6c, 0x81, 0x9b, 0xab, 0x30, 0xcb, 0xf5, 0x31, 0xbc, 0x08, 0x86,
+	0xe0, 0xe2, 0x11, 0xb9, 0xe9, 0xd0, 0xb1, 0x1c, 0xf6, 0xc1, 0x0b, 0xdf, 0x85, 0x99, 0x9c, 0x48,
+	0x04, 0xea, 0xd3, 0x4c, 0x55, 0xd0, 0x87, 0xc6, 0x71, 0x32, 0x4d, 0x28, 0xce, 0x2d, 0x70, 0xc7,
+	0x28, 0x6b, 0x27, 0xbc, 0x08, 0xbe, 0x83, 0xc7, 0xa7, 0x52, 0x9d, 0x25, 0xb9, 0x3a, 0xcb, 0xe2,
+	0xb1, 0x44, 0x60, 0x07, 0x2a, 0xd3, 0xe4, 0x57, 0x0d, 0x43, 0x11, 0xeb, 0x77, 0x1d, 0x4f, 0xae,
+	0x8b, 0xfa, 0xa1, 0x1c, 0xfc, 0x00, 0x70, 0x36, 0x57, 0x3f, 0xc5, 0xaf, 0x69, 0x8f, 0x91, 0x9b,
+	0x63, 0xe5, 0x76, 0x5f, 0x35, 0x82, 0x09, 0x54, 0x71, 0x73, 0x59, 0xf9, 0x0a, 0x4f, 0x1b, 0xf7,
+	0x79, 0xaa, 0x58, 0x65, 0xb0, 0x6f, 0xb2, 0xba, 0x72, 0x93, 0x81, 0x0f, 0x35, 0x3c, 0x68, 0x74,
+	0x87, 0x16, 0xc1, 0x3e, 0xb8, 0x68, 0xc9, 0x45, 0x5f, 0x0b, 0x9a, 0x92, 0xc0, 0x94, 0xa4, 0xdc,
+	0xd8, 0x10, 0x6c, 0x83, 0x77, 0x1c, 0x2a, 0x39, 0x49, 0xb2, 0x05, 0xa6, 0x5b, 0x10, 0xca, 0x31,
+	0xd8, 0xf7, 0xde, 0x81, 0x46, 0x81, 0xf9, 0xff, 0x19, 0x88, 0xe6, 0x48, 0x4e, 0xa5, 0x36, 0xbb,
+	0x6c, 0xd6, 0x9a, 0x81, 0x0a, 0xbe, 0x07, 0xd0, 0xc1, 0xc4, 0x32, 0x17, 0x87, 0xe6, 0x4a, 0x67,
+	0xd9, 0xe6, 0x2c, 0x97, 0x69, 0x19, 0x88, 0xe0, 0x09, 0xb8, 0xc7, 0xa1, 0x1a, 0x9d, 0xdc, 0x29,
+	0x59, 0x0f, 0x1a, 0xc4, 0x93, 0x0b, 0x99, 0x2e, 0x59, 0x81, 0xd6, 0x86, 0x66, 0x85, 0x0f, 0xb5,
+	0x9f, 0x63, 0x75, 0x5d, 0x52, 0xec, 0x3a, 0xb8, 0x3f, 0xbe, 0x49, 0xd5, 0x22, 0xf8, 0xa3, 0x02,
+	0x55, 0xe4, 0xdb, 0x9d, 0x1a, 0x6d, 0x81, 0xab, 0x62, 0x35, 0x2d, 0x8a, 0xc4, 0x0b, 0x24, 0x79,
+	0x24, 0xf3, 0x71, 0x16, 0xa7, 0x2a, 0x4e, 0x66, 0xba, 0x4c, 0xa6, 0x0a, 0xe3, 0xb8, 0x4a, 0xa2,
+	0x85, 0x2e, 0x11, 0xc9, 0xe2, 0x53, 0x68, 0x86, 0x73, 0x75, 0x9d, 0x10, 0x8f, 0xb8, 0x38, 0x0d,
+	0x56, 0x98, 0xfd, 0x56, 0x33, 0xfa, 0x4d, 0x7c, 0x0c, 0xb5, 0x2c, 0x54, 0xf1, 0x6c, 0xe2, 0xd7,
+	0x99, 0x5e, 0xbc, 0x42, 0x74, 0x8a, 0x29, 0xfb, 0x0d, 0x46, 0xd3, 0x42, 0x6c, 0x43, 0x2b, 0xcd,
+	0x92, 0x68, 0x3e, 0x56, 0x97, 0x6a, 0x91, 0x4a, 0xbf, 0xc9, 0x71, 0x69, 0xdd, 0xcb, 0x45, 0x2a,
+	0x31, 0xae, 0x3c, 0xfe, 0x4d, 0xfa, 0xd0, 0xaf, 0x60, 0x5c, 0x28, 0xdf, 0x36, 0xa1, 0x67, 0x34,
+	0x21, 0x76, 0xdc, 0x44, 0xce, 0xfc, 0x16, 0x77, 0xdc, 0x44, 0xce, 0xc4, 0x27, 0xd0, 0xb8, 0xc2,
+	0x51, 0x86, 0xe1, 0x3f, 0x22, 0x75, 0x9d, 0xd6, 0xa3, 0x48, 0x7c, 0x0e, 0xde, 0x58, 0xdf, 0x19,
+	0x5a, 0xdb, 0x64, 0x85, 0x42, 0x75, 0xa7, 0x1f, 0x1e, 0x3f, 0xcc, 0xab, 0xce, 0xc3, 0xbc, 0xda,
+	0x5c, 0xe5, 0xd5, 0x3e, 0xb8, 0x78, 0x79, 0xd4, 0x33, 0x24, 0xd8, 0x3d, 0x83, 0xaa, 0x73, 0x36,
+	0x3c, 0x7b, 0x0f, 0xe0, 0xa1, 0x74, 0x21, 0xb3, 0x77, 0x58, 0xb2, 0x1d, 0x00, 0x1e, 0xea, 0x74,
+	0xfb, 0xc6, 0x86, 0xae, 0x21, 0x23, 0xea, 0x15, 0x05, 0xf3, 0x20, 0xea, 0x4b, 0xf0, 0xf4, 0xd8,
+	0x1a, 0x62, 0xca, 0x2d, 0x36, 0x31, 0xf5, 0x4a, 0x80, 0x83, 0xe9, 0x94, 0xa3, 0xd6, 0xaf, 0x0d,
+	0x31, 0xb1, 0xeb, 0xdd, 0xe2, 0x72, 0xf1, 0x14, 0xda, 0x27, 0x94, 0xe5, 0x1a, 0x4e, 0xbf, 0xa6,
+	0xa1, 0x39, 0x98, 0x4e, 0x5f, 0xe5, 0x32, 0xe3, 0xed, 0x36, 0xd8, 0xf2, 0xfc, 0x0d, 0x08, 0xf6,
+	0xbc, 0xee, 0x86, 0x5d, 0x68, 0xe2, 0xf4, 0xfe, 0xaf, 0x88, 0x8f, 0x60, 0x53, 0xd7, 0x20, 0xbf,
+	0x48, 0x32, 0x9e, 0xdf, 0x42, 0x77, 0x75, 0xd1, 0xa4, 0xf6, 0x8e, 0x6f, 0x41, 0x9c, 0x4a, 0x24,
+	0x35, 0x2d, 0x87, 0x0b, 0x7a, 0x1b, 0x8a, 0x2d, 0xc5, 0x43, 0x61, 0x6f, 0x79, 0x01, 0xed, 0x65,
+	0xa1, 0xf9, 0x84, 0x8f, 0xd8, 0xbc, 0xf2, 0x6a, 0xd8, 0xbb, 0x0e, 0x96, 0xa1, 0x0d, 0x17, 0xcb,
+	0x99, 0xe8, 0x2d, 0x07, 0xce, 0xe8, 0x64, 0x35, 0xae, 0x0e, 0xd7, 0xd3, 0x18, 0x59, 0x56, 0xde,
+	0x1d, 0x6b, 0x56, 0xa1, 0xf9, 0x79, 0xf1, 0x43, 0x58, 0xba, 0xdf, 0x5c, 0x99, 0x67, 0xf2, 0x6d,
+	0x77, 0x65, 0xc4, 0x89, 0x83, 0xe2, 0x8e, 0xcb, 0x63, 0x5a, 0x85, 0x3f, 0x25, 0xee, 0xac, 0x87,
+	0xdd, 0x86, 0xba, 0x7e, 0x0e, 0x85, 0xf1, 0x7c, 0x74, 0x0d, 0x59, 0xec, 0x40, 0xe3, 0x65, 0xf8,
+	0x5a, 0x92, 0x5c, 0xca, 0x2d, 0xb2, 0x1c, 0xc1, 0x87, 0xb7, 0x84, 0xa5, 0xc7, 0x07, 0x39, 0x53,
+	0x4e, 0x17, 0x7e, 0xbd, 0x98, 0xe2, 0xf4, 0xc6, 0xcd, 0x7e, 0x49, 0x0a, 0x24, 0xbf, 0x79, 0x96,
+	0xeb, 0xbd, 0x65, 0xd3, 0x94, 0xc4, 0x60, 0xb9, 0xdc, 0xa5, 0x6c, 0x90, 0x84, 0xe2, 0x11, 0xeb,
+	0xf5, 0x6f, 0xa7, 0x80, 0xf1, 0xcf, 0x64, 0x07, 0xea, 0xa7, 0x92, 0x61, 0xa5, 0xce, 0x18, 0xb5,
+	0xcb, 0x79, 0xdf, 0x0f, 0xa3, 0x3b, 0x16, 0x47, 0xe0, 0x19, 0x7f, 0x3e, 0xb1, 0xa5, 0x0b, 0x6c,
+	0x7d, 0x03, 0xbb, 0xe6, 0x6f, 0x51, 0xec, 0x43, 0x8b, 0x4b, 0xa5, 0xbf, 0x96, 0x16, 0x65, 0x5a,
+	0x06, 0x32, 0xc7, 0xd4, 0xf9, 0xe6, 0x79, 0x67, 0x69, 0x18, 0x6c, 0xfa, 0xca, 0x20, 0xfc, 0x03,
+	0x60, 0x26, 0x2e, 0x47, 0x40, 0xb0, 0x92, 0x91, 0x61, 0xfa, 0x1d, 0x76, 0xfe, 0xbc, 0xe9, 0x39,
+	0x7f, 0xdd, 0xf4, 0x9c, 0xbf, 0x6f, 0x7a, 0xce, 0xef, 0xff, 0xf4, 0x3e, 0xb8, 0xaa, 0xd1, 0x07,
+	0xf9, 0xf9, 0xbf, 0x01, 0x00, 0x00, 0xff, 0xff, 0x69, 0xb1, 0xef, 0x01, 0x2f, 0x0b, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -1167,6 +1350,11 @@ type PostServiceClient interface {
 	PutStar(ctx context.Context, in *StarReq, opts ...grpc.CallOption) (*Stars, error)
 	GetStar(ctx context.Context, in *WithId, opts ...grpc.CallOption) (*Stars, error)
 	TakeStar(ctx context.Context, in *WithId, opts ...grpc.CallOption) (*Empty, error)
+	CreateBrand(ctx context.Context, in *CreateBrandReq, opts ...grpc.CallOption) (*Brand, error)
+	GetAllBrands(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*Brands, error)
+	DeleteBrand(ctx context.Context, in *WithId, opts ...grpc.CallOption) (*Brand, error)
+	GetPostByBrand(ctx context.Context, in *WithId, opts ...grpc.CallOption) (*Posts, error)
+	GetBrandById(ctx context.Context, in *WithId, opts ...grpc.CallOption) (*Brand, error)
 }
 
 type postServiceClient struct {
@@ -1393,6 +1581,51 @@ func (c *postServiceClient) TakeStar(ctx context.Context, in *WithId, opts ...gr
 	return out, nil
 }
 
+func (c *postServiceClient) CreateBrand(ctx context.Context, in *CreateBrandReq, opts ...grpc.CallOption) (*Brand, error) {
+	out := new(Brand)
+	err := c.cc.Invoke(ctx, "/user.PostService/CreateBrand", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *postServiceClient) GetAllBrands(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*Brands, error) {
+	out := new(Brands)
+	err := c.cc.Invoke(ctx, "/user.PostService/GetAllBrands", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *postServiceClient) DeleteBrand(ctx context.Context, in *WithId, opts ...grpc.CallOption) (*Brand, error) {
+	out := new(Brand)
+	err := c.cc.Invoke(ctx, "/user.PostService/DeleteBrand", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *postServiceClient) GetPostByBrand(ctx context.Context, in *WithId, opts ...grpc.CallOption) (*Posts, error) {
+	out := new(Posts)
+	err := c.cc.Invoke(ctx, "/user.PostService/GetPostByBrand", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *postServiceClient) GetBrandById(ctx context.Context, in *WithId, opts ...grpc.CallOption) (*Brand, error) {
+	out := new(Brand)
+	err := c.cc.Invoke(ctx, "/user.PostService/GetBrandById", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // PostServiceServer is the server API for PostService service.
 type PostServiceServer interface {
 	CreatePost(context.Context, *Post) (*Post, error)
@@ -1419,6 +1652,11 @@ type PostServiceServer interface {
 	PutStar(context.Context, *StarReq) (*Stars, error)
 	GetStar(context.Context, *WithId) (*Stars, error)
 	TakeStar(context.Context, *WithId) (*Empty, error)
+	CreateBrand(context.Context, *CreateBrandReq) (*Brand, error)
+	GetAllBrands(context.Context, *Empty) (*Brands, error)
+	DeleteBrand(context.Context, *WithId) (*Brand, error)
+	GetPostByBrand(context.Context, *WithId) (*Posts, error)
+	GetBrandById(context.Context, *WithId) (*Brand, error)
 }
 
 // UnimplementedPostServiceServer can be embedded to have forward compatible implementations.
@@ -1496,6 +1734,21 @@ func (*UnimplementedPostServiceServer) GetStar(ctx context.Context, req *WithId)
 }
 func (*UnimplementedPostServiceServer) TakeStar(ctx context.Context, req *WithId) (*Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method TakeStar not implemented")
+}
+func (*UnimplementedPostServiceServer) CreateBrand(ctx context.Context, req *CreateBrandReq) (*Brand, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateBrand not implemented")
+}
+func (*UnimplementedPostServiceServer) GetAllBrands(ctx context.Context, req *Empty) (*Brands, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetAllBrands not implemented")
+}
+func (*UnimplementedPostServiceServer) DeleteBrand(ctx context.Context, req *WithId) (*Brand, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteBrand not implemented")
+}
+func (*UnimplementedPostServiceServer) GetPostByBrand(ctx context.Context, req *WithId) (*Posts, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetPostByBrand not implemented")
+}
+func (*UnimplementedPostServiceServer) GetBrandById(ctx context.Context, req *WithId) (*Brand, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetBrandById not implemented")
 }
 
 func RegisterPostServiceServer(s *grpc.Server, srv PostServiceServer) {
@@ -1934,6 +2187,96 @@ func _PostService_TakeStar_Handler(srv interface{}, ctx context.Context, dec fun
 	return interceptor(ctx, in, info, handler)
 }
 
+func _PostService_CreateBrand_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateBrandReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PostServiceServer).CreateBrand(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/user.PostService/CreateBrand",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PostServiceServer).CreateBrand(ctx, req.(*CreateBrandReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PostService_GetAllBrands_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PostServiceServer).GetAllBrands(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/user.PostService/GetAllBrands",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PostServiceServer).GetAllBrands(ctx, req.(*Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PostService_DeleteBrand_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(WithId)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PostServiceServer).DeleteBrand(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/user.PostService/DeleteBrand",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PostServiceServer).DeleteBrand(ctx, req.(*WithId))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PostService_GetPostByBrand_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(WithId)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PostServiceServer).GetPostByBrand(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/user.PostService/GetPostByBrand",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PostServiceServer).GetPostByBrand(ctx, req.(*WithId))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PostService_GetBrandById_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(WithId)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PostServiceServer).GetBrandById(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/user.PostService/GetBrandById",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PostServiceServer).GetBrandById(ctx, req.(*WithId))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var _PostService_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "user.PostService",
 	HandlerType: (*PostServiceServer)(nil),
@@ -2034,9 +2377,166 @@ var _PostService_serviceDesc = grpc.ServiceDesc{
 			MethodName: "TakeStar",
 			Handler:    _PostService_TakeStar_Handler,
 		},
+		{
+			MethodName: "CreateBrand",
+			Handler:    _PostService_CreateBrand_Handler,
+		},
+		{
+			MethodName: "GetAllBrands",
+			Handler:    _PostService_GetAllBrands_Handler,
+		},
+		{
+			MethodName: "DeleteBrand",
+			Handler:    _PostService_DeleteBrand_Handler,
+		},
+		{
+			MethodName: "GetPostByBrand",
+			Handler:    _PostService_GetPostByBrand_Handler,
+		},
+		{
+			MethodName: "GetBrandById",
+			Handler:    _PostService_GetBrandById_Handler,
+		},
 	},
 	Streams:  []grpc.StreamDesc{},
 	Metadata: "posts.proto",
+}
+
+func (m *Brands) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *Brands) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *Brands) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.XXX_unrecognized != nil {
+		i -= len(m.XXX_unrecognized)
+		copy(dAtA[i:], m.XXX_unrecognized)
+	}
+	if len(m.Brands) > 0 {
+		for iNdEx := len(m.Brands) - 1; iNdEx >= 0; iNdEx-- {
+			{
+				size, err := m.Brands[iNdEx].MarshalToSizedBuffer(dAtA[:i])
+				if err != nil {
+					return 0, err
+				}
+				i -= size
+				i = encodeVarintPosts(dAtA, i, uint64(size))
+			}
+			i--
+			dAtA[i] = 0xa
+		}
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *CreateBrandReq) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *CreateBrandReq) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *CreateBrandReq) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.XXX_unrecognized != nil {
+		i -= len(m.XXX_unrecognized)
+		copy(dAtA[i:], m.XXX_unrecognized)
+	}
+	if len(m.Name) > 0 {
+		i -= len(m.Name)
+		copy(dAtA[i:], m.Name)
+		i = encodeVarintPosts(dAtA, i, uint64(len(m.Name)))
+		i--
+		dAtA[i] = 0x12
+	}
+	if len(m.Id) > 0 {
+		i -= len(m.Id)
+		copy(dAtA[i:], m.Id)
+		i = encodeVarintPosts(dAtA, i, uint64(len(m.Id)))
+		i--
+		dAtA[i] = 0xa
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *Brand) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *Brand) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *Brand) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.XXX_unrecognized != nil {
+		i -= len(m.XXX_unrecognized)
+		copy(dAtA[i:], m.XXX_unrecognized)
+	}
+	if len(m.UpdatedAt) > 0 {
+		i -= len(m.UpdatedAt)
+		copy(dAtA[i:], m.UpdatedAt)
+		i = encodeVarintPosts(dAtA, i, uint64(len(m.UpdatedAt)))
+		i--
+		dAtA[i] = 0x22
+	}
+	if len(m.CreatedAt) > 0 {
+		i -= len(m.CreatedAt)
+		copy(dAtA[i:], m.CreatedAt)
+		i = encodeVarintPosts(dAtA, i, uint64(len(m.CreatedAt)))
+		i--
+		dAtA[i] = 0x1a
+	}
+	if len(m.Name) > 0 {
+		i -= len(m.Name)
+		copy(dAtA[i:], m.Name)
+		i = encodeVarintPosts(dAtA, i, uint64(len(m.Name)))
+		i--
+		dAtA[i] = 0x12
+	}
+	if len(m.Id) > 0 {
+		i -= len(m.Id)
+		copy(dAtA[i:], m.Id)
+		i = encodeVarintPosts(dAtA, i, uint64(len(m.Id)))
+		i--
+		dAtA[i] = 0xa
+	}
+	return len(dAtA) - i, nil
 }
 
 func (m *StarReq) Marshal() (dAtA []byte, err error) {
@@ -2410,13 +2910,6 @@ func (m *CategoryReq) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 		copy(dAtA[i:], m.Name)
 		i = encodeVarintPosts(dAtA, i, uint64(len(m.Name)))
 		i--
-		dAtA[i] = 0x12
-	}
-	if len(m.PostId) > 0 {
-		i -= len(m.PostId)
-		copy(dAtA[i:], m.PostId)
-		i = encodeVarintPosts(dAtA, i, uint64(len(m.PostId)))
-		i--
 		dAtA[i] = 0xa
 	}
 	return len(dAtA) - i, nil
@@ -2451,33 +2944,26 @@ func (m *Category) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 		copy(dAtA[i:], m.DeletedAt)
 		i = encodeVarintPosts(dAtA, i, uint64(len(m.DeletedAt)))
 		i--
-		dAtA[i] = 0x32
+		dAtA[i] = 0x2a
 	}
 	if len(m.UpdatedAt) > 0 {
 		i -= len(m.UpdatedAt)
 		copy(dAtA[i:], m.UpdatedAt)
 		i = encodeVarintPosts(dAtA, i, uint64(len(m.UpdatedAt)))
 		i--
-		dAtA[i] = 0x2a
+		dAtA[i] = 0x22
 	}
 	if len(m.CreatedAt) > 0 {
 		i -= len(m.CreatedAt)
 		copy(dAtA[i:], m.CreatedAt)
 		i = encodeVarintPosts(dAtA, i, uint64(len(m.CreatedAt)))
 		i--
-		dAtA[i] = 0x22
+		dAtA[i] = 0x1a
 	}
 	if len(m.Name) > 0 {
 		i -= len(m.Name)
 		copy(dAtA[i:], m.Name)
 		i = encodeVarintPosts(dAtA, i, uint64(len(m.Name)))
-		i--
-		dAtA[i] = 0x1a
-	}
-	if len(m.PostId) > 0 {
-		i -= len(m.PostId)
-		copy(dAtA[i:], m.PostId)
-		i = encodeVarintPosts(dAtA, i, uint64(len(m.PostId)))
 		i--
 		dAtA[i] = 0x12
 	}
@@ -2693,19 +3179,37 @@ func (m *Post) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 		copy(dAtA[i:], m.DeletedAt)
 		i = encodeVarintPosts(dAtA, i, uint64(len(m.DeletedAt)))
 		i--
-		dAtA[i] = 0x7a
+		dAtA[i] = 0x1
+		i--
+		dAtA[i] = 0x8a
 	}
 	if len(m.UpdatedAt) > 0 {
 		i -= len(m.UpdatedAt)
 		copy(dAtA[i:], m.UpdatedAt)
 		i = encodeVarintPosts(dAtA, i, uint64(len(m.UpdatedAt)))
 		i--
-		dAtA[i] = 0x72
+		dAtA[i] = 0x1
+		i--
+		dAtA[i] = 0x82
 	}
 	if len(m.CreatedAt) > 0 {
 		i -= len(m.CreatedAt)
 		copy(dAtA[i:], m.CreatedAt)
 		i = encodeVarintPosts(dAtA, i, uint64(len(m.CreatedAt)))
+		i--
+		dAtA[i] = 0x7a
+	}
+	if len(m.CategoryId) > 0 {
+		i -= len(m.CategoryId)
+		copy(dAtA[i:], m.CategoryId)
+		i = encodeVarintPosts(dAtA, i, uint64(len(m.CategoryId)))
+		i--
+		dAtA[i] = 0x72
+	}
+	if len(m.BrandId) > 0 {
+		i -= len(m.BrandId)
+		copy(dAtA[i:], m.BrandId)
+		i = encodeVarintPosts(dAtA, i, uint64(len(m.BrandId)))
 		i--
 		dAtA[i] = 0x6a
 	}
@@ -2850,6 +3354,72 @@ func encodeVarintPosts(dAtA []byte, offset int, v uint64) int {
 	dAtA[offset] = uint8(v)
 	return base
 }
+func (m *Brands) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if len(m.Brands) > 0 {
+		for _, e := range m.Brands {
+			l = e.Size()
+			n += 1 + l + sovPosts(uint64(l))
+		}
+	}
+	if m.XXX_unrecognized != nil {
+		n += len(m.XXX_unrecognized)
+	}
+	return n
+}
+
+func (m *CreateBrandReq) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	l = len(m.Id)
+	if l > 0 {
+		n += 1 + l + sovPosts(uint64(l))
+	}
+	l = len(m.Name)
+	if l > 0 {
+		n += 1 + l + sovPosts(uint64(l))
+	}
+	if m.XXX_unrecognized != nil {
+		n += len(m.XXX_unrecognized)
+	}
+	return n
+}
+
+func (m *Brand) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	l = len(m.Id)
+	if l > 0 {
+		n += 1 + l + sovPosts(uint64(l))
+	}
+	l = len(m.Name)
+	if l > 0 {
+		n += 1 + l + sovPosts(uint64(l))
+	}
+	l = len(m.CreatedAt)
+	if l > 0 {
+		n += 1 + l + sovPosts(uint64(l))
+	}
+	l = len(m.UpdatedAt)
+	if l > 0 {
+		n += 1 + l + sovPosts(uint64(l))
+	}
+	if m.XXX_unrecognized != nil {
+		n += len(m.XXX_unrecognized)
+	}
+	return n
+}
+
 func (m *StarReq) Size() (n int) {
 	if m == nil {
 		return 0
@@ -3022,10 +3592,6 @@ func (m *CategoryReq) Size() (n int) {
 	}
 	var l int
 	_ = l
-	l = len(m.PostId)
-	if l > 0 {
-		n += 1 + l + sovPosts(uint64(l))
-	}
 	l = len(m.Name)
 	if l > 0 {
 		n += 1 + l + sovPosts(uint64(l))
@@ -3043,10 +3609,6 @@ func (m *Category) Size() (n int) {
 	var l int
 	_ = l
 	l = len(m.Id)
-	if l > 0 {
-		n += 1 + l + sovPosts(uint64(l))
-	}
-	l = len(m.PostId)
 	if l > 0 {
 		n += 1 + l + sovPosts(uint64(l))
 	}
@@ -3205,17 +3767,25 @@ func (m *Post) Size() (n int) {
 	if l > 0 {
 		n += 1 + l + sovPosts(uint64(l))
 	}
+	l = len(m.BrandId)
+	if l > 0 {
+		n += 1 + l + sovPosts(uint64(l))
+	}
+	l = len(m.CategoryId)
+	if l > 0 {
+		n += 1 + l + sovPosts(uint64(l))
+	}
 	l = len(m.CreatedAt)
 	if l > 0 {
 		n += 1 + l + sovPosts(uint64(l))
 	}
 	l = len(m.UpdatedAt)
 	if l > 0 {
-		n += 1 + l + sovPosts(uint64(l))
+		n += 2 + l + sovPosts(uint64(l))
 	}
 	l = len(m.DeletedAt)
 	if l > 0 {
-		n += 1 + l + sovPosts(uint64(l))
+		n += 2 + l + sovPosts(uint64(l))
 	}
 	if m.XXX_unrecognized != nil {
 		n += len(m.XXX_unrecognized)
@@ -3246,6 +3816,385 @@ func sovPosts(x uint64) (n int) {
 }
 func sozPosts(x uint64) (n int) {
 	return sovPosts(uint64((x << 1) ^ uint64((int64(x) >> 63))))
+}
+func (m *Brands) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowPosts
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: Brands: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: Brands: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Brands", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowPosts
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthPosts
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthPosts
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Brands = append(m.Brands, &Brand{})
+			if err := m.Brands[len(m.Brands)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipPosts(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthPosts
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.XXX_unrecognized = append(m.XXX_unrecognized, dAtA[iNdEx:iNdEx+skippy]...)
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *CreateBrandReq) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowPosts
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: CreateBrandReq: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: CreateBrandReq: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Id", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowPosts
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthPosts
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthPosts
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Id = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Name", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowPosts
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthPosts
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthPosts
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Name = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipPosts(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthPosts
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.XXX_unrecognized = append(m.XXX_unrecognized, dAtA[iNdEx:iNdEx+skippy]...)
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *Brand) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowPosts
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: Brand: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: Brand: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Id", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowPosts
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthPosts
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthPosts
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Id = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Name", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowPosts
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthPosts
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthPosts
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Name = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 3:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field CreatedAt", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowPosts
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthPosts
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthPosts
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.CreatedAt = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 4:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field UpdatedAt", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowPosts
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthPosts
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthPosts
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.UpdatedAt = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipPosts(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthPosts
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.XXX_unrecognized = append(m.XXX_unrecognized, dAtA[iNdEx:iNdEx+skippy]...)
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
 }
 func (m *StarReq) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
@@ -4232,38 +5181,6 @@ func (m *CategoryReq) Unmarshal(dAtA []byte) error {
 		switch fieldNum {
 		case 1:
 			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field PostId", wireType)
-			}
-			var stringLen uint64
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowPosts
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				stringLen |= uint64(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			intStringLen := int(stringLen)
-			if intStringLen < 0 {
-				return ErrInvalidLengthPosts
-			}
-			postIndex := iNdEx + intStringLen
-			if postIndex < 0 {
-				return ErrInvalidLengthPosts
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.PostId = string(dAtA[iNdEx:postIndex])
-			iNdEx = postIndex
-		case 2:
-			if wireType != 2 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Name", wireType)
 			}
 			var stringLen uint64
@@ -4379,38 +5296,6 @@ func (m *Category) Unmarshal(dAtA []byte) error {
 			iNdEx = postIndex
 		case 2:
 			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field PostId", wireType)
-			}
-			var stringLen uint64
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowPosts
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				stringLen |= uint64(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			intStringLen := int(stringLen)
-			if intStringLen < 0 {
-				return ErrInvalidLengthPosts
-			}
-			postIndex := iNdEx + intStringLen
-			if postIndex < 0 {
-				return ErrInvalidLengthPosts
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.PostId = string(dAtA[iNdEx:postIndex])
-			iNdEx = postIndex
-		case 3:
-			if wireType != 2 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Name", wireType)
 			}
 			var stringLen uint64
@@ -4441,7 +5326,7 @@ func (m *Category) Unmarshal(dAtA []byte) error {
 			}
 			m.Name = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
-		case 4:
+		case 3:
 			if wireType != 2 {
 				return fmt.Errorf("proto: wrong wireType = %d for field CreatedAt", wireType)
 			}
@@ -4473,7 +5358,7 @@ func (m *Category) Unmarshal(dAtA []byte) error {
 			}
 			m.CreatedAt = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
-		case 5:
+		case 4:
 			if wireType != 2 {
 				return fmt.Errorf("proto: wrong wireType = %d for field UpdatedAt", wireType)
 			}
@@ -4505,7 +5390,7 @@ func (m *Category) Unmarshal(dAtA []byte) error {
 			}
 			m.UpdatedAt = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
-		case 6:
+		case 5:
 			if wireType != 2 {
 				return fmt.Errorf("proto: wrong wireType = %d for field DeletedAt", wireType)
 			}
@@ -5347,6 +6232,70 @@ func (m *Post) Unmarshal(dAtA []byte) error {
 			iNdEx = postIndex
 		case 13:
 			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field BrandId", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowPosts
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthPosts
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthPosts
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.BrandId = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 14:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field CategoryId", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowPosts
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthPosts
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthPosts
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.CategoryId = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 15:
+			if wireType != 2 {
 				return fmt.Errorf("proto: wrong wireType = %d for field CreatedAt", wireType)
 			}
 			var stringLen uint64
@@ -5377,7 +6326,7 @@ func (m *Post) Unmarshal(dAtA []byte) error {
 			}
 			m.CreatedAt = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
-		case 14:
+		case 16:
 			if wireType != 2 {
 				return fmt.Errorf("proto: wrong wireType = %d for field UpdatedAt", wireType)
 			}
@@ -5409,7 +6358,7 @@ func (m *Post) Unmarshal(dAtA []byte) error {
 			}
 			m.UpdatedAt = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
-		case 15:
+		case 17:
 			if wireType != 2 {
 				return fmt.Errorf("proto: wrong wireType = %d for field DeletedAt", wireType)
 			}

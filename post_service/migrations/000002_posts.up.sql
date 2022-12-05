@@ -12,6 +12,8 @@ CREATE TABLE posts
     size VARCHAR(50)[],
     color  VARCHAR,
     gen VARCHAR,
+    brand_id INT,
+    category_id INT,
     created_at TIMESTAMP,
     updated_at TIMESTAMP,
     deleted_at TIMESTAMP
