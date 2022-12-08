@@ -41,6 +41,12 @@ type Posts interface {
 	DeleteBrand(id string) (*pb.Brand, error)
 	GetPostByBrand(id string) ([]*pb.Post, error)
 	GetBrandById(id string) (*pb.Brand, error)
+
+	Product_sale(prod *pb.ProductSaleReq)(*pb.Productsale,error)
+	SaleProductDel(id string)(*pb.Productsale,error)
+	InfoProduct(id string)(*pb.Productsale,error)
+	GetAllProductsUser(id string)([]*pb.Productsale,error)
+	GetingCountSaledPro(id string)(*pb.SaledCount,error)
 	
 
 }

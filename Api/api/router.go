@@ -85,6 +85,12 @@ func New(option Option) *gin.Engine {
 	api.GET("/post/brand/getPost/:id", handlerV1.GetPostByBrand)
 	api.GET("/post/brand/getByid/:id", handlerV1.GetBrandById)
 
+	api.POST("/post/product",handlerV1.ProductSale)
+	api.DELETE("/post/product/:id",handlerV1.SaleProductDel)
+	api.GET("/post/product/userPro/:id",handlerV1.GetAllProductsUser)
+	api.GET("/post/product/info/:id",handlerV1.InfoProduct)
+	api.GET("/post/product/:id",handlerV1.GettingCountSaledPro)
+
 	url := ginSwagger.URL("swagger/doc.json")
 	router.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler, url))
 

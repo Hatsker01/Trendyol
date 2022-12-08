@@ -187,6 +187,52 @@ definitions:
           $ref: '#/definitions/model.Post'
         type: array
     type: object
+  model.ProductSaleReq:
+    properties:
+      count:
+        type: string
+      id:
+        type: string
+      post_id:
+        type: string
+      price:
+        type: string
+      user_id:
+        type: string
+    required:
+    - id
+    - post_id
+    - user_id
+    type: object
+  model.ProductSales:
+    properties:
+      products:
+        items:
+          $ref: '#/definitions/model.Productsale'
+        type: array
+    type: object
+  model.Productsale:
+    properties:
+      count:
+        type: string
+      created_at:
+        type: string
+      id:
+        type: string
+      post_id:
+        type: string
+      price:
+        type: string
+      saled_at:
+        type: string
+      user_id:
+        type: string
+    type: object
+  model.SeledCount:
+    properties:
+      count:
+        type: integer
+    type: object
   model.StarReq:
     properties:
       id:
@@ -922,6 +968,161 @@ paths:
       summary: Get posts by seperating by price
       tags:
       - post
+  /v1/post/product:
+    post:
+      consumes:
+      - application/json
+      description: This API for adding product to basket
+      parameters:
+      - description: ProductSale
+        in: body
+        name: product
+        required: true
+        schema:
+          $ref: '#/definitions/model.ProductSaleReq'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.Productsale'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/v1.response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/v1.response'
+      security:
+      - BearerAuth: []
+      summary: ProductSale
+      tags:
+      - product
+  /v1/post/product/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: This API for deleting product from basket
+      parameters:
+      - description: Product_id
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.Productsale'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/v1.response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/v1.response'
+      security:
+      - BearerAuth: []
+      summary: SaleProductDelete
+      tags:
+      - product
+    get:
+      consumes:
+      - application/json
+      description: This API for getting count salled product
+      parameters:
+      - description: Product_id
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.SeledCount'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/v1.response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/v1.response'
+      security:
+      - BearerAuth: []
+      summary: GetingCountSaledProduct
+      tags:
+      - product
+  /v1/post/product/info/{id}:
+    get:
+      consumes:
+      - application/json
+      description: This API for taking information abot product saling
+      parameters:
+      - description: Product_id
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.Productsale'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/v1.response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/v1.response'
+      security:
+      - BearerAuth: []
+      summary: InfoProduct
+      tags:
+      - product
+  /v1/post/product/userPro/{id}:
+    get:
+      consumes:
+      - application/json
+      description: This API for getting all products in user basket
+      parameters:
+      - description: UserId
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.ProductSales'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/v1.response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/v1.response'
+      security:
+      - BearerAuth: []
+      summary: GetAllProductsUser
+      tags:
+      - product
   /v1/post/star:
     post:
       consumes:

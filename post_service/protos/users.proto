@@ -14,6 +14,8 @@ service UserService{
     rpc LoginUser(LoginUserReq) returns(User);
     rpc CheckField(CheckFieldRequest) returns (CheckFieldReponse);
     rpc ChangePassword(ChangePassReq) returns (ChangePassRes);
+
+    
 }
 
 message ChangePassReq{

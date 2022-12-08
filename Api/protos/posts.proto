@@ -40,7 +40,36 @@ service PostService{
     rpc DeleteBrand(WithId) returns (Brand);
     rpc GetPostByBrand(WithId) returns(Posts);
     rpc GetBrandById(WithId) returns(Brand);
-    
+
+    rpc ProductSale (ProductSaleReq) returns (Productsale);
+    rpc SaleProductDel(WithId) returns (Productsale);
+    rpc GetAllProductsUser(WithId) returns (ProductSales);
+    rpc InfoProduct(WithId) returns (Productsale);   
+    rpc GetingCountSaledPro(WithId) returns (SaledCount); 
+}
+message SaledCount{
+    int64 count =1;
+}
+
+message ProductSales{
+    repeated Productsale products=1;
+}
+message ProductSaleReq{
+    string id =1;
+    string user_id=2;
+    string post_id=3;
+    string count =4;
+    string price =5;
+}
+
+message Productsale{
+    string id =1;
+    string user_id=2;
+    string post_id =3;
+    string count =4;
+    string price =5;
+    string saled_at =6;
+    string created_at =7;
 }
 
 message Brands{

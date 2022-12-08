@@ -152,6 +152,32 @@ type Brands struct{
 	Brands []*Brand `json:"brands"`
 }
 
+type SeledCount struct{
+	Count int `json:"count"`
+}
+
+type ProductSaleReq struct{
+	Id string `json:"id" binding:"required"`
+	User_Id string `json:"user_id" binding:"required"`
+	Post_Id string 	`json:"post_id" binding:"required"`
+	Count string `json:"count"`
+	Pirce string `json:"price"`
+} 
+
+type Productsale struct{
+	Id string `json:"id"`
+	User_Id string `json:"user_id"`
+	Post_id string `json:"post_id"`
+	Count string `json:"count"`
+	Price string `json:"price"`
+	Saled_at string `json:"saled_at"`
+	Created_at string `json:"created_at"`
+}
+
+type ProductSales struct{
+	Products []*Productsale `json:"products"`
+}
+
 var (
 	ErrInputBody   = errors.New("error input body invalid")
 	ErrIdNotFound  = errors.New("error id not found")
