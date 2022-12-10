@@ -47,6 +47,7 @@ type Posts interface {
 	InfoProduct(id string)(*pb.Productsale,error)
 	GetAllProductsUser(id string)([]*pb.Productsale,error)
 	GetingCountSaledPro(id string)(*pb.SaledCount,error)
+	GettingAllSalePro()([]*pb.Productsale,error)
 	
 
 }

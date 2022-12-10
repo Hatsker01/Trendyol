@@ -61,3 +61,13 @@ func (s *PostsService) GetingCountSaledPro(ctx context.Context,id *pb.WithId)(*p
 	}
 	return count,nil
 }
+
+func (s *PostsService) GettingAllSalePro(ctx context.Context,empty *pb.Empty)(*pb.ProductSales,error){
+	products,err:=s.repo.GettingAllSalePro()
+	if err!=nil{
+		s.logger.Error("failed while getting all sale Products")
+		return nil,status.Error(codes.Internal,"failed while getting all saleproducts")	
+	}
+	return &pb.ProductSales{Products: products},nil
+
+}

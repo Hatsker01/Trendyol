@@ -91,3 +91,29 @@ func (r *PostsRepo)GetingCountSaledPro(id string)(*pb.SaledCount,error){
 	}
 	return &pb.SaledCount{Count: int64(count)},nil
 }
+
+func (r *PostsRepo) GettingAllSalePro()([]*pb.Productsale,error){
+	query:=`SELECT id,user_id,post_id,count,price,created_at where deleted_at is null and saled_at is null`
+	var products []*pb.Productsale
+	rows,err:=r.db.Query(query)
+	if err!=nil{
+		return nil,err
+	}
+	for rows.Next(){
+		product:=pb.Productsale{}
+		err:=rows.Scan(
+			&product.Id,
+			&product.UserId,
+			&product.PostId,
+			&product.Count,
+			&product.Price,
+			&product.CreatedAt,
+		)
+		if err!=nil{
+			return nil,err
+		}
+		products = append(products, &product)
+	}
+	return products,nil
+
+}

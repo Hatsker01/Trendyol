@@ -45,7 +45,8 @@ service PostService{
     rpc SaleProductDel(WithId) returns (Productsale);
     rpc GetAllProductsUser(WithId) returns (ProductSales);
     rpc InfoProduct(WithId) returns (Productsale);   
-    rpc GetingCountSaledPro(WithId) returns (SaledCount); 
+    rpc GetingCountSaledPro(WithId) returns (SaledCount);
+    rpc GettingAllSalePro(Empty) returns(ProductSales); 
 }
 message SaledCount{
     int64 count =1;
