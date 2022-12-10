@@ -1,0 +1,48 @@
+version: '3.8'
+
+services:
+  post_service:
+    container_name: post_service
+    build:
+      dockerfile: ./post_service/Dockerfile
+    restart: on-failure
+    ports:
+      - "9000:9000"
+    
+  service:
+    container_name: service
+    build:
+      dockerfile: ./service/Dockerfile
+    restart: on-failure
+    ports:
+      - "8000:8000"
+  
+  api:
+    container_name: api
+    build:
+      dockerfile: ./Api/Dockerfile
+    restart: on-failure
+    ports:
+      - "8080:8080"
+  
+  postgresdb:
+    container_name: postgresdb
+    image: postgres:14.1
+    environment:
+      POSTGRES_DATABASE: crm
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: qwerty
+    expose:
+      - "5432"
+    ports:
+      - "5432:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    command: -p 5432
+
+
+volumes:
+  db_data:
+
+
+
