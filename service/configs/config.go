@@ -36,10 +36,10 @@ func Load() Config {
 	c.PostgresUser = cast.ToString(getOrReturnDefault("POSTGRES_USER", "postgres"))
 	c.PostgresPassword = cast.ToString(getOrReturnDefault("POSTGRES_PASSWORD", "1"))
 	c.CtxTimeout = cast.ToInt("CTX_TIMEOUT")
-	c.PostServiceHost= cast.ToString(getOrReturnDefault("POST_SERVICE_HOST","localhost"))
+	c.PostServiceHost= cast.ToString(getOrReturnDefault("POST_SERVICE_HOST","post_service"))
 	c.PostServicePort=cast.ToInt(getOrReturnDefault("POST_SERVICE_PORT",8000))
 
-	c.RPCPort = cast.ToString(getOrReturnDefault("RPC_PORT", ":8000"))
+	c.RPCPort = cast.ToString(getOrReturnDefault("RPC_PORT", ":9000"))
 	return c
 }
 

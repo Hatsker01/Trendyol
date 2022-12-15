@@ -1,4 +1,4 @@
-FROM golang:alpine
+FROM golang:1.18rc1-alpine3.15
 
 RUN mkdir service
 

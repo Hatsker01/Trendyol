@@ -1,0 +1,1 @@
+DROP TABLE likes IF EXISTS ;
