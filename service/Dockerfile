@@ -6,9 +6,9 @@ COPY . /service
 
 WORKDIR /service
 
-RUN go mod download
+RUN go mod tidy
 
-RUN go build -o main /cmd/app/main.go
+RUN go build -o main cmd/trend/main.go
 
 CMD ./main
 
