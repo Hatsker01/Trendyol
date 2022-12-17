@@ -19,8 +19,7 @@ type Config struct {
 	PostgresDatabase string
 	PostgresUser     string
 	PostgresPassword string
-	RPCPort string
-
+	RPCPort          string
 }
 
 func Load() Config {
@@ -34,11 +33,11 @@ func Load() Config {
 	c.PostgresDatabase = cast.ToString(getOrReturnDefault("POSTGRES_DATABASE", "userss"))
 	c.PostgresUser = cast.ToString(getOrReturnDefault("POSTGRES_USER", "postgres"))
 	c.PostgresPassword = cast.ToString(getOrReturnDefault("POSTGRES_PASSWORD", "1"))
-	c.UserServiceHost=cast.ToString(getOrReturnDefault("USER_SERVICE_HOST","localhost"))
-	c.UserServicePort=cast.ToInt(getOrReturnDefault("USER_SERVICE_PORT",9000))
+	c.UserServiceHost = cast.ToString(getOrReturnDefault("USER_SERVICE_HOST", "localhost"))
+	c.UserServicePort = cast.ToInt(getOrReturnDefault("USER_SERVICE_PORT", 9000))
 	c.CtxTimeout = cast.ToInt("CTX_TIMEOUT")
 
-	c.RPCPort = cast.ToString(getOrReturnDefault("RPC_PORT",":8000"))
+	c.RPCPort = cast.ToString(getOrReturnDefault("RPC_PORT", ":8000"))
 	return c
 }
 

@@ -7,7 +7,7 @@ services:
     depends_on:
       - "postgresdb"
       - "redisdb"
-      - "migrate"
+      # - "migrate"
     ports:
       - "8000:8000"
     
@@ -15,7 +15,7 @@ services:
     container_name: service
     build:   ./service
     depends_on:
-      - postgresdb
+      - "postgresdb"
     ports:
       - "9000:9000"
   
@@ -28,6 +28,10 @@ services:
   postgresdb:
     container_name: postgresdb
     image: postgres:14.1
+    # networks:
+    #         new:
+    #             aliases:
+    #                 - database
     environment:
       POSTGRES_DATABASE: userss
       POSTGRES_USER: postgres
@@ -40,15 +44,15 @@ services:
       - dbdata:/var/lib/postgresql/data
     command: -p 5433
 
-  migrate:
-    image: migrate/migrate
-    networks:
-      - new
-    volumes:
-      - ./migrations:/migrations
-    command: ["-path", "/migrations/migrations", "-database",  "postgres://postgres:1@postgresdb:5433/userss?sslmode=disable", "up" ]
-    links: 
-      - postgresdb  
+  # migrate:
+  #     image: migrate/migrate
+  #     networks:
+  #       - new
+  #     volumes:
+  #       - ./migrations:/migrations
+  #     command: ["-path", "/migrations", "-database",  "postgres://postgres:1@postgresdb:5433/userss?sslmode=disable", "up",]
+  #     links: 
+  #       - postgresdb
 
   redisdb:
     container_name: redisdb
@@ -58,8 +62,8 @@ services:
     ports:
       - "6379:6379"
 
-networks:
-  new:
+# networks:
+#   new:
 volumes:
   dbdata:
 

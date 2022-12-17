@@ -26,10 +26,10 @@ type Config struct {
 
 	CtxTimeout int
 
-	LogLevel  string
-	HTTPPort  string
+	LogLevel string
+	HTTPPort string
 	// HTTPHost  string
-	SigninKey string
+	SigninKey        string
 	CasbinConfigPath string
 }
 
