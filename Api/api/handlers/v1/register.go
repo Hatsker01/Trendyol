@@ -91,7 +91,7 @@ func (h *handlerV1) RegisterUser(c *gin.Context) {
 		return
 	}
 
-	eigthMore, number, upper, special, moredigits := verifyPassword(body.Password)
+	eigthMore, number, upper, special, moredigits := VerifyPassword(body.Password)
 	if !eigthMore {
 		c.JSON(http.StatusBadRequest, gin.H{
 			"error": "failed in password not much characters",
@@ -263,7 +263,7 @@ func genCaptchaCode() (string, error) {
 	return string(codes), nil
 }
 
-func verifyPassword(s string) (eigthMore, number, upper, special, moredigits bool) {
+func VerifyPassword(s string) (eigthMore, number, upper, special, moredigits bool) {
 	letters := 0
 	for _, c := range s {
 		switch {

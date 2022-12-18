@@ -38,6 +38,83 @@ func (h *handlerV1) CreateUser(c *gin.Context) {
 	}
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second*time.Duration(h.cfg.CtxTimeout))
 	defer cancel()
+	check, err := h.serviceManager.UserService().CheckField(ctx, &pb.CheckFieldRequest{
+		Field: `username`,
+		Value: body.Username,
+	})
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{
+			`error`: err.Error(),
+		})
+		h.log.Error("failed to check username", logger.Error(err))
+		return
+
+	}
+	if !check.Check {
+		check1, err := h.serviceManager.UserService().CheckField(ctx, &pb.CheckFieldRequest{
+			Field: `email`,
+			Value: body.Email,
+		})
+		if err != nil {
+			c.JSON(http.StatusBadRequest, gin.H{
+				"error": err.Error(),
+			})
+			h.log.Error("failed to check email", logger.Error(err))
+			return
+
+		}
+		if check1.Check {
+
+			return
+		}
+
+	} else {
+		return
+	}
+	eigthMore, number, upper, special, moredigits := VerifyPassword(body.Password)
+	if !eigthMore {
+		c.JSON(http.StatusBadRequest, gin.H{
+			"error": "failed in password not much characters",
+		})
+		h.log.Error("failed in password not much characters", logger.Error(err))
+		return
+	}
+	if !moredigits {
+		c.JSON(http.StatusBadRequest, gin.H{
+			"error": "failed in password not much characters",
+		})
+		h.log.Error("failed in password not much characters", logger.Error(err))
+		return
+	}
+	if !number {
+		c.JSON(http.StatusBadRequest, gin.H{
+			"error": "failed in password don't have numbers in password",
+		})
+		h.log.Error("failed in password don't have numbers in password", logger.Error(err))
+		return
+	}
+	if !upper {
+		c.JSON(http.StatusBadRequest, gin.H{
+			"error": "failed in password don't have upper symbole",
+		})
+		h.log.Error("failed in password don't have upper symbole", logger.Error(err))
+		return
+	}
+	if !special {
+		c.JSON(http.StatusBadRequest, gin.H{
+			"error": "failed in password don't have special sybole",
+		})
+		h.log.Error("failed in password don't have special sybole", logger.Error(err))
+		return
+	}
+
+	password, err := bcrypt.GenerateFromPassword([]byte(body.Password), len(body.Password))
+	if err != nil {
+		fmt.Print(err)
+		return
+	}
+
+	body.Password = string(password)
 
 	user, err := h.serviceManager.UserService().CreateUser(ctx, &body)
 	if err != nil {
@@ -273,7 +350,7 @@ func (h *handlerV1) ChengePass(c *gin.Context) {
 		h.log.Error("error while changing pass and comparing")
 		return
 	}
-	err=bcrypt.CompareHashAndPassword([]byte(user.Password),[]byte(body.OldPass))
+	err = bcrypt.CompareHashAndPassword([]byte(user.Password), []byte(body.OldPass))
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{
 			"error": "password is invalide",
@@ -284,7 +361,7 @@ func (h *handlerV1) ChengePass(c *gin.Context) {
 	if body.NewPass == body.VerifyNew {
 		ctx, cancel := context.WithTimeout(context.Background(), time.Second*time.Duration(h.cfg.CtxTimeout))
 		defer cancel()
-		
+
 		pass, err := h.serviceManager.UserService().ChangePassword(ctx, &pb.ChangePassReq{
 			Id:          user.Id,
 			NewPassword: string(password),
