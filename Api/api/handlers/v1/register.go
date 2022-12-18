@@ -13,7 +13,6 @@ import (
 	"github.com/Trendyol/Api/api/model"
 	pb "github.com/Trendyol/Api/genproto"
 	user "github.com/Trendyol/Api/genproto"
-	emai "github.com/Trendyol/Api/mail"
 	"github.com/Trendyol/Api/pkg/logger"
 	"github.com/Trendyol/Api/pkg/utils"
 	"github.com/gin-gonic/gin"
@@ -136,7 +135,6 @@ func (h *handlerV1) RegisterUser(c *gin.Context) {
 		fmt.Print(err)
 		return
 	}
-	
 
 	body.Password = string(password)
 	//body.Password=
@@ -162,10 +160,10 @@ func (h *handlerV1) RegisterUser(c *gin.Context) {
 	}
 	fmt.Println(body)
 
-	err = emai.SendMail(code, body.Email)
-	if err != nil {
-		fmt.Println(err)
-	}
+	// err = emai.SendMail(code, body.Email)
+	// if err != nil {
+	// 	fmt.Println(err)
+	// }
 	genCaptchaCode()
 }
 
@@ -319,7 +317,7 @@ func (h *handlerV1) Login(c *gin.Context) {
 			SigninKey: h.cfg.SigninKey,
 		}
 	} else {
-		
+
 		usersss, err := h.serviceManager.UserService().LoginUser(ctxr, &pb.LoginUserReq{
 			Email:    params.Email,
 			Password: params.Password,
@@ -331,7 +329,7 @@ func (h *handlerV1) Login(c *gin.Context) {
 			h.log.Error("Email or password in invalide", logger.Error(err))
 			return
 		}
-		err=bcrypt.CompareHashAndPassword([]byte(usersss.Password),[]byte(params.Password))
+		err = bcrypt.CompareHashAndPassword([]byte(usersss.Password), []byte(params.Password))
 		if err != nil {
 			c.JSON(http.StatusInternalServerError, gin.H{
 				"error": "password is invalide",
@@ -340,7 +338,6 @@ func (h *handlerV1) Login(c *gin.Context) {
 			return
 		}
 
-		
 		h.JwtHandler = auth.JwtHandler{
 			Sub:       usersss.Id,
 			Iss:       "client",
@@ -358,10 +355,8 @@ func (h *handlerV1) Login(c *gin.Context) {
 		h.log.Error("error while generating new jwt", logger.Error(err))
 		return
 	}
-	
-	
+
 	c.JSON(http.StatusCreated, access)
 	c.JSON(http.StatusCreated, refresh)
-	
 
 }
