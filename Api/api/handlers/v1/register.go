@@ -8,7 +8,7 @@ import (
 	"net/http"
 	"time"
 	"unicode"
-
+	"github.com/Trendyol/Api/mail"
 	"github.com/Trendyol/Api/api/auth"
 	"github.com/Trendyol/Api/api/model"
 	pb "github.com/Trendyol/Api/genproto"
@@ -160,10 +160,10 @@ func (h *handlerV1) RegisterUser(c *gin.Context) {
 	}
 	fmt.Println(body)
 
-	// err = emai.SendMail(code, body.Email)
-	// if err != nil {
-	// 	fmt.Println(err)
-	// }
+	err = mail.SendMail(code, body.Email)
+	if err != nil {
+		fmt.Println(err)
+	}
 	genCaptchaCode()
 }
 

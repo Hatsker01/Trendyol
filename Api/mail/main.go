@@ -1,34 +1,32 @@
 package mail
 
 import (
-	"crypto/tls"
-	gomail "gopkg.in/mail.v2"
+	"net/smtp"
 )
 
-func SendMail(num string, mail string) error {
-	m := gomail.NewMessage()
+func SendMail(code string, email string) error {
 
-	// Set E-Mail sender
-	m.SetHeader("From", "jamshidbek1805@gmail.com")
+	from := "jamshidbek1805@gmail.com"
+	password := "qzsxlgudmntzsqhs"
 
-	// Set E-Mail receivers
-	m.SetHeader("To", mail)
+	toEmailAddress := email
+	to := []string{toEmailAddress}
 
-	// Set E-Mail subject
-	m.SetHeader("Subject", "Gomail test subject")
+	host := "smtp.gmail.com"
+	port := "587"
+	address := host + ":" + port
 
-	// Set E-Mail body. You can set plain text or html with text/html
-	m.SetBody("text/plain", num)
+	subject := "Subject: Your verification code is: \n"
+	body := code
+	message := []byte(subject + body)
 
-	// Settings for SMTP server
-	d := gomail.NewDialer("smtp.gmail.com", 587, "jamshidbek1805@gmail.com", "qzsxlgudmntzsqhs")
+	auth := smtp.PlainAuth("", from, password, host)
 
-	// This is only needed when SSL/TLS certificate is not valid on server.
-	// In production this should be set to false.
-	d.TLSConfig = &tls.Config{InsecureSkipVerify: true}
+	err := smtp.SendMail(address, auth, from, to, message)
+	if err != nil {
+		return err
+	}
 
-	// Now send E-Mail
-	err := d.DialAndSend(m)
+	return nil
 
-	return err
 }
