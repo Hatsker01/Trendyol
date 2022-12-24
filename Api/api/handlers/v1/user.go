@@ -237,7 +237,6 @@ func (h *handlerV1) GetUserById(c *gin.Context) {
 // GetAllUsers
 // @Summary GetAllUsers
 // @Description This API for getting all Users
-// @Security BearerAuth
 // @Tags user
 // @Accept json
 // @Produce json
@@ -246,13 +245,13 @@ func (h *handlerV1) GetUserById(c *gin.Context) {
 // @Success 500 {object} Success
 // @Router /v1/users/getAll [get]
 func (h *handlerV1) GetAllUsers(c *gin.Context) {
-	er := CheckClaims(h, c)
-	if er == nil {
-		c.JSON(http.StatusUnauthorized, gin.H{
-			"error": "Unauthorized access",
-		})
-		return
-	}
+	// er := CheckClaims(h, c)
+	// if er == nil {
+	// 	c.JSON(http.StatusUnauthorized, gin.H{
+	// 		"error": "Unauthorized access",
+	// 	})
+	// 	return
+	// }
 	// if er. != "Authorized" || claims.Iss != "admin" {
 	// 	c.JSON(http.StatusForbidden, gin.H{
 	// 		"error": "user not admin",
