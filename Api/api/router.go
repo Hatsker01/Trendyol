@@ -4,6 +4,7 @@ import (
 	_ "github.com/Trendyol/Api/api/docs"
 	v1 "github.com/Trendyol/Api/api/handlers/v1"
 	"github.com/Trendyol/Api/config"
+	"github.com/Trendyol/Api/middleware"
 	"github.com/Trendyol/Api/pkg/logger"
 	"github.com/Trendyol/Api/services"
 	"github.com/Trendyol/Api/storage/repo"
@@ -28,6 +29,7 @@ func New(option Option) *gin.Engine {
 
 	router.Use(gin.Logger())
 	router.Use(gin.Recovery())
+	router.Use(middleware.New(GinCorsMiddleware()))
 	// jwtHandler := auth.JwtHandler{
 	// 	SigninKey: option.Conf.SigninKey,
 	// 	Log:       option.Logger,
