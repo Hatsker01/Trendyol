@@ -31,6 +31,7 @@ func GinCorsMiddleware() middleware.Options {
 			"Cache-Control",
 			"X-Requested-With",
 			"application/json",
+			"*",
 		},
 		OptionsPassthrough: false,
 		ExposedHeaders: []string{
