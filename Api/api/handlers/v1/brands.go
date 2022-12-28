@@ -53,7 +53,6 @@ func (h *handlerV1) CreateBrand(c *gin.Context) {
 // GetAllBrands ...
 // @Summary Get All Brands
 // @Description This API for getting all brands
-// @Security BearerAuth
 // @Tags brand
 // @Accept json
 // @Produce json
@@ -62,12 +61,7 @@ func (h *handlerV1) CreateBrand(c *gin.Context) {
 // @Success 500 {object} response
 // @Router /v1/post/brand/getAll [get]
 func (h *handlerV1) GetAllBrands(c *gin.Context) {
-	er := CheckClaims(h, c)
-	if er == nil {
-		newResponse(c, http.StatusUnauthorized, "failed while checking token")
-		h.log.Error("failed while checking token")
-		return
-	}
+	
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second*time.Duration(h.cfg.CtxTimeout))
 	defer cancel()
 

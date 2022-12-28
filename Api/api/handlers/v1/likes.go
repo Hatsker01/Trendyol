@@ -158,7 +158,6 @@ func (h *handlerV1) GetLikeInfo(c *gin.Context) {
 // GetPostLike ...
 // @Summary GetPostLike
 // @Description This API for getting post's like
-// @Security BearerAuth
 // @Tags like
 // @Accept json
 // @Produce json
@@ -170,12 +169,6 @@ func (h *handlerV1) GetLikeInfo(c *gin.Context) {
 func (h *handlerV1) GetPostLike(c *gin.Context) {
 	var jspbMarshal protojson.MarshalOptions
 	jspbMarshal.UseProtoNames = true
-	er := CheckClaims(h, c)
-	if er == nil {
-		newResponse(c, http.StatusUnauthorized, "failed while cheking token in GetPostLike")
-		h.log.Error("failed while checking token in GetPostLike")
-		return
-	}
 
 	id := c.Param("id")
 
@@ -183,9 +176,9 @@ func (h *handlerV1) GetPostLike(c *gin.Context) {
 	defer cancel()
 	like, err := h.serviceManager.PostService().GetPostLike(ctx, &pb.WithId{Id: id})
 	if err != nil {
-		newResponse(c,http.StatusInternalServerError,model.ErrIdNotFound.Error())
-		h.log.Error("error while getting post likes",logger.Error(err))
+		newResponse(c, http.StatusInternalServerError, model.ErrIdNotFound.Error())
+		h.log.Error("error while getting post likes", logger.Error(err))
 		return
 	}
-	c.JSON(http.StatusAccepted,like)
+	c.JSON(http.StatusAccepted, like)
 }

@@ -93,7 +93,6 @@ func (h *handlerV1) CreateCategory(c *gin.Context) {
 // Get All Categories ...
 // @Summary GetAllCategories
 // @Description This API for getting all categories
-// @Security BearerAuth
 // @Tags category
 // @Accept json
 // @Produce json
@@ -102,12 +101,7 @@ func (h *handlerV1) CreateCategory(c *gin.Context) {
 // @Success 500 {object} response
 // @Router /v1/category/getAll [get]
 func (h *handlerV1) GetAllCategories(c *gin.Context) {
-	er := CheckClaims(h, c)
-	if er == nil {
-		newResponse(c, http.StatusUnauthorized, "error while coparing token")
-		h.log.Fatal("failed while comparing token")
-		return
-	}
+	
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second*time.Duration(h.cfg.CtxTimeout))
 	defer cancel()
 	categories, err := h.serviceManager.PostService().GetAllCategories(ctx, &pb.Empty{})

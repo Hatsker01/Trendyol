@@ -125,21 +125,12 @@ func (h *handlerV1) GetPostById(c *gin.Context) {
 // GetAllPost
 // @Summary GetAllPosts
 // @Description This API for getting all posts
-// @Security BearerAuth
 // @Tags post
 // @Accept json
 // @Produce json
 // @Success 200 {object} model.Posts!
 // @Router /v1/posts [get]
 func (h *handlerV1) GetAllPosts(c *gin.Context) {
-	er := CheckClaims(h, c)
-	if er == nil {
-		c.JSON(http.StatusBadRequest, gin.H{
-			"error": "error while comparing token",
-		})
-		h.log.Fatal("failed in chech token")
-		return
-	}
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second*time.Duration(h.cfg.CtxTimeout))
 	defer cancel()
 	posts, err := h.serviceManager.PostService().GetAllPosts(ctx, &pb.Empty{})
