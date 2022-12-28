@@ -43,6 +43,8 @@ func GinCorsMiddleware() middleware.Options {
 			"Content-Type",
 			"image/png",
 			"image/jpg",
+			"*",
+			
 		},
 		Debug:                true,
 		OptionsSuccessStatus: 200,
