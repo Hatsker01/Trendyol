@@ -55,6 +55,7 @@ func CheckClaims(h *handlerV1, c *gin.Context) jwt.MapClaims {
 	if c.Request.Header.Get("Authorization") == "" {
 		c.JSON(http.StatusUnauthorized, ErrUnauthorized)
 		h.log.Error("Unauthorized request:", logger.Error(err))
+		return nil
 
 	}
 	h.JwtHandler.Token = authorization.Token
