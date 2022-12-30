@@ -11,7 +11,7 @@ import (
 func (r *PostsRepo) CreateBrand(brand *pb.CreateBrandReq) (*pb.Brand, error) {
 	query := `INSERT INTO brands(name,created_at) values($1,$2) returning id,name,created_at`
 	var newBrand pb.Brand
-	err := r.db.QueryRow(query, brand.Id, brand.Name, time.Now().UTC()).Scan(
+	err := r.db.QueryRow(query,  brand.Name, time.Now().UTC()).Scan(
 		&newBrand.Id,
 		&newBrand.Name,
 		&newBrand.CreatedAt,
