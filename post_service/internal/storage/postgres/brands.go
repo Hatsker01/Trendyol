@@ -16,7 +16,7 @@ func (r *PostsRepo) CreateBrand(brand *pb.CreateBrandReq) (*pb.Brand, error) {
 		&newBrand.Id,
 		&newBrand.Name,
 		&newBrand.CreatedAt,
-		&updated_at,
+		
 	)
 	if err != nil {
 		return nil, err
