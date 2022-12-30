@@ -9,18 +9,17 @@ import (
 )
 
 func (r *PostsRepo) CreateBrand(brand *pb.CreateBrandReq) (*pb.Brand, error) {
-	query := `INSERT INTO brands(id,name,created_at) values($1,$2,$3) returning id,name,created_at`
+	query := `INSERT INTO brands(name,created_at) values($1,$2) returning id,name,created_at`
 	var newBrand pb.Brand
-	err := r.db.QueryRow(query,brand.Id,  brand.Name, time.Now().UTC()).Scan(
+	err := r.db.QueryRow(query, brand.Name, time.Now().UTC()).Scan(
 		&newBrand.Id,
 		&newBrand.Name,
 		&newBrand.CreatedAt,
-		
 	)
 	if err != nil {
 		return nil, err
 	}
-	
+
 	return &newBrand, nil
 }
 
@@ -94,7 +93,7 @@ func (r *PostsRepo) GetPostByBrand(id string) ([]*pb.Post, error) {
 	for rows.Next() {
 		var updated_at sql.NullTime
 		var post pb.Post
-		err:=rows.Scan(
+		err := rows.Scan(
 			&post.Id,
 			&post.Title,
 			&post.Description,
@@ -111,13 +110,13 @@ func (r *PostsRepo) GetPostByBrand(id string) ([]*pb.Post, error) {
 			&post.CreatedAt,
 			&updated_at,
 		)
-		if err!=nil{
-			return nil,err
+		if err != nil {
+			return nil, err
 		}
-		if updated_at.Valid{
-			post.UpdatedAt=updated_at.Time.String()
+		if updated_at.Valid {
+			post.UpdatedAt = updated_at.Time.String()
 		}
 		posts = append(posts, &post)
 	}
-	return posts,nil
+	return posts, nil
 }
