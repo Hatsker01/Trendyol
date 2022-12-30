@@ -9,7 +9,7 @@ import (
 )
 
 func (r *PostsRepo) CreateBrand(brand *pb.CreateBrandReq) (*pb.Brand, error) {
-	query := `INSERT INTO brands(id,name,created_at) values($1,$2,$3) returning id,name,created_at`
+	query := `INSERT INTO brands(name,created_at) values($1,$2) returning id,name,created_at`
 	var newBrand pb.Brand
 	err := r.db.QueryRow(query, brand.Id, brand.Name, time.Now().UTC()).Scan(
 		&newBrand.Id,
