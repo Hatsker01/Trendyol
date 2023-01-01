@@ -67,6 +67,8 @@ func (r *PostsRepo) GetAllUserPosts(id string) ([]*pb.Post, error) {
 			pq.Array(&post.Size_),
 			&post.Color,
 			&post.Gen,
+			&post.BrandId,
+			&post.CategoryId,
 			&post.CreatedAt,
 			&updated_at,
 		)
