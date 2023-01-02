@@ -17,9 +17,9 @@ type PostsRepo struct {
 func (r *PostsRepo) CreatePost(post *pb.Post) (*pb.Post, error) {
 
 	newPost := pb.Post{}
-	query := `INSERT INTO posts(id,title,description,body,author_id,rating,price,product_type,size,color,gen,brand_id,category_id,created_at) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14) 
+	query := `INSERT INTO posts(id,title,description,body,author_id,stars,rating,price,product_type,size,color,gen,brand_id,category_id,created_at) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15) 
 	RETURNING id,title,description,body,author_id,stars,rating,price,product_type,size,color,gen,brand_id,category_id,created_at`
-	err := r.db.QueryRow(query, post.Id, post.Title, post.Description, post.Body, post.AuthorId, post.Rating, post.Price, post.ProductType, pq.Array(post.Size_), post.Color, post.Gen, post.BrandId, post.CategoryId, time.Now().UTC()).Scan(
+	err := r.db.QueryRow(query, post.Id, post.Title, post.Description, post.Body, post.AuthorId, post.Stars, post.Rating, post.Price, post.ProductType, pq.Array(post.Size_), post.Color, post.Gen, post.BrandId, post.CategoryId, time.Now().UTC()).Scan(
 		&newPost.Id,
 		&newPost.Title,
 		&newPost.Description,
