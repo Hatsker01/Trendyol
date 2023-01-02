@@ -19,7 +19,7 @@ import (
 // @Tags like
 // @Accept json
 // @Produce json
-// @Param like body model.Like true "PutLike"
+// @Param like body model.PutLikeReq true "PutLike"
 // @Success 200 {object} model.Like!
 // @Success 400 {object} response
 // @Success 500 {object} response

@@ -18,7 +18,7 @@ import (
 // @Tags post
 // @Accept json
 // @Produce json
-// @Param post body model.Post true "CreatePost"
+// @Param post body model.CreatePost true "CreatePost"
 // @Success 200 {object} model.Post!
 // @Router /v1/post [post]
 func (h *handlerV1) CreatePost(c *gin.Context) {

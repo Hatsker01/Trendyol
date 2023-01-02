@@ -31,7 +31,6 @@ type Stars struct {
 }
 
 type CreateUser struct {
-	Id         string `json:"id"`
 	First_name string `json:"first_name" binding:"required"`
 	Last_name  string `json:"last_name" binding:"required"`
 	Username   string `json:"username" binding:"required,min=4"`
@@ -41,7 +40,6 @@ type CreateUser struct {
 	Address    string `json:"address" binding:"required,min=7"`
 	Gender     string `json:"gender" binding:"required"`
 	Role       string `json:"role" binding:"required"`
-	Code       string `json:"code"`
 	Postalcode string `json:"postalcode" binding:"required"`
 }
 type Users struct {
@@ -85,6 +83,23 @@ type Post struct {
 	UpdatedAt   string   `json:"updated_at"`
 }
 
+type CreatePost struct{
+	Title       string   `json:"title"`
+	Description string   `json:"description"`
+	Body        string   `json:"body"`
+	AuthorId    string   `json:"author_id"`
+	Stars       string   `json:"stars" binding:"required,min=0,max=5"`
+	Rating      string   `json:"rating"`
+	Price       string   `json:"price"`
+	ProductType string   `json:"product_type"`
+	Size_       []string `json:"size"`
+	Color       string   `json:"color"`
+	Gen         string   `json:"gen" binding:"required"`
+	Brand_id    string   `json:"brand_id" binding:"required"`
+	Category_id string   `json:"category_id" binding:"required"`
+
+}
+
 type GetPostByPrice struct {
 	High string `json:"high"`
 	Low  string `json:"low"`
@@ -117,6 +132,11 @@ type Like struct {
 	Deleted_at string `json:"deleted_at"`
 }
 
+type PutLikeReq struct{
+	User_id    string `json:"user_id"`
+	Post_id    string `json:"post_id"`
+}
+
 type Likes struct {
 	Likes []Like `json:"likes"`
 }
@@ -138,7 +158,6 @@ type ChangePassRes struct {
 }
 
 type CreateBrandReq struct {
-	Id   string `json:"id"`
 	Name string `json:"name"`
 }
 type Brand struct {
@@ -172,6 +191,12 @@ type Productsale struct{
 	Price string `json:"price"`
 	Saled_at string `json:"saled_at"`
 	Created_at string `json:"created_at"`
+}
+type ProductsaleReq struct{
+	User_Id string `json:"user_id"`
+	Post_id string `json:"post_id"`
+	Count string `json:"count"`
+	Price string `json:"price"`
 }
 
 type ProductSales struct{
