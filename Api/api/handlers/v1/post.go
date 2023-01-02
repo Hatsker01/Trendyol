@@ -261,39 +261,38 @@ func (h *handlerV1) SortByStars(c *gin.Context) {
 // @Success 400 {object} response
 // @Success 500 {object} response
 // @Router /v1/post/getSortPrice/{high} [get]
-func (h *handlerV1) PriceSep(c *gin.Context){
+func (h *handlerV1) PriceSep(c *gin.Context) {
 	var jspbMarshal protojson.MarshalOptions
 	jspbMarshal.UseProtoNames = true
 
-	er:=CheckClaims(h,c)
-	if er== nil{
-		newResponse(c,http.StatusUnauthorized,"failed while checking token")
+	er := CheckClaims(h, c)
+	if er == nil {
+		newResponse(c, http.StatusUnauthorized, "failed while checking token")
 		h.log.Error("failed while checking token")
 		return
 	}
 
-	param:=c.Param("high")
-	high,err:=strconv.ParseBool(param)
-	if err!=nil{
-		newResponse(c,http.StatusInternalServerError,"failed while parsing string to bool")
-		h.log.Error("failed while parsing string to bool",logger.Error(err))
+	param := c.Param("high")
+	high, err := strconv.ParseBool(param)
+	if err != nil {
+		newResponse(c, http.StatusInternalServerError, "failed while parsing string to bool")
+		h.log.Error("failed while parsing string to bool", logger.Error(err))
 		return
 	}
 
-	ctx,cancel:=context.WithTimeout(context.Background(),time.Second*time.Duration(h.cfg.CtxTimeout))
+	ctx, cancel := context.WithTimeout(context.Background(), time.Second*time.Duration(h.cfg.CtxTimeout))
 	defer cancel()
 
-	posts,err:=h.serviceManager.PostService().GetPostsSortPrice(ctx,&pb.PriceSep{
+	posts, err := h.serviceManager.PostService().GetPostsSortPrice(ctx, &pb.PriceSep{
 		High: high,
 	})
-	if err!=nil{
-		newResponse(c,http.StatusInternalServerError,"failed while getting posts sorting by price")
-		h.log.Error("failed while getting posts sorting by price",logger.Error(err))
+	if err != nil {
+		newResponse(c, http.StatusInternalServerError, "failed while getting posts sorting by price")
+		h.log.Error("failed while getting posts sorting by price", logger.Error(err))
 		return
 	}
-	c.JSON(http.StatusAccepted,posts)
+	c.JSON(http.StatusAccepted, posts)
 }
-
 
 // GetPostByPrice ...
 // @Summary Sort Post By price
@@ -307,34 +306,34 @@ func (h *handlerV1) PriceSep(c *gin.Context){
 // @Success 400 {object} response
 // @Success 500 {object} response
 // @Router /v1/post/getByPrice [get]
-func (h *handlerV1) GetPostByPrice(c *gin.Context){
+func (h *handlerV1) GetPostByPrice(c *gin.Context) {
 	var body pb.GetPostPriceReq
 
-	er:=CheckClaims(h,c)
-	if er==nil{
-		newResponse(c,http.StatusUnauthorized,"failed while checking token")
+	er := CheckClaims(h, c)
+	if er == nil {
+		newResponse(c, http.StatusUnauthorized, "failed while checking token")
 		h.log.Error("error while checking token")
 		return
 	}
 
-	err:=c.ShouldBindHeader(&body)
-	if err!=nil{
-		newResponse(c,http.StatusInternalServerError,"failed while blinding json")
-		h.log.Error("failed while blinding json",logger.Error(err))
-		return 
-	}
-
-	ctx,cancel:=context.WithTimeout(context.Background(),time.Second*time.Duration(h.cfg.CtxTimeout))
-	defer cancel()
-
-	posts,err:=h.serviceManager.PostService().GetPostByPrice(ctx,&body)
-	if err!=nil{
-		newResponse(c,http.StatusInternalServerError,"failed while getting post by price")
-		h.log.Error("failed while getting post by price",logger.Error(err))
+	err := c.ShouldBindHeader(&body)
+	if err != nil {
+		newResponse(c, http.StatusInternalServerError, "failed while blinding json")
+		h.log.Error("failed while blinding json", logger.Error(err))
 		return
 	}
 
-	c.JSON(http.StatusAccepted,posts)
+	ctx, cancel := context.WithTimeout(context.Background(), time.Second*time.Duration(h.cfg.CtxTimeout))
+	defer cancel()
+
+	posts, err := h.serviceManager.PostService().GetPostByPrice(ctx, &body)
+	if err != nil {
+		newResponse(c, http.StatusInternalServerError, "failed while getting post by price")
+		h.log.Error("failed while getting post by price", logger.Error(err))
+		return
+	}
+
+	c.JSON(http.StatusAccepted, posts)
 }
 
 // GettingPostsByColor ...
@@ -349,29 +348,28 @@ func (h *handlerV1) GetPostByPrice(c *gin.Context){
 // @Success 400 {object} response
 // @Success 500 {object} response
 // @Router /v1/post/getByColor/{color} [get]
-func (h *handlerV1) GetingPostsByColor(c *gin.Context){
+func (h *handlerV1) GetingPostsByColor(c *gin.Context) {
 	var jspbMarshal protojson.MarshalOptions
 	jspbMarshal.UseProtoNames = true
 
-	er:=CheckClaims(h,c)
-	if er==nil{
-		newResponse(c,http.StatusUnauthorized,"failed while checking token")
+	er := CheckClaims(h, c)
+	if er == nil {
+		newResponse(c, http.StatusUnauthorized, "failed while checking token")
 		h.log.Error("failed while checking token")
 		return
 	}
-	color:=c.Param("color")
+	color := c.Param("color")
 
-	ctx,cancel:=context.WithTimeout(context.Background(),time.Second*time.Duration(h.cfg.CtxTimeout))
+	ctx, cancel := context.WithTimeout(context.Background(), time.Second*time.Duration(h.cfg.CtxTimeout))
 	defer cancel()
-	posts,err:=h.serviceManager.PostService().GetingPostsByColor(ctx,&pb.ColorReq{Color: color})
-	if err!=nil{
-		newResponse(c,http.StatusInternalServerError,"failed while getting posts by color")
-		h.log.Error("failed while getting posts by color",logger.Error(err))
+	posts, err := h.serviceManager.PostService().GetingPostsByColor(ctx, &pb.ColorReq{Color: color})
+	if err != nil {
+		newResponse(c, http.StatusInternalServerError, "failed while getting posts by color")
+		h.log.Error("failed while getting posts by color", logger.Error(err))
 		return
 	}
-	c.JSON(http.StatusAccepted,posts)
+	c.JSON(http.StatusAccepted, posts)
 }
-
 
 // PutStar ...
 // @Summary Putting Star for post
@@ -385,30 +383,30 @@ func (h *handlerV1) GetingPostsByColor(c *gin.Context){
 // @Success 400 {object} response
 // @Success 500 {object} response
 // @Router /v1/post/star [post]
-func (h *handlerV1) StarReq(c *gin.Context){
-	er:=CheckClaims(h,c)
-	if er==nil{
-		newResponse(c,http.StatusUnauthorized,"failed while checking token")
+func (h *handlerV1) StarReq(c *gin.Context) {
+	er := CheckClaims(h, c)
+	if er == nil {
+		newResponse(c, http.StatusUnauthorized, "failed while checking token")
 		h.log.Error("failed while checking token")
 		return
 	}
 	var body pb.StarReq
-	err:=c.ShouldBindJSON(&body)
-	if err!=nil{
-		newResponse(c,http.StatusInternalServerError,"failed while blinding json")
-		h.log.Error("failed while blinding json",logger.Error(err))
+	err := c.ShouldBindJSON(&body)
+	if err != nil {
+		newResponse(c, http.StatusInternalServerError, "failed while blinding json")
+		h.log.Error("failed while blinding json", logger.Error(err))
 		return
 	}
-	ctx,cancel:=context.WithTimeout(context.Background(),time.Second*time.Duration(h.cfg.CtxTimeout))
+	ctx, cancel := context.WithTimeout(context.Background(), time.Second*time.Duration(h.cfg.CtxTimeout))
 	defer cancel()
 
-	star,err:=h.serviceManager.PostService().PutStar(ctx,&body)
-	if err!=nil{
-		newResponse(c,http.StatusInternalServerError,"failed while putting star to post")
-		h.log.Error("failed while putting star to post",logger.Error(err))
+	star, err := h.serviceManager.PostService().PutStar(ctx, &body)
+	if err != nil {
+		newResponse(c, http.StatusInternalServerError, "failed while putting star to post")
+		h.log.Error("failed while putting star to post", logger.Error(err))
 		return
 	}
-	c.JSON(http.StatusAccepted,star)
+	c.JSON(http.StatusAccepted, star)
 }
 
 // TakeStar ...
@@ -423,28 +421,28 @@ func (h *handlerV1) StarReq(c *gin.Context){
 // @Success 400 {object} response
 // @Success 500 {object} response
 // @Router /v1/post/star/{id} [delete]
-func (h *handlerV1) TakeStar(c *gin.Context){
+func (h *handlerV1) TakeStar(c *gin.Context) {
 	var jspbMarshal protojson.MarshalOptions
 	jspbMarshal.UseProtoNames = true
 
-	er:=CheckClaims(h,c)
-	if er==nil{
-		newResponse(c,http.StatusUnauthorized,"failed while checking token")
+	er := CheckClaims(h, c)
+	if er == nil {
+		newResponse(c, http.StatusUnauthorized, "failed while checking token")
 		h.log.Error("failed while checking token")
 		return
 	}
-	
-	id:=c.Param("id")
-	ctx,cancel:=context.WithTimeout(context.Background(),time.Second*time.Duration(h.cfg.CtxTimeout))
+
+	id := c.Param("id")
+	ctx, cancel := context.WithTimeout(context.Background(), time.Second*time.Duration(h.cfg.CtxTimeout))
 	defer cancel()
 
-	star,err:=h.serviceManager.PostService().TakeStar(ctx,&pb.WithId{Id: id})
-	if err!=nil{
-		newResponse(c,http.StatusInternalServerError,"failed while taking star from post")
-		h.log.Error("failed while taking star from post",logger.Error(err))
+	star, err := h.serviceManager.PostService().TakeStar(ctx, &pb.WithId{Id: id})
+	if err != nil {
+		newResponse(c, http.StatusInternalServerError, "failed while taking star from post")
+		h.log.Error("failed while taking star from post", logger.Error(err))
 		return
 	}
-	c.JSON(http.StatusAccepted,star)
+	c.JSON(http.StatusAccepted, star)
 }
 
 // GetStar ...
@@ -459,26 +457,26 @@ func (h *handlerV1) TakeStar(c *gin.Context){
 // @Success 400 {object} response
 // @Success 500 {object} response
 // @Router /v1/post/stars/{id} [get]
-func (h *handlerV1) GetStar(c *gin.Context){
+func (h *handlerV1) GetStar(c *gin.Context) {
 	var jspbMarshal protojson.MarshalOptions
 	jspbMarshal.UseProtoNames = true
 
-	er:=CheckClaims(h,c)
-	if er==nil{
-		newResponse(c,http.StatusUnauthorized,"failed while checking token")
+	er := CheckClaims(h, c)
+	if er == nil {
+		newResponse(c, http.StatusUnauthorized, "failed while checking token")
 		h.log.Error("failed while checking token")
 		return
 	}
 	id := c.Param("id")
 
-	ctx,cancel:=context.WithTimeout(context.Background(),time.Second*time.Duration(h.cfg.CtxTimeout))
+	ctx, cancel := context.WithTimeout(context.Background(), time.Second*time.Duration(h.cfg.CtxTimeout))
 	defer cancel()
 
-	star,err:=h.serviceManager.PostService().GetStar(ctx,&pb.WithId{Id: id})
-	if err!=nil{
-		newResponse(c,http.StatusInternalServerError,"failed while getting avarrage star of post")
-		h.log.Error("failed while getting avarage star of post",logger.Error(err))
+	star, err := h.serviceManager.PostService().GetStar(ctx, &pb.WithId{Id: id})
+	if err != nil {
+		newResponse(c, http.StatusInternalServerError, "failed while getting avarrage star of post")
+		h.log.Error("failed while getting avarage star of post", logger.Error(err))
 		return
 	}
-	c.JSON(http.StatusAccepted,star)
+	c.JSON(http.StatusAccepted, star)
 }
