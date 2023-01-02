@@ -68,11 +68,6 @@ const docTemplate = `{
         },
         "/v1/category/getAll": {
             "get": {
-                "security": [
-                    {
-                        "BearerAuth": []
-                    }
-                ],
                 "description": "This API for getting all categories",
                 "consumes": [
                     "application/json"
@@ -276,7 +271,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/model.Like"
+                            "$ref": "#/definitions/model.PutLikeReq"
                         }
                     }
                 ],
@@ -353,11 +348,6 @@ const docTemplate = `{
         },
         "/v1/like/getPostLike/{id}": {
             "get": {
-                "security": [
-                    {
-                        "BearerAuth": []
-                    }
-                ],
                 "description": "This API for getting post's like",
                 "consumes": [
                     "application/json"
@@ -554,7 +544,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/model.Post"
+                            "$ref": "#/definitions/model.CreatePost"
                         }
                     }
                 ],
@@ -620,11 +610,6 @@ const docTemplate = `{
         },
         "/v1/post/brand/getAll": {
             "get": {
-                "security": [
-                    {
-                        "BearerAuth": []
-                    }
-                ],
                 "description": "This API for getting all brands",
                 "consumes": [
                     "application/json"
@@ -1461,11 +1446,6 @@ const docTemplate = `{
         },
         "/v1/posts": {
             "get": {
-                "security": [
-                    {
-                        "BearerAuth": []
-                    }
-                ],
                 "description": "This API for getting all posts",
                 "consumes": [
                     "application/json"
@@ -1807,11 +1787,6 @@ const docTemplate = `{
         },
         "/v1/users/getAll": {
             "get": {
-                "security": [
-                    {
-                        "BearerAuth": []
-                    }
-                ],
                 "description": "This API for getting all Users",
                 "consumes": [
                     "application/json"
@@ -2021,10 +1996,62 @@ const docTemplate = `{
         "model.CreateBrandReq": {
             "type": "object",
             "properties": {
-                "id": {
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
+        "model.CreatePost": {
+            "type": "object",
+            "required": [
+                "brand_id",
+                "category_id",
+                "gen",
+                "stars"
+            ],
+            "properties": {
+                "author_id": {
                     "type": "string"
                 },
-                "name": {
+                "body": {
+                    "type": "string"
+                },
+                "brand_id": {
+                    "type": "string"
+                },
+                "category_id": {
+                    "type": "string"
+                },
+                "color": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "gen": {
+                    "type": "string"
+                },
+                "price": {
+                    "type": "string"
+                },
+                "product_type": {
+                    "type": "string"
+                },
+                "rating": {
+                    "type": "string"
+                },
+                "size": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "stars": {
+                    "type": "string",
+                    "maxLength": 5,
+                    "minLength": 0
+                },
+                "title": {
                     "type": "string"
                 }
             }
@@ -2048,9 +2075,6 @@ const docTemplate = `{
                     "type": "string",
                     "minLength": 7
                 },
-                "code": {
-                    "type": "string"
-                },
                 "email": {
                     "type": "string"
                 },
@@ -2058,9 +2082,6 @@ const docTemplate = `{
                     "type": "string"
                 },
                 "gender": {
-                    "type": "string"
-                },
-                "id": {
                     "type": "string"
                 },
                 "last_name": {
@@ -2258,6 +2279,17 @@ const docTemplate = `{
                     "type": "string"
                 },
                 "saled_at": {
+                    "type": "string"
+                },
+                "user_id": {
+                    "type": "string"
+                }
+            }
+        },
+        "model.PutLikeReq": {
+            "type": "object",
+            "properties": {
+                "post_id": {
                     "type": "string"
                 },
                 "user_id": {

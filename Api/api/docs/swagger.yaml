@@ -62,25 +62,57 @@ definitions:
     type: object
   model.CreateBrandReq:
     properties:
-      id:
-        type: string
       name:
         type: string
+    type: object
+  model.CreatePost:
+    properties:
+      author_id:
+        type: string
+      body:
+        type: string
+      brand_id:
+        type: string
+      category_id:
+        type: string
+      color:
+        type: string
+      description:
+        type: string
+      gen:
+        type: string
+      price:
+        type: string
+      product_type:
+        type: string
+      rating:
+        type: string
+      size:
+        items:
+          type: string
+        type: array
+      stars:
+        maxLength: 5
+        minLength: 0
+        type: string
+      title:
+        type: string
+    required:
+    - brand_id
+    - category_id
+    - gen
+    - stars
     type: object
   model.CreateUser:
     properties:
       address:
         minLength: 7
         type: string
-      code:
-        type: string
       email:
         type: string
       first_name:
         type: string
       gender:
-        type: string
-      id:
         type: string
       last_name:
         type: string
@@ -224,6 +256,13 @@ definitions:
       price:
         type: string
       saled_at:
+        type: string
+      user_id:
+        type: string
+    type: object
+  model.PutLikeReq:
+    properties:
+      post_id:
         type: string
       user_id:
         type: string
@@ -420,8 +459,6 @@ paths:
           description: Internal Server Error
           schema:
             $ref: '#/definitions/v1.response'
-      security:
-      - BearerAuth: []
       summary: GetAllCategories
       tags:
       - category
@@ -467,7 +504,7 @@ paths:
         name: like
         required: true
         schema:
-          $ref: '#/definitions/model.Like'
+          $ref: '#/definitions/model.PutLikeReq'
       produces:
       - application/json
       responses:
@@ -576,8 +613,6 @@ paths:
           description: Internal Server Error
           schema:
             $ref: '#/definitions/v1.response'
-      security:
-      - BearerAuth: []
       summary: GetPostLike
       tags:
       - like
@@ -623,7 +658,7 @@ paths:
         name: post
         required: true
         schema:
-          $ref: '#/definitions/model.Post'
+          $ref: '#/definitions/model.CreatePost'
       produces:
       - application/json
       responses:
@@ -761,8 +796,6 @@ paths:
           description: Internal Server Error
           schema:
             $ref: '#/definitions/v1.response'
-      security:
-      - BearerAuth: []
       summary: Get All Brands
       tags:
       - brand
@@ -1229,8 +1262,6 @@ paths:
           description: OK
           schema:
             $ref: '#/definitions/model.Posts'
-      security:
-      - BearerAuth: []
       summary: GetAllPosts
       tags:
       - post
@@ -1456,8 +1487,6 @@ paths:
           description: Internal Server Error
           schema:
             $ref: '#/definitions/v1.Success'
-      security:
-      - BearerAuth: []
       summary: GetAllUsers
       tags:
       - user
