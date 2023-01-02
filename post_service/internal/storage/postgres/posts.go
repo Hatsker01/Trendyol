@@ -320,6 +320,8 @@ func (r *PostsRepo) SeperatePostByPrice(priceSep *pb.PriceSep) ([]*pb.Post, erro
 			pq.Array(&post.Size_),
 			&post.Color,
 			&post.Gen,
+			&post.BrandId,
+			&post.CategoryId,
 		)
 		if err != nil {
 			return nil, err
@@ -365,6 +367,9 @@ func (r *PostsRepo) GetPostByPrice(price *pb.GetPostPriceReq) ([]*pb.Post, error
 	}
 	query := `SELECT id,title,description,body,author_id,stars,rating,price,product_type,size,color,gen,brand_id,category_id from posts where deleted_at is null and price>$1 and price<$2`
 	rows, err := r.db.Query(query, low, high)
+	if err != nil {
+		return nil, err
+	}
 	for rows.Next() {
 		var post pb.Post
 		var (
