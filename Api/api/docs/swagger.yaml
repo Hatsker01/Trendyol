@@ -141,13 +141,6 @@ definitions:
     - role
     - username
     type: object
-  model.GetPostByPrice:
-    properties:
-      high:
-        type: string
-      low:
-        type: string
-    type: object
   model.Like:
     properties:
       created_at:
@@ -936,38 +929,6 @@ paths:
       security:
       - BearerAuth: []
       summary: Getting Post By Sorting Color
-      tags:
-      - post
-  /v1/post/getByPrice:
-    get:
-      consumes:
-      - application/json
-      description: This API for getting post by price with max and min price
-      parameters:
-      - description: GettingPost
-        in: body
-        name: post
-        required: true
-        schema:
-          $ref: '#/definitions/model.GetPostByPrice'
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            $ref: '#/definitions/model.Posts'
-        "400":
-          description: Bad Request
-          schema:
-            $ref: '#/definitions/v1.response'
-        "500":
-          description: Internal Server Error
-          schema:
-            $ref: '#/definitions/v1.response'
-      security:
-      - BearerAuth: []
-      summary: Sort Post By price
       tags:
       - post
   /v1/post/getSortPrice/{high}:

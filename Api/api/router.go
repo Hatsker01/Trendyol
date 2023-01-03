@@ -64,7 +64,7 @@ func New(option Option) *gin.Engine {
 	api.GET("/post/delete/:id", handlerV1.DeletePostbyId)
 	api.GET("/posts/stars", handlerV1.SortByStars)
 	api.GET("/post/getSortPrice/:high", handlerV1.PriceSep)
-	api.GET("/post/getByPrice", handlerV1.GetPostByPrice)
+	// api.GET("/post/getByPrice", handlerV1.GetPostByPrice)
 	api.GET("/post/getByColor/:color", handlerV1.GetingPostsByColor)
 
 	api.GET("/category/:id", handlerV1.GetPostByCategory)

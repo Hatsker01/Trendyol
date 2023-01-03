@@ -306,35 +306,36 @@ func (h *handlerV1) PriceSep(c *gin.Context) {
 // @Success 400 {object} response
 // @Success 500 {object} response
 // @Router /v1/post/getByPrice [get]
-func (h *handlerV1) GetPostByPrice(c *gin.Context) {
-	var body pb.GetPostPriceReq
 
-	er := CheckClaims(h, c)
-	if er == nil {
-		newResponse(c, http.StatusUnauthorized, "failed while checking token")
-		h.log.Error("error while checking token")
-		return
-	}
+// func (h *handlerV1) GetPostByPrice(c *gin.Context) {
+// 	var body pb.GetPostPriceReq
 
-	err := c.ShouldBindHeader(&body)
-	if err != nil {
-		newResponse(c, http.StatusInternalServerError, "failed while blinding json")
-		h.log.Error("failed while blinding json", logger.Error(err))
-		return
-	}
+// 	er := CheckClaims(h, c)
+// 	if er == nil {
+// 		newResponse(c, http.StatusUnauthorized, "failed while checking token")
+// 		h.log.Error("error while checking token")
+// 		return
+// 	}
 
-	ctx, cancel := context.WithTimeout(context.Background(), time.Second*time.Duration(h.cfg.CtxTimeout))
-	defer cancel()
+// 	err := c.ShouldBindHeader(&body)
+// 	if err != nil {
+// 		newResponse(c, http.StatusInternalServerError, "failed while blinding json")
+// 		h.log.Error("failed while blinding json", logger.Error(err))
+// 		return
+// 	}
 
-	posts, err := h.serviceManager.PostService().GetPostByPrice(ctx, &body)
-	if err != nil {
-		newResponse(c, http.StatusInternalServerError, "failed while getting post by price")
-		h.log.Error("failed while getting post by price", logger.Error(err))
-		return
-	}
+// 	ctx, cancel := context.WithTimeout(context.Background(), time.Second*time.Duration(h.cfg.CtxTimeout))
+// 	defer cancel()
 
-	c.JSON(http.StatusAccepted, posts)
-}
+// 	posts, err := h.serviceManager.PostService().GetPostByPrice(ctx, &body)
+// 	if err != nil {
+// 		newResponse(c, http.StatusInternalServerError, "failed while getting post by price")
+// 		h.log.Error("failed while getting post by price", logger.Error(err))
+// 		return
+// 	}
+
+// 	c.JSON(http.StatusAccepted, posts)
+// }
 
 // GettingPostsByColor ...
 // @Summary Getting Post By Sorting Color
