@@ -8,13 +8,13 @@ import (
 	"net/http"
 	"time"
 	"unicode"
-	"github.com/Trendyol/Api/mail"
+
 	"github.com/Trendyol/Api/api/auth"
 	"github.com/Trendyol/Api/api/model"
 	pb "github.com/Trendyol/Api/genproto"
 	user "github.com/Trendyol/Api/genproto"
+	"github.com/Trendyol/Api/mail"
 	"github.com/Trendyol/Api/pkg/logger"
-	"github.com/Trendyol/Api/pkg/utils"
 	"github.com/gin-gonic/gin"
 	"github.com/gomodule/redigo/redis"
 	"golang.org/x/crypto/bcrypt"
@@ -291,25 +291,30 @@ func VerifyPassword(s string) (eigthMore, number, upper, special, moredigits boo
 //@Tags user
 //@Accept json
 //@Produce json
-//@Param email query string true "Email"
-//@Param password query string true "Password"
+//@Param login body model.Login true "Login"
 //@Success 200 {string} User!
 //@Router /v1/users/login/user [get]
 func (h *handlerV1) Login(c *gin.Context) {
-	var jspbMarshal protojson.MarshalOptions
-	jspbMarshal.UseProtoNames = true
-	queryParams := c.Request.URL.Query()
-	params, errStr := utils.ParseQueryParamsLog(queryParams)
-	if errStr != nil {
-		c.JSON(http.StatusBadRequest, gin.H{
-			"error": errStr[0],
+	var body model.Login
+	err := c.ShouldBindJSON(&body)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{
+			"error": err.Error(),
 		})
-		h.log.Fatal("failed json params" + errStr[0])
+		h.log.Error("failed while to blind json", logger.Error(err))
 		return
 	}
+	// params, errStr := utils.ParseQueryParamsLog(queryParams)
+	// if errStr != nil {
+	// 	c.JSON(http.StatusBadRequest, gin.H{
+	// 		"error": errStr[0],
+	// 	})
+	// 	h.log.Fatal("failed json params" + errStr[0])
+	// 	return
+	// }
 	ctxr, cancel := context.WithTimeout(context.Background(), time.Second*time.Duration(h.cfg.CtxTimeout))
 	defer cancel()
-	if params.Email == "admin" && params.Password == "admin" {
+	if body.Email == "admin" && body.Password == "admin" {
 		h.JwtHandler = auth.JwtHandler{
 			Iss:       "admin",
 			Role:      "Authorized",
@@ -319,8 +324,8 @@ func (h *handlerV1) Login(c *gin.Context) {
 	} else {
 
 		usersss, err := h.serviceManager.UserService().LoginUser(ctxr, &pb.LoginUserReq{
-			Email:    params.Email,
-			Password: params.Password,
+			Email:    body.Email,
+			Password: body.Password,
 		})
 		if err != nil {
 			c.JSON(http.StatusInternalServerError, gin.H{
@@ -329,7 +334,7 @@ func (h *handlerV1) Login(c *gin.Context) {
 			h.log.Error("Email or password in invalide", logger.Error(err))
 			return
 		}
-		err = bcrypt.CompareHashAndPassword([]byte(usersss.Password), []byte(params.Password))
+		err = bcrypt.CompareHashAndPassword([]byte(usersss.Password), []byte(body.Password))
 		if err != nil {
 			c.JSON(http.StatusInternalServerError, gin.H{
 				"error": "password is invalide",

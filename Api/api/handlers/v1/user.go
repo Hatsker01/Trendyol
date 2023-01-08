@@ -34,6 +34,7 @@ func (h *handlerV1) CreateUser(c *gin.Context) {
 			"error": err.Error(),
 		})
 		h.log.Error("failed while to blind json", logger.Error(err))
+		return
 
 	}
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second*time.Duration(h.cfg.CtxTimeout))

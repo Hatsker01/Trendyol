@@ -83,7 +83,7 @@ type Post struct {
 	UpdatedAt   string   `json:"updated_at"`
 }
 
-type CreatePost struct{
+type CreatePost struct {
 	Title       string   `json:"title"`
 	Description string   `json:"description"`
 	Body        string   `json:"body"`
@@ -97,7 +97,6 @@ type CreatePost struct{
 	Gen         string   `json:"gen" binding:"required"`
 	Brand_id    string   `json:"brand_id" binding:"required"`
 	Category_id string   `json:"category_id" binding:"required"`
-
 }
 
 type GetPostByPrice struct {
@@ -132,9 +131,9 @@ type Like struct {
 	Deleted_at string `json:"deleted_at"`
 }
 
-type PutLikeReq struct{
-	User_id    string `json:"user_id"`
-	Post_id    string `json:"post_id"`
+type PutLikeReq struct {
+	User_id string `json:"user_id"`
+	Post_id string `json:"post_id"`
 }
 
 type Likes struct {
@@ -167,40 +166,45 @@ type Brand struct {
 	Updated_at string `json:"updated_at"`
 }
 
-type Brands struct{
+type Brands struct {
 	Brands []*Brand `json:"brands"`
 }
 
-type SeledCount struct{
+type SeledCount struct {
 	Count int `json:"count"`
 }
 
-type ProductSaleReq struct{
-	Id string `json:"id" binding:"required"`
+type ProductSaleReq struct {
+	Id      string `json:"id" binding:"required"`
 	User_Id string `json:"user_id" binding:"required"`
-	Post_Id string 	`json:"post_id" binding:"required"`
-	Count string `json:"count"`
-	Pirce string `json:"price"`
-} 
+	Post_Id string `json:"post_id" binding:"required"`
+	Count   string `json:"count"`
+	Pirce   string `json:"price"`
+}
 
-type Productsale struct{
-	Id string `json:"id"`
-	User_Id string `json:"user_id"`
-	Post_id string `json:"post_id"`
-	Count string `json:"count"`
-	Price string `json:"price"`
-	Saled_at string `json:"saled_at"`
+type Productsale struct {
+	Id         string `json:"id"`
+	User_Id    string `json:"user_id"`
+	Post_id    string `json:"post_id"`
+	Count      string `json:"count"`
+	Price      string `json:"price"`
+	Saled_at   string `json:"saled_at"`
 	Created_at string `json:"created_at"`
 }
-type ProductsaleReq struct{
+type ProductsaleReq struct {
 	User_Id string `json:"user_id"`
 	Post_id string `json:"post_id"`
-	Count string `json:"count"`
-	Price string `json:"price"`
+	Count   string `json:"count"`
+	Price   string `json:"price"`
 }
 
-type ProductSales struct{
+type ProductSales struct {
 	Products []*Productsale `json:"products"`
+}
+
+type Login struct {
+	Email    string `json:"email"`
+	Password string `json:"password"`
 }
 
 var (
