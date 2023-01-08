@@ -1783,18 +1783,13 @@ const docTemplate = `{
                 "summary": "Get user summary",
                 "parameters": [
                     {
-                        "type": "string",
-                        "description": "Email",
-                        "name": "email",
-                        "in": "query",
-                        "required": true
-                    },
-                    {
-                        "type": "string",
-                        "description": "Password",
-                        "name": "password",
-                        "in": "query",
-                        "required": true
+                        "description": "Login",
+                        "name": "login",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/model.Login"
+                        }
                     }
                 ],
                 "responses": {
@@ -2084,6 +2079,17 @@ const docTemplate = `{
                     "items": {
                         "$ref": "#/definitions/model.Like"
                     }
+                }
+            }
+        },
+        "model.Login": {
+            "type": "object",
+            "properties": {
+                "email": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
                 }
             }
         },

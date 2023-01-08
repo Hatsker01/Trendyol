@@ -161,6 +161,13 @@ definitions:
           $ref: '#/definitions/model.Like'
         type: array
     type: object
+  model.Login:
+    properties:
+      email:
+        type: string
+      password:
+        type: string
+    type: object
   model.Post:
     properties:
       author_id:
@@ -1456,16 +1463,12 @@ paths:
       consumes:
       - application/json
       parameters:
-      - description: Email
-        in: query
-        name: email
+      - description: Login
+        in: body
+        name: login
         required: true
-        type: string
-      - description: Password
-        in: query
-        name: password
-        required: true
-        type: string
+        schema:
+          $ref: '#/definitions/model.Login'
       produces:
       - application/json
       responses:
