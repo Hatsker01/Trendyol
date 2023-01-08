@@ -293,9 +293,11 @@ func VerifyPassword(s string) (eigthMore, number, upper, special, moredigits boo
 //@Produce json
 //@Param login body model.Login true "Login"
 //@Success 200 {string} model.User!
+// @Success 400 {object} Success
+// @Success 500 {object} Success
 //@Router /v1/users/login/user [get]
 func (h *handlerV1) Login(c *gin.Context) {
-	var body model.Login
+	body:=model.Login{}
 	err := c.ShouldBindJSON(&body)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{
