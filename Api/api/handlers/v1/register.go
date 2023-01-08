@@ -292,7 +292,7 @@ func VerifyPassword(s string) (eigthMore, number, upper, special, moredigits boo
 //@Accept json
 //@Produce json
 //@Param login body model.Login true "Login"
-//@Success 200 {string} User!
+//@Success 200 {string} model.User!
 //@Router /v1/users/login/user [get]
 func (h *handlerV1) Login(c *gin.Context) {
 	var body model.Login
