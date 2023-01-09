@@ -1458,14 +1458,15 @@ paths:
       summary: GetAllUsers
       tags:
       - user
-  /v1/users/login/user:
-    get:
+  /v1/users/login:
+    post:
       consumes:
       - application/json
+      description: This api for post user by code
       parameters:
       - description: Login
         in: body
-        name: login
+        name: user
         required: true
         schema:
           $ref: '#/definitions/model.Login'

@@ -31,7 +31,7 @@ func New(option Option) *gin.Engine {
 		gin.Recovery(),
 		middleware.New(GinCorsMiddleware()),
 	)
-	
+
 	// jwtHandler := auth.JwtHandler{
 	// 	SigninKey: option.Conf.SigninKey,
 	// 	Log:       option.Logger,
@@ -50,7 +50,7 @@ func New(option Option) *gin.Engine {
 	api.POST("/users/RegisterUser", handlerV1.RegisterUser)
 	api.POST("users/register/user/:email/:coded", handlerV1.Verify)
 	api.PUT("/users", handlerV1.UpdateUser)
-	api.GET("/users/login/user", handlerV1.Login)
+	api.POST("/users/login", handlerV1.Login)
 	api.GET("/user/getUserbyId/:id", handlerV1.GetUserById)
 	api.GET("/users/getAll", handlerV1.GetAllUsers)
 	api.DELETE("/user/delete/:id", handlerV1.DeleteUserById)
@@ -64,7 +64,7 @@ func New(option Option) *gin.Engine {
 	api.GET("/post/delete/:id", handlerV1.DeletePostbyId)
 	api.GET("/posts/stars", handlerV1.SortByStars)
 	api.GET("/post/getSortPrice/:high", handlerV1.PriceSep)
-	// api.GET("/post/getByPrice", handlerV1.GetPostByPrice)
+	api.POST("/post/getByPrice", handlerV1.GetPostByPrice)
 	api.GET("/post/getByColor/:color", handlerV1.GetingPostsByColor)
 
 	api.GET("/category/:id", handlerV1.GetPostByCategory)

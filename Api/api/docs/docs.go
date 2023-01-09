@@ -1769,8 +1769,9 @@ const docTemplate = `{
                 }
             }
         },
-        "/v1/users/login/user": {
-            "get": {
+        "/v1/users/login": {
+            "post": {
+                "description": "This api for post user by code",
                 "consumes": [
                     "application/json"
                 ],
@@ -1784,7 +1785,7 @@ const docTemplate = `{
                 "parameters": [
                     {
                         "description": "Login",
-                        "name": "login",
+                        "name": "user",
                         "in": "body",
                         "required": true,
                         "schema": {

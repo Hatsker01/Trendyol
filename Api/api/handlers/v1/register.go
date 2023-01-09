@@ -285,19 +285,20 @@ func VerifyPassword(s string) (eigthMore, number, upper, special, moredigits boo
 	return
 }
 
-//Post user by code
-//@Summary Get user summary
-//Description This api for post user by code
-//@Tags user
-//@Accept json
-//@Produce json
-//@Param login body model.Login true "Login"
-//@Success 200 {string} model.User!
+// Post user by code
+// @Summary Get user summary
+// @Description This api for post user by code
+// @Tags user
+// @Accept json
+// @Produce json
+// @Param user body model.Login true "Login"
+// @Success 200 {string} model.User!
 // @Success 400 {object} Success
 // @Success 500 {object} Success
-//@Router /v1/users/login/user [get]
+// @Router /v1/users/login [post]
 func (h *handlerV1) Login(c *gin.Context) {
-	body:=model.Login{}
+	var body model.Login
+	fmt.Println(body)
 	err := c.ShouldBindJSON(&body)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{
