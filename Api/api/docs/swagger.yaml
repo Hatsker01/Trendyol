@@ -141,6 +141,13 @@ definitions:
     - role
     - username
     type: object
+  model.GetPostByPrice:
+    properties:
+      high:
+        type: string
+      low:
+        type: string
+    type: object
   model.Like:
     properties:
       created_at:
@@ -938,6 +945,38 @@ paths:
       summary: Getting Post By Sorting Color
       tags:
       - post
+  /v1/post/getByPrice:
+    post:
+      consumes:
+      - application/json
+      description: This API for getting post by price with max and min price
+      parameters:
+      - description: GettingPost
+        in: body
+        name: post
+        required: true
+        schema:
+          $ref: '#/definitions/model.GetPostByPrice'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.Posts'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/v1.response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/v1.response'
+      security:
+      - BearerAuth: []
+      summary: Sort Post By price
+      tags:
+      - post
   /v1/post/getSortPrice/{high}:
     get:
       consumes:
@@ -967,6 +1006,40 @@ paths:
       security:
       - BearerAuth: []
       summary: Get posts by seperating by price
+      tags:
+      - post
+  /v1/post/image/{id}:
+    put:
+      consumes:
+      - multipart/form-data
+      description: This API for upload image
+      parameters:
+      - description: File
+        in: formData
+        name: file
+        required: true
+        type: file
+      - description: Id
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.Post'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/v1.response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/v1.response'
+      summary: UploadImage
       tags:
       - post
   /v1/post/product:

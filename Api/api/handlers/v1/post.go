@@ -480,3 +480,65 @@ func (h *handlerV1) GetStar(c *gin.Context) {
 	}
 	c.JSON(http.StatusAccepted, star)
 }
+
+// UploadImage ...
+// @Summary UploadImage
+// @Description This API for upload image
+// @Tags post
+// @Accept multipart/form-data
+// @Produce json
+// @Param file formData file true "File"
+// @Param id path string true "Id"
+// @Success 200 {object} model.Post
+// @Failure 400 {object} response
+// @Failure 500 {object} response
+// @Router /v1/post/image/{id} [put]
+func (h *handlerV1) LoadImage(c *gin.Context) {
+	file, err := c.FormFile("file")
+
+	if err != nil {
+		c.AbortWithStatusJSON(http.StatusBadRequest, gin.H{
+			"message": "No file is received",
+		})
+		return
+	}
+
+	id := c.Param("id")
+	if err != nil {
+		h.log.Error("Failed to parse string to int", logger.Error(err))
+	}
+	ctx, cancel := context.WithTimeout(context.Background(), time.Second*time.Duration(h.cfg.CtxTimeout))
+	defer cancel()
+	response, err := h.serviceManager.PostService().GetPostById(ctx, &pb.WithId{Id: id})
+
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{
+			"error": err.Error(),
+		})
+		h.log.Error("failed to get news", logger.Error(err))
+		return
+	}
+
+	newFileName := response.Title + file.Filename[len(file.Filename)-4:]
+
+	if err := c.SaveUploadedFile(file, h.cfg.FilePath+newFileName); err != nil {
+		c.AbortWithStatusJSON(http.StatusInternalServerError, gin.H{
+			"message": "Unable to save the file",
+		})
+		return
+	}
+
+	// err = postgres.NewCarsRepo(h.db).UploadImage(h.cfg.FilePath+newFileName, id)
+	// if err != nil {
+	// 	c.JSON(http.StatusInternalServerError, gin.H{
+	// 		"error": err.Error(),
+	// 	})
+	// 	h.log.Error("failed while uploading image", logger.Error(err))
+	// 	return
+	// }
+
+	c.JSON(http.StatusOK, gin.H{
+		"type":    "success",
+		"message": "file uploaded",
+	})
+}

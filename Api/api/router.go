@@ -66,6 +66,7 @@ func New(option Option) *gin.Engine {
 	api.GET("/post/getSortPrice/:high", handlerV1.PriceSep)
 	api.POST("/post/getByPrice", handlerV1.GetPostByPrice)
 	api.GET("/post/getByColor/:color", handlerV1.GetingPostsByColor)
+	api.PUT("/post/image/:id", handlerV1.LoadImage)
 
 	api.GET("/category/:id", handlerV1.GetPostByCategory)
 	api.POST("/category", handlerV1.CreateCategory)

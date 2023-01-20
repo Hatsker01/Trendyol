@@ -31,6 +31,8 @@ type Config struct {
 	// HTTPHost  string
 	SigninKey        string
 	CasbinConfigPath string
+
+	FilePath string
 }
 
 func Load() Config {
@@ -53,6 +55,8 @@ func Load() Config {
 	c.PostgresUser = cast.ToString(getOrReturnDefault("POSTGRES_USER", "postgres"))
 	c.PostgresDatabase = cast.ToString(getOrReturnDefault("POSTGRES_DATABASE", "userss"))
 	c.CasbinConfigPath = cast.ToString(getOrReturnDefault("CASBIN_CONFIG_PATH", "./config/rbac_model.conf"))
+
+	c.FilePath = cast.ToString(getOrReturnDefault("FILE_PATH", "/home/jamshidbek/photoo/"))
 
 	c.CtxTimeout = cast.ToInt(getOrReturnDefault("CTX_TIMEOUT", 10))
 	return c

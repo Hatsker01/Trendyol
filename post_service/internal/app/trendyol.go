@@ -14,6 +14,7 @@ import (
 )
 
 func Run() {
+
 	cfg := configs.Load()
 	log := logger.New(cfg.LogLevel, "trendyol-go-posts-service")
 	db, err := postsql.NewClient(cfg)
