@@ -20,6 +20,8 @@ import (
 // @Produce json
 // @Param post body model.CreatePost true "CreatePost"
 // @Success 200 {object} model.Post!
+// @Failure 400 {object} response
+// @Failure 500 {object} response
 // @Router /v1/post [post]
 func (h *handlerV1) CreatePost(c *gin.Context) {
 	var body pb.Post
@@ -53,6 +55,8 @@ func (h *handlerV1) CreatePost(c *gin.Context) {
 // @Produce json
 // @Param post body model.Post true "UpdatePost"
 // @Success 200 {object} model.Post!
+// @Failure 400 {object} response
+// @Failure 500 {object} response
 // @Router /v1/post [put]
 func (h *handlerV1) UpdatePost(c *gin.Context) {
 	var body pb.Post
@@ -93,6 +97,8 @@ func (h *handlerV1) UpdatePost(c *gin.Context) {
 // @Produce json
 // @Param id path string true "Post_id"
 // @Success 200 {object} model.Post!
+// @Failure 400 {object} response
+// @Failure 500 {object} response
 // @Router /v1/post/{id} [get]
 func (h *handlerV1) GetPostById(c *gin.Context) {
 	var jspbMarshal protojson.MarshalOptions
@@ -129,6 +135,8 @@ func (h *handlerV1) GetPostById(c *gin.Context) {
 // @Accept json
 // @Produce json
 // @Success 200 {object} model.Posts!
+// @Failure 400 {object} response
+// @Failure 500 {object} response
 // @Router /v1/posts [get]
 func (h *handlerV1) GetAllPosts(c *gin.Context) {
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second*time.Duration(h.cfg.CtxTimeout))
@@ -153,6 +161,8 @@ func (h *handlerV1) GetAllPosts(c *gin.Context) {
 // @Produce json
 // @Param id path string true "User_id"
 // @Success 200 {object} model.Posts!
+// @Failure 400 {object} response
+// @Failure 500 {object} response
 // @Router /v1/post/getAllUserPosts/{id} [get]
 func (h *handlerV1) GetAllUserPosts(c *gin.Context) {
 	var jspbMarshal protojson.MarshalOptions
