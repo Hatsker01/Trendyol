@@ -199,6 +199,8 @@ func (h *handlerV1) GetAllUserPosts(c *gin.Context) {
 // @Produce json
 // @Param id path string true "Post_id"
 // @Success 200 {object} model.Post!
+// @Failure 400 {object} response
+// @Failure 500 {object} response
 // @Router /v1/post/delete/{id} [delete]
 func (h *handlerV1) DeletePostbyId(c *gin.Context) {
 	var jspbMarshal protojson.MarshalOptions
@@ -235,6 +237,8 @@ func (h *handlerV1) DeletePostbyId(c *gin.Context) {
 // @Accept json
 // @Produce json
 // @Success 200 {object} model.Posts!
+// @Failure 400 {object} response
+// @Failure 500 {object} response
 // @Router /v1/posts/stars [get]
 func (h *handlerV1) SortByStars(c *gin.Context) {
 	er := CheckClaims(h, c)
