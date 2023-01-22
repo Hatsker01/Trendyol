@@ -19,8 +19,8 @@ import (
 // @Produce json
 // @Param product body model.ProductSaleReq true "ProductSale"
 // @Success 200 {object} model.Productsale
-// @Success 400 {object} response
-// @Success 500 {object} response
+// @Failure 400 {object} model.StandardErrorModel
+// @Failure 500 {object} model.StandardErrorModel
 // @Router /v1/post/product [post]
 func (h *handlerV1) ProductSale(c *gin.Context) {
 	er := CheckClaims(h, c)
@@ -57,8 +57,8 @@ func (h *handlerV1) ProductSale(c *gin.Context) {
 // @Produce json
 // @Param id path string true "Product_id"
 // @Success 200 {object} model.Productsale
-// @Success 400 {object} response
-// @Success 500 {object} response
+// @Failure 400 {object} model.StandardErrorModel
+// @Failure 500 {object} model.StandardErrorModel
 // @Router /v1/post/product/{id} [delete]
 func (h *handlerV1) SaleProductDel(c *gin.Context) {
 	er := CheckClaims(h, c)
@@ -88,8 +88,8 @@ func (h *handlerV1) SaleProductDel(c *gin.Context) {
 // @Produce json
 // @Param id path string true "UserId"
 // @Success 200 {object} model.ProductSales
-// @Success 400 {object} response
-// @Success 500 {object} response
+// @Failure 400 {object} model.StandardErrorModel
+// @Failure 500 {object} model.StandardErrorModel
 // @Router /v1/post/product/userPro/{id} [get]
 func (h *handlerV1) GetAllProductsUser(c *gin.Context) {
 	er := CheckClaims(h, c)
@@ -119,8 +119,8 @@ func (h *handlerV1) GetAllProductsUser(c *gin.Context) {
 // @Produce json
 // @Param id path string true "Product_id"
 // @Success 200 {object} model.Productsale
-// @Success 400 {object} response
-// @Success 500 {object} response
+// @Failure 400 {object} model.StandardErrorModel
+// @Failure 500 {object} model.StandardErrorModel
 // @Router /v1/post/product/info/{id} [get]
 func (h *handlerV1) InfoProduct(c *gin.Context) {
 	er := CheckClaims(h, c)
@@ -130,7 +130,7 @@ func (h *handlerV1) InfoProduct(c *gin.Context) {
 		return
 	}
 	id := c.Param("id")
-	ctx, cancel := context.WithTimeout(context.Background(),time.Second * time.Duration(h.cfg.CtxTimeout))
+	ctx, cancel := context.WithTimeout(context.Background(), time.Second*time.Duration(h.cfg.CtxTimeout))
 	defer cancel()
 	product, err := h.serviceManager.PostService().InfoProduct(ctx, &pb.WithId{Id: id})
 	if err != nil {
@@ -150,8 +150,8 @@ func (h *handlerV1) InfoProduct(c *gin.Context) {
 // @Produce json
 // @Param id path string true "Product_id"
 // @Success 200 {object} model.SeledCount
-// @Success 400 {object} response
-// @Success 500 {object} response
+// @Failure 400 {object} model.StandardErrorModel
+// @Failure 500 {object} model.StandardErrorModel
 // @Router /v1/post/product/{id} [get]
 func (h *handlerV1) GettingCountSaledPro(c *gin.Context) {
 	er := CheckClaims(h, c)

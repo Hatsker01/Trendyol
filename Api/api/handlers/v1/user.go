@@ -318,8 +318,8 @@ func (h *handlerV1) DeleteUserById(c *gin.Context) {
 // @Produce json
 // @Param user body model.ChengePass true "ChangePassword"
 // @Success 200 {object} model.ChangePassRes
-// @Success 400 {object} response
-// @Success 500 {object} response
+// @Failure 400 {object} model.StandardErrorModel
+// @Failure 500 {object} model.StandardErrorModel
 // @Router /v1/user/changePass [put]
 func (h *handlerV1) ChengePass(c *gin.Context) {
 	er := CheckClaims(h, c)

@@ -141,6 +141,11 @@ definitions:
     - role
     - username
     type: object
+  model.Error:
+    properties:
+      message:
+        type: string
+    type: object
   model.GetPostByPrice:
     properties:
       high:
@@ -279,6 +284,11 @@ definitions:
       count:
         type: integer
     type: object
+  model.StandardErrorModel:
+    properties:
+      error:
+        $ref: '#/definitions/model.Error'
+    type: object
   model.StarReq:
     properties:
       id:
@@ -346,11 +356,6 @@ definitions:
       message:
         type: string
     type: object
-  v1.response:
-    properties:
-      message:
-        type: string
-    type: object
 info:
   contact: {}
 paths:
@@ -375,11 +380,11 @@ paths:
         "400":
           description: Bad Request
           schema:
-            $ref: '#/definitions/v1.response'
+            $ref: '#/definitions/model.StandardErrorModel'
         "500":
           description: Internal Server Error
           schema:
-            $ref: '#/definitions/v1.response'
+            $ref: '#/definitions/model.StandardErrorModel'
       security:
       - BearerAuth: []
       summary: CreateCategory
@@ -406,11 +411,11 @@ paths:
         "400":
           description: Bad Request
           schema:
-            $ref: '#/definitions/v1.response'
+            $ref: '#/definitions/model.StandardErrorModel'
         "500":
           description: Internal Server Error
           schema:
-            $ref: '#/definitions/v1.response'
+            $ref: '#/definitions/model.StandardErrorModel'
       security:
       - BearerAuth: []
       summary: Delete Category By ID
@@ -436,11 +441,11 @@ paths:
         "400":
           description: Bad Request
           schema:
-            $ref: '#/definitions/v1.response'
+            $ref: '#/definitions/model.StandardErrorModel'
         "500":
           description: Internal Server Error
           schema:
-            $ref: '#/definitions/v1.response'
+            $ref: '#/definitions/model.StandardErrorModel'
       security:
       - BearerAuth: []
       summary: Get All posts by Category
@@ -461,11 +466,11 @@ paths:
         "400":
           description: Bad Request
           schema:
-            $ref: '#/definitions/v1.response'
+            $ref: '#/definitions/model.StandardErrorModel'
         "500":
           description: Internal Server Error
           schema:
-            $ref: '#/definitions/v1.response'
+            $ref: '#/definitions/model.StandardErrorModel'
       summary: GetAllCategories
       tags:
       - category
@@ -490,11 +495,11 @@ paths:
         "400":
           description: Bad Request
           schema:
-            $ref: '#/definitions/v1.response'
+            $ref: '#/definitions/model.StandardErrorModel'
         "500":
           description: Internal Server Error
           schema:
-            $ref: '#/definitions/v1.response'
+            $ref: '#/definitions/model.StandardErrorModel'
       security:
       - BearerAuth: []
       summary: GetCategory
@@ -522,11 +527,11 @@ paths:
         "400":
           description: Bad Request
           schema:
-            $ref: '#/definitions/v1.response'
+            $ref: '#/definitions/model.StandardErrorModel'
         "500":
           description: Internal Server Error
           schema:
-            $ref: '#/definitions/v1.response'
+            $ref: '#/definitions/model.StandardErrorModel'
       security:
       - BearerAuth: []
       summary: Putting Like
@@ -553,11 +558,11 @@ paths:
         "400":
           description: Bad Request
           schema:
-            $ref: '#/definitions/v1.response'
+            $ref: '#/definitions/model.StandardErrorModel'
         "500":
           description: Internal Server Error
           schema:
-            $ref: '#/definitions/v1.response'
+            $ref: '#/definitions/model.StandardErrorModel'
       security:
       - BearerAuth: []
       summary: GetLikeInfo
@@ -584,11 +589,11 @@ paths:
         "400":
           description: Bad Request
           schema:
-            $ref: '#/definitions/v1.response'
+            $ref: '#/definitions/model.StandardErrorModel'
         "500":
           description: Internal Server Error
           schema:
-            $ref: '#/definitions/v1.response'
+            $ref: '#/definitions/model.StandardErrorModel'
       security:
       - BearerAuth: []
       summary: GetAllPostLikesUser
@@ -615,11 +620,11 @@ paths:
         "400":
           description: Bad Request
           schema:
-            $ref: '#/definitions/v1.response'
+            $ref: '#/definitions/model.StandardErrorModel'
         "500":
           description: Internal Server Error
           schema:
-            $ref: '#/definitions/v1.response'
+            $ref: '#/definitions/model.StandardErrorModel'
       summary: GetPostLike
       tags:
       - like
@@ -644,11 +649,11 @@ paths:
         "400":
           description: Bad Request
           schema:
-            $ref: '#/definitions/v1.response'
+            $ref: '#/definitions/model.StandardErrorModel'
         "500":
           description: Internal Server Error
           schema:
-            $ref: '#/definitions/v1.response'
+            $ref: '#/definitions/model.StandardErrorModel'
       security:
       - BearerAuth: []
       summary: TakeLike
@@ -676,11 +681,11 @@ paths:
         "400":
           description: Bad Request
           schema:
-            $ref: '#/definitions/v1.response'
+            $ref: '#/definitions/model.StandardErrorModel'
         "500":
           description: Internal Server Error
           schema:
-            $ref: '#/definitions/v1.response'
+            $ref: '#/definitions/model.StandardErrorModel'
       summary: CreatePost
       tags:
       - post
@@ -704,11 +709,11 @@ paths:
         "400":
           description: Bad Request
           schema:
-            $ref: '#/definitions/v1.response'
+            $ref: '#/definitions/model.StandardErrorModel'
         "500":
           description: Internal Server Error
           schema:
-            $ref: '#/definitions/v1.response'
+            $ref: '#/definitions/model.StandardErrorModel'
       security:
       - BearerAuth: []
       summary: UpdatePost
@@ -735,11 +740,11 @@ paths:
         "400":
           description: Bad Request
           schema:
-            $ref: '#/definitions/v1.response'
+            $ref: '#/definitions/model.StandardErrorModel'
         "500":
           description: Internal Server Error
           schema:
-            $ref: '#/definitions/v1.response'
+            $ref: '#/definitions/model.StandardErrorModel'
       security:
       - BearerAuth: []
       summary: GetPostById
@@ -767,11 +772,11 @@ paths:
         "400":
           description: Bad Request
           schema:
-            $ref: '#/definitions/v1.response'
+            $ref: '#/definitions/model.StandardErrorModel'
         "500":
           description: Internal Server Error
           schema:
-            $ref: '#/definitions/v1.response'
+            $ref: '#/definitions/model.StandardErrorModel'
       security:
       - BearerAuth: []
       tags:
@@ -797,11 +802,11 @@ paths:
         "400":
           description: Bad Request
           schema:
-            $ref: '#/definitions/v1.response'
+            $ref: '#/definitions/model.StandardErrorModel'
         "500":
           description: Internal Server Error
           schema:
-            $ref: '#/definitions/v1.response'
+            $ref: '#/definitions/model.StandardErrorModel'
       security:
       - BearerAuth: []
       summary: DeleteBrand
@@ -822,11 +827,11 @@ paths:
         "400":
           description: Bad Request
           schema:
-            $ref: '#/definitions/v1.response'
+            $ref: '#/definitions/model.StandardErrorModel'
         "500":
           description: Internal Server Error
           schema:
-            $ref: '#/definitions/v1.response'
+            $ref: '#/definitions/model.StandardErrorModel'
       summary: Get All Brands
       tags:
       - brand
@@ -851,11 +856,11 @@ paths:
         "400":
           description: Bad Request
           schema:
-            $ref: '#/definitions/v1.response'
+            $ref: '#/definitions/model.StandardErrorModel'
         "500":
           description: Internal Server Error
           schema:
-            $ref: '#/definitions/v1.response'
+            $ref: '#/definitions/model.StandardErrorModel'
       security:
       - BearerAuth: []
       summary: GetBrandById
@@ -882,11 +887,11 @@ paths:
         "400":
           description: Bad Request
           schema:
-            $ref: '#/definitions/v1.response'
+            $ref: '#/definitions/model.StandardErrorModel'
         "500":
           description: Internal Server Error
           schema:
-            $ref: '#/definitions/v1.response'
+            $ref: '#/definitions/model.StandardErrorModel'
       security:
       - BearerAuth: []
       summary: GetPostByBrand
@@ -913,11 +918,11 @@ paths:
         "400":
           description: Bad Request
           schema:
-            $ref: '#/definitions/v1.response'
+            $ref: '#/definitions/model.StandardErrorModel'
         "500":
           description: Internal Server Error
           schema:
-            $ref: '#/definitions/v1.response'
+            $ref: '#/definitions/model.StandardErrorModel'
       security:
       - BearerAuth: []
       summary: Delete Post By ID
@@ -944,11 +949,11 @@ paths:
         "400":
           description: Bad Request
           schema:
-            $ref: '#/definitions/v1.response'
+            $ref: '#/definitions/model.StandardErrorModel'
         "500":
           description: Internal Server Error
           schema:
-            $ref: '#/definitions/v1.response'
+            $ref: '#/definitions/model.StandardErrorModel'
       security:
       - BearerAuth: []
       summary: Get all user posts
@@ -975,11 +980,11 @@ paths:
         "400":
           description: Bad Request
           schema:
-            $ref: '#/definitions/v1.response'
+            $ref: '#/definitions/model.StandardErrorModel'
         "500":
           description: Internal Server Error
           schema:
-            $ref: '#/definitions/v1.response'
+            $ref: '#/definitions/model.StandardErrorModel'
       security:
       - BearerAuth: []
       summary: Getting Post By Sorting Color
@@ -1007,11 +1012,11 @@ paths:
         "400":
           description: Bad Request
           schema:
-            $ref: '#/definitions/v1.response'
+            $ref: '#/definitions/model.StandardErrorModel'
         "500":
           description: Internal Server Error
           schema:
-            $ref: '#/definitions/v1.response'
+            $ref: '#/definitions/model.StandardErrorModel'
       security:
       - BearerAuth: []
       summary: Sort Post By price
@@ -1038,11 +1043,11 @@ paths:
         "400":
           description: Bad Request
           schema:
-            $ref: '#/definitions/v1.response'
+            $ref: '#/definitions/model.StandardErrorModel'
         "500":
           description: Internal Server Error
           schema:
-            $ref: '#/definitions/v1.response'
+            $ref: '#/definitions/model.StandardErrorModel'
       security:
       - BearerAuth: []
       summary: Get posts by seperating by price
@@ -1074,11 +1079,11 @@ paths:
         "400":
           description: Bad Request
           schema:
-            $ref: '#/definitions/v1.response'
+            $ref: '#/definitions/model.StandardErrorModel'
         "500":
           description: Internal Server Error
           schema:
-            $ref: '#/definitions/v1.response'
+            $ref: '#/definitions/model.StandardErrorModel'
       summary: UploadImage
       tags:
       - post
@@ -1104,11 +1109,11 @@ paths:
         "400":
           description: Bad Request
           schema:
-            $ref: '#/definitions/v1.response'
+            $ref: '#/definitions/model.StandardErrorModel'
         "500":
           description: Internal Server Error
           schema:
-            $ref: '#/definitions/v1.response'
+            $ref: '#/definitions/model.StandardErrorModel'
       security:
       - BearerAuth: []
       summary: ProductSale
@@ -1135,11 +1140,11 @@ paths:
         "400":
           description: Bad Request
           schema:
-            $ref: '#/definitions/v1.response'
+            $ref: '#/definitions/model.StandardErrorModel'
         "500":
           description: Internal Server Error
           schema:
-            $ref: '#/definitions/v1.response'
+            $ref: '#/definitions/model.StandardErrorModel'
       security:
       - BearerAuth: []
       summary: SaleProductDelete
@@ -1165,11 +1170,11 @@ paths:
         "400":
           description: Bad Request
           schema:
-            $ref: '#/definitions/v1.response'
+            $ref: '#/definitions/model.StandardErrorModel'
         "500":
           description: Internal Server Error
           schema:
-            $ref: '#/definitions/v1.response'
+            $ref: '#/definitions/model.StandardErrorModel'
       security:
       - BearerAuth: []
       summary: GetingCountSaledProduct
@@ -1196,11 +1201,11 @@ paths:
         "400":
           description: Bad Request
           schema:
-            $ref: '#/definitions/v1.response'
+            $ref: '#/definitions/model.StandardErrorModel'
         "500":
           description: Internal Server Error
           schema:
-            $ref: '#/definitions/v1.response'
+            $ref: '#/definitions/model.StandardErrorModel'
       security:
       - BearerAuth: []
       summary: InfoProduct
@@ -1227,11 +1232,11 @@ paths:
         "400":
           description: Bad Request
           schema:
-            $ref: '#/definitions/v1.response'
+            $ref: '#/definitions/model.StandardErrorModel'
         "500":
           description: Internal Server Error
           schema:
-            $ref: '#/definitions/v1.response'
+            $ref: '#/definitions/model.StandardErrorModel'
       security:
       - BearerAuth: []
       summary: GetAllProductsUser
@@ -1259,11 +1264,11 @@ paths:
         "400":
           description: Bad Request
           schema:
-            $ref: '#/definitions/v1.response'
+            $ref: '#/definitions/model.StandardErrorModel'
         "500":
           description: Internal Server Error
           schema:
-            $ref: '#/definitions/v1.response'
+            $ref: '#/definitions/model.StandardErrorModel'
       security:
       - BearerAuth: []
       summary: Putting Star for post
@@ -1290,11 +1295,11 @@ paths:
         "400":
           description: Bad Request
           schema:
-            $ref: '#/definitions/v1.response'
+            $ref: '#/definitions/model.StandardErrorModel'
         "500":
           description: Internal Server Error
           schema:
-            $ref: '#/definitions/v1.response'
+            $ref: '#/definitions/model.StandardErrorModel'
       security:
       - BearerAuth: []
       summary: Taking Star from post
@@ -1321,11 +1326,11 @@ paths:
         "400":
           description: Bad Request
           schema:
-            $ref: '#/definitions/v1.response'
+            $ref: '#/definitions/model.StandardErrorModel'
         "500":
           description: Internal Server Error
           schema:
-            $ref: '#/definitions/v1.response'
+            $ref: '#/definitions/model.StandardErrorModel'
       security:
       - BearerAuth: []
       summary: Getting Avarage Star of Post
@@ -1346,11 +1351,11 @@ paths:
         "400":
           description: Bad Request
           schema:
-            $ref: '#/definitions/v1.response'
+            $ref: '#/definitions/model.StandardErrorModel'
         "500":
           description: Internal Server Error
           schema:
-            $ref: '#/definitions/v1.response'
+            $ref: '#/definitions/model.StandardErrorModel'
       summary: GetAllPosts
       tags:
       - post
@@ -1369,11 +1374,11 @@ paths:
         "400":
           description: Bad Request
           schema:
-            $ref: '#/definitions/v1.response'
+            $ref: '#/definitions/model.StandardErrorModel'
         "500":
           description: Internal Server Error
           schema:
-            $ref: '#/definitions/v1.response'
+            $ref: '#/definitions/model.StandardErrorModel'
       security:
       - BearerAuth: []
       summary: Sort posts by stars
@@ -1401,11 +1406,11 @@ paths:
         "400":
           description: Bad Request
           schema:
-            $ref: '#/definitions/v1.response'
+            $ref: '#/definitions/model.StandardErrorModel'
         "500":
           description: Internal Server Error
           schema:
-            $ref: '#/definitions/v1.response'
+            $ref: '#/definitions/model.StandardErrorModel'
       security:
       - BearerAuth: []
       summary: Change User Password

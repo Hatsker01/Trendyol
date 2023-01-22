@@ -21,8 +21,8 @@ import (
 // @Produce json
 // @Param like body model.PutLikeReq true "PutLike"
 // @Success 200 {object} model.Like!
-// @Success 400 {object} response
-// @Success 500 {object} response
+// @Failure 400 {object} model.StandardErrorModel
+// @Failure 500 {object} model.StandardErrorModel
 // @Router /v1/like [post]
 func (h *handlerV1) PutLike(c *gin.Context) {
 	er := CheckClaims(h, c)
@@ -61,8 +61,8 @@ func (h *handlerV1) PutLike(c *gin.Context) {
 // @Produce json
 // @Param id path string true "Like_id"
 // @Success 200 {object} model.Like
-// @Success 400 {object} response
-// @Success 500 {object} response
+// @Failure 400 {object} model.StandardErrorModel
+// @Failure 500 {object} model.StandardErrorModel
 // @Router /v1/like/takeLike/{id} [delete]
 func (h *handlerV1) TakeLike(c *gin.Context) {
 	er := CheckClaims(h, c)
@@ -93,8 +93,8 @@ func (h *handlerV1) TakeLike(c *gin.Context) {
 // @Produce json
 // @Param id path string true "User_id"
 // @Success 200 {object} model.Like
-// @Success 400 {object} response
-// @Success 500 {object} response
+// @Failure 400 {object} model.StandardErrorModel
+// @Failure 500 {object} model.StandardErrorModel
 // @Router /v1/like/getAllLikeuser/{id} [get]
 func (h *handlerV1) GetAllPostLikesUser(c *gin.Context) {
 	er := CheckClaims(h, c)
@@ -129,8 +129,8 @@ func (h *handlerV1) GetAllPostLikesUser(c *gin.Context) {
 // @Produce json
 // @Param id path string true "Like_Id"
 // @Success 200 {object} model.Like
-// @Success 400 {object} response
-// @Success 500 {object} response
+// @Failure 400 {object} model.StandardErrorModel
+// @Failure 500 {object} model.StandardErrorModel
 // @Router /v1/like/{id} [get]
 func (h *handlerV1) GetLikeInfo(c *gin.Context) {
 	var jspbMarshal protojson.MarshalOptions
@@ -163,8 +163,8 @@ func (h *handlerV1) GetLikeInfo(c *gin.Context) {
 // @Produce json
 // @Param id path string true "Post_id"
 // @Success 200 {object} model.Likes
-// @Success 400 {object} response
-// @Success 500 {object} response
+// @Failure 400 {object} model.StandardErrorModel
+// @Failure 500 {object} model.StandardErrorModel
 // @Router /v1/like/getPostLike/{id} [get]
 func (h *handlerV1) GetPostLike(c *gin.Context) {
 	var jspbMarshal protojson.MarshalOptions

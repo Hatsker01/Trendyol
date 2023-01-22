@@ -20,8 +20,8 @@ import (
 // @Produce json
 // @Param post body model.CreatePost true "CreatePost"
 // @Success 200 {object} model.Post!
-// @Failure 400 {object} response
-// @Failure 500 {object} response
+// @Failure 400 {object} model.StandardErrorModel
+// @Failure 500 {object} model.StandardErrorModel
 // @Router /v1/post [post]
 func (h *handlerV1) CreatePost(c *gin.Context) {
 	var body pb.Post
@@ -55,8 +55,8 @@ func (h *handlerV1) CreatePost(c *gin.Context) {
 // @Produce json
 // @Param post body model.Post true "UpdatePost"
 // @Success 200 {object} model.Post!
-// @Failure 400 {object} response
-// @Failure 500 {object} response
+// @Failure 400 {object} model.StandardErrorModel
+// @Failure 500 {object} model.StandardErrorModel
 // @Router /v1/post [put]
 func (h *handlerV1) UpdatePost(c *gin.Context) {
 	var body pb.Post
@@ -97,8 +97,8 @@ func (h *handlerV1) UpdatePost(c *gin.Context) {
 // @Produce json
 // @Param id path string true "Post_id"
 // @Success 200 {object} model.Post!
-// @Failure 400 {object} response
-// @Failure 500 {object} response
+// @Failure 400 {object} model.StandardErrorModel
+// @Failure 500 {object} model.StandardErrorModel
 // @Router /v1/post/{id} [get]
 func (h *handlerV1) GetPostById(c *gin.Context) {
 	var jspbMarshal protojson.MarshalOptions
@@ -135,8 +135,8 @@ func (h *handlerV1) GetPostById(c *gin.Context) {
 // @Accept json
 // @Produce json
 // @Success 200 {object} model.Posts!
-// @Failure 400 {object} response
-// @Failure 500 {object} response
+// @Failure 400 {object} model.StandardErrorModel
+// @Failure 500 {object} model.StandardErrorModel
 // @Router /v1/posts [get]
 func (h *handlerV1) GetAllPosts(c *gin.Context) {
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second*time.Duration(h.cfg.CtxTimeout))
@@ -161,8 +161,8 @@ func (h *handlerV1) GetAllPosts(c *gin.Context) {
 // @Produce json
 // @Param id path string true "User_id"
 // @Success 200 {object} model.Posts!
-// @Failure 400 {object} response
-// @Failure 500 {object} response
+// @Failure 400 {object} model.StandardErrorModel
+// @Failure 500 {object} model.StandardErrorModel
 // @Router /v1/post/getAllUserPosts/{id} [get]
 func (h *handlerV1) GetAllUserPosts(c *gin.Context) {
 	var jspbMarshal protojson.MarshalOptions
@@ -199,8 +199,8 @@ func (h *handlerV1) GetAllUserPosts(c *gin.Context) {
 // @Produce json
 // @Param id path string true "Post_id"
 // @Success 200 {object} model.Post!
-// @Failure 400 {object} response
-// @Failure 500 {object} response
+// @Failure 400 {object} model.StandardErrorModel
+// @Failure 500 {object} model.StandardErrorModel
 // @Router /v1/post/delete/{id} [delete]
 func (h *handlerV1) DeletePostbyId(c *gin.Context) {
 	var jspbMarshal protojson.MarshalOptions
@@ -237,8 +237,8 @@ func (h *handlerV1) DeletePostbyId(c *gin.Context) {
 // @Accept json
 // @Produce json
 // @Success 200 {object} model.Posts!
-// @Failure 400 {object} response
-// @Failure 500 {object} response
+// @Failure 400 {object} model.StandardErrorModel
+// @Failure 500 {object} model.StandardErrorModel
 // @Router /v1/posts/stars [get]
 func (h *handlerV1) SortByStars(c *gin.Context) {
 	er := CheckClaims(h, c)
@@ -272,8 +272,8 @@ func (h *handlerV1) SortByStars(c *gin.Context) {
 // @Produce json
 // @Param high path bool true "High"
 // @Success 200 {object} model.Posts
-// @Success 400 {object} response
-// @Success 500 {object} response
+// @Failure 400 {object} model.StandardErrorModel
+// @Failure 500 {object} model.StandardErrorModel
 // @Router /v1/post/getSortPrice/{high} [get]
 func (h *handlerV1) PriceSep(c *gin.Context) {
 	var jspbMarshal protojson.MarshalOptions
@@ -317,8 +317,8 @@ func (h *handlerV1) PriceSep(c *gin.Context) {
 // @Produce json
 // @Param post body model.GetPostByPrice true "GettingPost"
 // @Success 200 {object} model.Posts!
-// @Success 400 {object} response
-// @Success 500 {object} response
+// @Failure 400 {object} model.StandardErrorModel
+// @Failure 500 {object} model.StandardErrorModel
 // @Router /v1/post/getByPrice [post]
 func (h *handlerV1) GetPostByPrice(c *gin.Context) {
 	var body pb.GetPostPriceReq
@@ -359,8 +359,8 @@ func (h *handlerV1) GetPostByPrice(c *gin.Context) {
 // @Produce json
 // @Param color path string true "Color"
 // @Success 200 {object} model.Posts
-// @Success 400 {object} response
-// @Success 500 {object} response
+// @Failure 400 {object} model.StandardErrorModel
+// @Failure 500 {object} model.StandardErrorModel
 // @Router /v1/post/getByColor/{color} [get]
 func (h *handlerV1) GetingPostsByColor(c *gin.Context) {
 	var jspbMarshal protojson.MarshalOptions
@@ -394,8 +394,8 @@ func (h *handlerV1) GetingPostsByColor(c *gin.Context) {
 // @Produce json
 // @Param star body model.StarReq true "StarReq"
 // @Success 200 {object} model.Stars
-// @Success 400 {object} response
-// @Success 500 {object} response
+// @Failure 400 {object} model.StandardErrorModel
+// @Failure 500 {object} model.StandardErrorModel
 // @Router /v1/post/star [post]
 func (h *handlerV1) StarReq(c *gin.Context) {
 	er := CheckClaims(h, c)
@@ -432,8 +432,8 @@ func (h *handlerV1) StarReq(c *gin.Context) {
 // @Produce json
 // @Param id path string true "Post_id"
 // @Success 200 {object} model.Stars
-// @Success 400 {object} response
-// @Success 500 {object} response
+// @Failure 400 {object} model.StandardErrorModel
+// @Failure 500 {object} model.StandardErrorModel
 // @Router /v1/post/star/{id} [delete]
 func (h *handlerV1) TakeStar(c *gin.Context) {
 	var jspbMarshal protojson.MarshalOptions
@@ -468,8 +468,8 @@ func (h *handlerV1) TakeStar(c *gin.Context) {
 // @Produce json
 // @Param id path string true "Post_Id"
 // @Success 200 {object} model.Stars
-// @Success 400 {object} response
-// @Success 500 {object} response
+// @Failure 400 {object} model.StandardErrorModel
+// @Failure 500 {object} model.StandardErrorModel
 // @Router /v1/post/stars/{id} [get]
 func (h *handlerV1) GetStar(c *gin.Context) {
 	var jspbMarshal protojson.MarshalOptions
@@ -504,8 +504,8 @@ func (h *handlerV1) GetStar(c *gin.Context) {
 // @Param file formData file true "File"
 // @Param id path string true "Id"
 // @Success 200 {object} model.Post
-// @Failure 400 {object} response
-// @Failure 500 {object} response
+// @Failure 400 {object} model.StandardErrorModel
+// @Failure 500 {object} model.StandardErrorModel
 // @Router /v1/post/image/{id} [put]
 func (h *handlerV1) LoadImage(c *gin.Context) {
 	file, err := c.FormFile("file")

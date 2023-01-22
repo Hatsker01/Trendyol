@@ -207,6 +207,16 @@ type Login struct {
 	Password string `json:"password"`
 }
 
+// Error ...
+type Error struct {
+	Message string `json:"message"`
+}
+
+// StandardErrorModel ...
+type StandardErrorModel struct {
+	Error Error `json:"error" exsample:"helloooooo"`
+}
+
 var (
 	ErrInputBody   = errors.New("error input body invalid")
 	ErrIdNotFound  = errors.New("error id not found")
