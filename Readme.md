@@ -8,7 +8,7 @@
     http://hostname:8090/swagger/index.html#
 
 ## Usage for API
-    github.com/gin-gonic/gin  package
+    github.com/gin-gonic/gin  
 
 
 All rows ended with **swagger** and there documintation for API
