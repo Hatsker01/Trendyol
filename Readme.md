@@ -13,6 +13,6 @@
 
 All rows ended with **swagger** and there documintation for API
  
-This project example for **trendyol.com** site
+This project example for **https://www.trendyol.com/** site
 
 **Used postgresql database**
