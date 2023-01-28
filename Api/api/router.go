@@ -26,7 +26,7 @@ type Option struct {
 
 func New(option Option) *gin.Engine {
 	router := gin.New()
-
+	
 	router.Use(gin.Logger(),
 		gin.Recovery(),
 		middleware.New(GinCorsMiddleware()),
